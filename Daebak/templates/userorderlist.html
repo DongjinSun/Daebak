@@ -24,7 +24,7 @@
     <!-- start header section  -->
     <div class="main_area">  
         <div class="brand_box">
-          <a class="brand" href="customermain.html">
+          <a class="brand" href="{% url 'cm' %}">
             <span>
               Mr.Daebak DINNER
             </span>
@@ -61,11 +61,11 @@
               <tbody>
           </table>
         <div class="btn_box">
-          <a href="order.html">
+          <a href="{% url 'op' %}">
             선택 주문 재주문
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="dinnerfood.html">
+          <a href="{% url 'dfp' %}">
             새 주문하러 가기
           </a>
         </div>

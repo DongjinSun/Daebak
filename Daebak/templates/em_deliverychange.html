@@ -24,10 +24,11 @@
   <!-- start header section  -->
   <div class="main_area">
     <div class="brand_box">
-      <a class="brand" href="{% url 'cm' %}">
+      <a class="brand" href="employeemain.html">
         <span>
           Mr.Daebak DINNER
         </span>
+        <p>&nbsp;Employee System</p>
       </a>
     </div>
   </div>
@@ -43,13 +44,13 @@
             <div class="d-flex  flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav">
                 <li class="item">
-                  <a class="nav-link" href="{% url 'dfp' %}">디너 종류 </a>
+                  <a class="nav-link" href="em_stock.html">재고 조회 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'dsp' %}">디너 스타일 </a>
+                  <a class="nav-link" href="em_cook.html">주문 조회 (조리) </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'ap' %}">추가 사항 </a>
+                  <a class="nav-link" href="em_delivery.html">주문 조회 (배달) </a>
                 </li>
             </div>
           </div>
@@ -60,115 +61,29 @@
 
   <!-- end bar section -->
 
-  <!-- start dinner section -->
+  <!-- start inquire section -->
 
-  <section class="dinner_section layout_padding">
+  <section class="inquire_section layout_padding">
     <div class="container">
       <div class="heading_container">
         <hr>
         <h2>
-          디너 종류
+          주문 조회 (배달)
         </h2>
       </div>
     </div>
-    <div class="container-fluid">
-
-      <div class="dinner_container">
-        <div class="box">
-          <img src="images/valentine.jpg" alt="">
-          <div class="link_box">
-            <h3>
-              Valentine dinner
-            </h3>
-            <h5>
-              78,000 won
-            </h5>
-            <p>
-              <br>
-              스테이크<br><br>
-              와인 1병<br><br>
-              * 사진 속 접시와 냅킨이 제공됩니다.<br><br>
-            </p>
-            <a href="">
-              장바구니에 담기
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <img src="images/french.jpg" alt="">
-          <div class="link_box">
-            <h3>
-              French dinner
-            </h3>
-            <h5>
-              62,000 won
-            </h5>
-            <p>
-              <br>
-              샐러드<br>
-              스테이크<br><br>
-              커피 1잔<br>
-              와인 1잔<br><br>
-            </p>
-            <a href="">
-              장바구니에 담기
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <img src="images/english.jpg" alt="">
-          <div class="link_box">
-            <h3>
-              English dinner
-            </h3>
-            <h5>
-              58,000 won
-            </h5>
-            <p>
-              <br>
-              에그 스크램블<br>
-              베이컨<br>
-              빵<br>
-              스테이크<br><br>
-            </p>
-            <a href="">
-              장바구니에 담기
-            </a>
-          </div>
-        </div>
-        <div class="box">
-          <img src="images/chamfeast.jpg" alt="">
-          <div class="link_box">
-            <h3>
-              Champagne Feast dinner
-            </h3>
-            <h5>
-              170,000 won
-            </h5>
-            <p>
-              <br>
-              바게트빵 4조각<br>
-              스테이크<br><br>
-              샴페인 1병<br>
-              커피 1포트<br>
-              와인 1병<br><br>
-              * 2인 식사만 가능합니다.<br><br>
-            </p>
-            <a href="">
-              장바구니에 담기
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="btn-box">
-      <a href="{% url 'dsp' %}">
-        다음으로 →
+    <div class="btn_box">
+      <a href="em_delivery.html">
+        수정 완료
       </a>
+    </div>
+    <div class="container-fluid">
+        <!-- 재고 표 -->
+        
     </div>
   </section>
 
-  <!-- end dinner section -->
+  <!-- end inquire section -->
 
 
   <!-- start info section -->

@@ -24,7 +24,7 @@
   <!-- start header section  -->
   <div class="main_area">
     <div class="brand_box">
-      <a class="brand" href="customermain.html">
+      <a class="brand" href="{% url 'cm' %}">
         <span>
           Mr.Daebak DINNER
         </span>
@@ -43,13 +43,13 @@
             <div class="d-flex  flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav">
                 <li class="item">
-                  <a class="nav-link" href="dinnerfood.html">디너 종류 </a>
+                  <a class="nav-link" href="{% url 'dfp' %}">디너 종류 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="dinnerstyle.html">디너 스타일 </a>
+                  <a class="nav-link" href="{% url 'dsp' %}">디너 스타일 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="addition.html">추가 사항 </a>
+                  <a class="nav-link" href="{% url 'ap' %}">추가 사항 </a>
                 </li>
             </div>
           </div>
@@ -141,7 +141,7 @@
       </div>
     </div>
     <div class="btn-box">
-      <a href="addition.html">
+      <a href="{% url 'ap' %}">
         다음으로 →
       </a>
     </div>

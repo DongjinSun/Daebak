@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 
 <head>
@@ -13,18 +14,18 @@
   <link rel="icon" href="images/restaurant.png">
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 </head>
 
 <body>
   <!-- start header section  -->
   <div class="main_area">  
     <div class="brand_box">
-      <a class="brand" href="customermain.html">
+      <a class="brand" href="{% url 'cm' %} ">
         <span>
           Mr.Daebak DINNER
         </span>
@@ -50,18 +51,18 @@
           <br><br>
         </div>
         <div class="btn_box">
-          <a href="login.html">
+          <a href="{% url 'lp' %} ">
             &nbsp;회원 주문하러 가기&nbsp;
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="dinnerfood.html">
+          <a href="{% url 'dfp' %} ">
             비회원 주문하러 가기
           </a>
           <br>
           
         </div>
         <div class="signupbtn_box">
-          <a href="signup.html">
+          <a href="{% url 'sp' %} ">
             회원가입
           </a>
         </div>

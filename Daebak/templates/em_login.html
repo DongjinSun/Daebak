@@ -9,7 +9,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mr.Daebak Dinner</title>
+  <title>Mr.Daebak Dinner Employee</title>
   <link rel="icon" href="images/restaurant.png">
 
   <!-- bootstrap core css -->
@@ -24,10 +24,11 @@
   <!-- start header section  -->
   <div class="main_area">  
     <div class="brand_box">
-      <a class="brand" href="{% url 'cm' %} ">
+      <a class="brand" href="employeemain.html">
         <span>
           Mr.Daebak DINNER
         </span>
+        <p>&nbsp;Employee System</p>
       </a>
     </div>
     <div class="brand_img">
@@ -42,15 +43,15 @@
     <div class="container">
       <div class="box">
         <div class="loginbox">
-            <h1>LOGIN</h1>
-            <br>
-            <form action="{% url 'login' %}" method="POST" id="loginform">
-              {% csrf_token %}
-                <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">
-                <input type="password" name="password" class="userPassword" placeholder="Password">
-                <br><br>
-                <input type="submit" id="sub" value = "로그인">
-            </form>       
+          <h1>LOGIN</h1>
+          <br>
+          <form action="{% url 'emlogin' %}" method="POST" id="loginform">
+            {% csrf_token %}
+              <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">
+              <input type="password" name="password" class="userPassword" placeholder="Password">
+              <br><br>
+              <input type="submit" id="sub" value = "로그인">
+          </form>       
         </div>
       </div>
     </div>

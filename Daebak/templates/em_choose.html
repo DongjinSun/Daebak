@@ -9,7 +9,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Mr.Daebak Dinner</title>
+  <title>Mr.Daebak Dinner Employee</title>
   <link rel="icon" href="images/restaurant.png">
 
   <!-- bootstrap core css -->
@@ -24,10 +24,11 @@
   <!-- start header section  -->
   <div class="main_area">  
     <div class="brand_box">
-      <a class="brand" href="{% url 'cm' %} ">
+      <a class="brand" href="employeemain.html">
         <span>
           Mr.Daebak DINNER
         </span>
+        <p>&nbsp;Employee System</p>
       </a>
     </div>
     <div class="brand_img">
@@ -36,26 +37,29 @@
   </div>
   <!-- end header section -->
 
-  <!-- login section -->
-
-  <section class="login_section layout_padding">
+  <!-- start choose section -->
+  <section class="choose_section layout_padding">
     <div class="container">
-      <div class="box">
-        <div class="loginbox">
-            <h1>LOGIN</h1>
-            <br>
-            <form action="{% url 'login' %}" method="POST" id="loginform">
-              {% csrf_token %}
-                <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">
-                <input type="password" name="password" class="userPassword" placeholder="Password">
-                <br><br>
-                <input type="submit" id="sub" value = "로그인">
-            </form>       
+      <div class="box">      
+        <div class="btn_box">
+          <a href="em_stock.html">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;재고 조회&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          <a href="em_cook.html">
+            주문 조회 (조리)
+          </a> 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+          <a href="em_delivery.html">
+            주문 조회 (배달)
+          </a> 
         </div>
+        <br><br><br>     
       </div>
     </div>
   </section>
-  <!-- end login section -->
+
+  <!-- end choose section -->
 
   <!-- start info section -->
 
@@ -112,5 +116,4 @@
   <script type="text/javascript" src="js/bootstrap.js"></script>
 
 </body>
-
 </html>
