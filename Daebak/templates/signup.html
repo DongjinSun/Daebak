@@ -51,45 +51,18 @@
     <div class="container">
       <div class="box">
         <div class="signup_box">
-            <div class="signup_info">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
-                  </div>
-                  <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon4">전화번호</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon4">비밀번호</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon3">&nbsp;&nbsp;&nbsp;&nbsp;주소&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon3">카드번호</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>               
-            </div>
+          <form action="{% url 'signup' %}" method="POST" id="signupform">
+            {% csrf_token %}
+            이름 <input type="text" name="name"><br>
+            전화번호 <input type="text" name="phonenumber"><br>
+            비밀번호 <input type="password" name="password"><br>
+            주소 <input type="text" name="address"><br>
+            카드번호 <input type="text" name="card"><br>
+            <br><br>
+            <input type="submit" id="sub" value="가입하기">
+          </form> 
         </div>
-        <br>
-        <div class="btn-box">
-          <a href="customermain.html">
-            가입하기
-          </a>
-        </div>
+
       </div>
     </div>
   </section>

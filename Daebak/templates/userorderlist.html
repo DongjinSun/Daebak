@@ -21,43 +21,59 @@
 </head>
 
 <body>
-  <!-- start header section  -->
-  <div class="main_area">  
-    <div class="brand_box">
-      <a class="brand" href="customermain.html">
-        <span>
-          Mr.Daebak DINNER
-        </span>
-      </a>
+    <!-- start header section  -->
+    <div class="main_area">  
+        <div class="brand_box">
+          <a class="brand" href="customermain.html">
+            <span>
+              Mr.Daebak DINNER
+            </span>
+          </a>
+        </div>
+        <div class="brand_img">
+          <img src="images/fine-dining-gf22fda13e_1920.jpg" alt="">
+        </div>   
     </div>
-    <div class="brand_img">
-      <img src="images/fine-dining-gf22fda13e_1920.jpg" alt="">
-    </div>   
-  </div>
-  <!-- end header section -->
+    <!-- end header section -->
 
-  <!-- login section -->
+  <!-- start userorderlist section -->
 
-  <section class="login_section layout_padding">
+  <section class="userorderlist_section layout_padding">
     <div class="container">
       <div class="box">
-        <div class="loginbox">
-            <h1>LOGIN</h1>
-            <br>
-            <form method="post" id="loginform">
-                <input type="text" class="userPhonenumber" placeholder="Phonenumber">
-                <input type="password" class="userPassword" placeholder="Password">
-            </form>
-        </div>
+        <h1>주문 내역</h1>
+          <table class="table table-striped">
+              <thead>
+              <tr>
+                  <td><B>디너 종류</B></td>
+                  <td><B>디너 스타일</B></td>
+                  <td><B>추가 사항</B></td>
+              </tr>
+              </thead>
+              <tbody>
+              {% for u in users %}
+              <tr>
+                  <td>{{u.food}}번</td>
+                  <td>{{u.style}}</td>
+                  <td>{{u.add}}</td>
+              </tr>
+              {% endfor %}
+              <tbody>
+          </table>
         <div class="btn_box">
-          <a href="userorderlist.html">
-            로그인
+          <a href="order.html">
+            선택 주문 재주문
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="dinnerfood.html">
+            새 주문하러 가기
           </a>
         </div>
       </div>
     </div>
   </section>
-  <!-- end login section -->
+
+  <!-- end userorderlist section -->
 
   <!-- start info section -->
 

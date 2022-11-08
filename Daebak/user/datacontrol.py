@@ -2,47 +2,20 @@ from rest_framework.serializers import ModelSerializer
 from .models import Stock, User, Employee, OrderList
 from django.db import connection
 
-class stockDataSerializer(ModelSerializer):
-    class Meta:
-        model = Stock
-        fields = '__all__'
-        
-class userDataSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
-
-class employeeDataSerializer(ModelSerializer):
-    class Meta:
-        model = Employee
-        fields = '__all__'
-        
-class orderDataSerializer(ModelSerializer):
-    class Meta:
-        model = OrderList
-        fields = '__all__'
         
 def get_data(num,*args):
-    # f_d = {0:stockDataSerializer,1:userDataSerializer,
-    #        2:employeeDataSerializer,3:orderDataSerializer}
-    # data_l = [Stock,User,Employee, OrderList]
-    # if num==1 or 3:
-    #     datas = data_l[num].objects.get(phonenum = args[0])
-    # datas = data_l[num].objects.all()
-    # serializer = f_d[num](datas, many=True)
-    # return serializer.data
     
     if num == 0: ## 이름, 비밀번호 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT name,password from user where phonenum ="+"args[0]"
+            strSql = "SELECT name,password from user where phone ="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
             return result
         except:
             connection.rollback()
-            return -1
+            return -10 # 데이터 가져오기 실패 오류코드 
     if num == 1: ## order list 가져오기
         try:
             cursor = connection.cursor()
@@ -53,20 +26,30 @@ def get_data(num,*args):
             return result
         except:
             connection.rollback()
-            return -1
-    
+            return -10
+    if num ==2:
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT * from order_list where phonenum="+str(args[0])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+        except:
+            connection.rollback()
+            return -10
 
 def Insert_data(request,num):
-    
-    reqData = request.data
-    f_d = {0:stockDataSerializer,1:userDataSerializer,
-           2:employeeDataSerializer,3:orderDataSerializer}
-    serializer = f_d[num](data = reqData)
+    pass
+    # reqData = request.data
+    # f_d = {0:stockDataSerializer,1:userDataSerializer,
+    #        2:employeeDataSerializer,3:orderDataSerializer}
+    # serializer = f_d[num](data = reqData)
 
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    # if serializer.is_valid():
+    #     serializer.save()
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def change_data(request, pk,num):

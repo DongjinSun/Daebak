@@ -62,6 +62,9 @@
 
   <!-- start order section -->
   <section class="order_section layout_padding">
+
+
+
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -69,70 +72,51 @@
           주문 상품
         </h2>
       </div>
-    </div>
-    <div class="container-fluid">
-    <br>
-    <p>디너 목록들</p>
-    <br><br>
-    <div class="container">
-      <div class="heading_container">
-        <hr>
-        <h2>
-          주문자 정보
-        </h2>
-      </div>
-    </div>
-    <div class="container-fluid">
-    <br>
-    <div class="container">
+
+
+
+
       <div class="box"> 
         <div class="orderbox">
             <div class="orderInfo">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">&nbsp;&nbsp;&nbsp;&nbsp;이름&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
-                  </div>
-                  <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
+              <form action="{% url 'order' %}" method="POST" id="userform">
+                <div class="heading_container">
+                  <hr>
+                  <h2>
+                    주문자 정보
+                  </h2>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon4">전화번호</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
+                이름 <input type="text" name="name"><br>
+                전화번호 <input type="text" name="phonenumber"><br>
+                주소 <input type="text" name="address"><br>
+                카드번호 <input type="text" name="card"><br>
+                배달시간 
+                <select name = "deliverytime">
+                  <option selected>배달 시간 선택</option>
+                  <option value="1">16:00</option>
+                  <option value="2">16:30</option>
+                  <option value="3">17:00</option>
+                  <option value="4">17:30</option>
+                  <option value="5">18:00</option>
+                  <option value="6">18:30</option>
+                  <option value="7">19:00</option>
+                  <option value="8">19:30</option>
+                  <option value="9">20:00</option>
+                  <option value="10">20:30</option>
+                  <option value="11">21:00</option>
+                  <option value="12">21:30</option>
+                </select>
+                <br><br>
+                <div class="heading_container">
+                  <hr>
+                  <h2>
+                    총 결제금액
+                  </h2>
                 </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon3">&nbsp;&nbsp;&nbsp;&nbsp;주소&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon3">카드번호</span>&nbsp;&nbsp;&nbsp;
-                    </div>
-                    <input type="text" class="form-control" aria-label="default" aria-describedby="inputGroup-sizing-default">
-                </div>
-                  
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">배달시간</label>&nbsp;&nbsp;&nbsp;
-                </div>
-                  <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>배달 시간 선택</option>
-                    <option value="1">16:00</option>
-                    <option value="2">16:30</option>
-                    <option value="3">17:00</option>
-                    <option value="4">17:30</option>
-                    <option value="5">18:00</option>
-                    <option value="6">18:30</option>
-                    <option value="7">19:00</option>
-                    <option value="8">19:30</option>
-                    <option value="9">20:00</option>
-                    <option value="10">20:30</option>
-                    <option value="11">21:00</option>
-                    <option value="12">21:30</option>
-                  </select>
-                </div>               
+                할인 여부 {'discount'}
+                결제 금액 {'money'}
+                <input type="submit" id="sub" value="결제하기">
+              </form>            
             </div>
         </div>      
       </div>

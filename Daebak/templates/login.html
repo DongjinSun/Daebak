@@ -21,42 +21,48 @@
 </head>
 
 <body>
-    <!-- start header section  -->
-    <div class="main_area">  
-        <div class="brand_box">
-          <a class="brand" href="customermain.html">
-            <span>
-              Mr.Daebak DINNER
-            </span>
-          </a>
-        </div>
-        <div class="brand_img">
-          <img src="images/fine-dining-gf22fda13e_1920.jpg" alt="">
-        </div>   
+  <!-- start header section  -->
+  <div class="main_area">  
+    <div class="brand_box">
+      <a class="brand" href="customermain.html">
+        <span>
+          Mr.Daebak DINNER
+        </span>
+      </a>
     </div>
-    <!-- end header section -->
+    <div class="brand_img">
+      <img src="images/fine-dining-gf22fda13e_1920.jpg" alt="">
+    </div>   
+  </div>
+  <!-- end header section -->
 
-  <!-- start userorderlist section -->
+  <!-- login section -->
 
-  <section class="userorderlist_section layout_padding">
+  <section class="login_section layout_padding">
     <div class="container">
       <div class="box">
-        <h1>주문 내역</h1>
-        
+        <div class="loginbox">
+            <h1>LOGIN</h1>
+            <br>
+            <form action="{% url 'login' %}" method="POST" id="loginform">
+              {% csrf_token %}
+                <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">
+                <input type="password" name="password" class="userPassword" placeholder="Password">
+                <br><br>
+                <input type="submit" id="sub" value = "로그인">
+            </form>       
+        </div>
+        <!--
         <div class="btn_box">
-          <a href="order.html">
-            선택 주문 재주문
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="dinnerfood.html">
-            새 주문하러 가기
+          <a href="userorderlist.html">
+            로그인
           </a>
         </div>
+        -->
       </div>
     </div>
   </section>
-
-  <!-- end userorderlist section -->
+  <!-- end login section -->
 
   <!-- start info section -->
 

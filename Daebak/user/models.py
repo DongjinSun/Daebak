@@ -160,6 +160,8 @@ class User(models.Model):
     name = models.CharField(max_length=10)
     phone = models.IntegerField()
     password = models.CharField(max_length=20)
+    address = models.CharField(max_length=50)
+    card = models.CharField(max_length=16)
 
     class Meta:
         managed = False
