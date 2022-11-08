@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Stock, User, Employee, OrderList
+from django.db import connection
 
 class stockDataSerializer(ModelSerializer):
     class Meta:
@@ -21,14 +22,39 @@ class orderDataSerializer(ModelSerializer):
         model = OrderList
         fields = '__all__'
         
-def get_data(num):
-    f_d = {0:stockDataSerializer,1:userDataSerializer,
-           2:employeeDataSerializer,3:orderDataSerializer}
-    data_l = [Stock,User,Employee, OrderList]
-    datas = data_l[num].objects.all()
-    serializer = f_d[num](datas, many=True)
-    return dict(serializer.data[0])
-
+def get_data(num,*args):
+    # f_d = {0:stockDataSerializer,1:userDataSerializer,
+    #        2:employeeDataSerializer,3:orderDataSerializer}
+    # data_l = [Stock,User,Employee, OrderList]
+    # if num==1 or 3:
+    #     datas = data_l[num].objects.get(phonenum = args[0])
+    # datas = data_l[num].objects.all()
+    # serializer = f_d[num](datas, many=True)
+    # return serializer.data
+    
+    if num == 0: ## 이름, 비밀번호 가져오기
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT name,password from user where phonenum ="+"args[0]"
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+        except:
+            connection.rollback()
+            return -1
+    if num == 1: ## order list 가져오기
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT * from order_list where phonenum="+str(args[0])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+        except:
+            connection.rollback()
+            return -1
+    
 
 def Insert_data(request,num):
     
