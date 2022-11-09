@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "potent-shade-367300",
+  "private_key_id": "e2716e9bc68f5e898f9c32c412485c270d090b5c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJXtKk6BByFjM2\n2ULm6xaPu7VI2dW4yYHs90hM5S8A/6uwLq37FSrfY5xZ3pEU/N+mbGjAZtWX9UCZ\nTa+nj7bfH4wcEWd9WJ7MYMcqzRwWef2BqG4EnCMFOsuEHF9ISIFvklgMNlgEyNle\nbnjxdfpbf83ipNOzCS0o3LiirlGLrCZqSh/YObvWvVPtY8IPIwNyILK2Tkbspt85\nIoEbZuV9/YagpRCd437/HGp+PjXB6HjpsyaTY38J/ZiRWD1gtXFY6jOJ5pjXVTri\nNhx+PxiKSmc3KSU6aZd2HLpDm811eC1axvujtQuXuJ6k6e5unfmC2yJhL55gvpCZ\ns7l+VYrHAgMBAAECggEATT6B9/8K+/B3IdWSe8j3JRigkDr7aEBoBfHPequ5bZ0l\ni1ZEp9l1Ui7ANZsSNSZRVmIkhpWL3pgV+RibRl/zCsDruoKUm7kIZSbEj68RVK/j\n5j4pQbxxFJr6oYlOpYgmmpldDAY2mlM/SqF+5ETYzguG+yc2C+n7uD5+1uyeXEB0\n6ebMHyLeqGzVTDVICXHtqZVK4B7/Of8aPWVyF/MBdbUK70JRkSWiPYdK7oNcVUhe\nZK6cTb7VHlbFMljXJStUIQ1WdRXBDYz+SlU8AQdXaAgfAwiSYAFR+f0G8vIYF2nS\nXYBsR60sdstB2IsNIjDsceLpYeoiyHGbE350NhkaqQKBgQD0kiI7pAtH+j1pdtLQ\n6rHTe62hp7OQdOPmB3DjszshxojuDg9KGd9sK+lxIsjUrvwz/hYI1aI4UL6S5jna\nHtuz/BVb2/yICUa2NGs70/Kdgl4kXhfeO6IZCprH/ZDgyEdsLOQYyOxaf2ev7Nc1\nTjWauKD3nDm3T9hf2aV4SRzfqQKBgQDSx97rJPPdotZniFMoewPIhZhJXFgSDOAp\nPQVM4m8sSRcTy9EpEZ8DAPeSJcuXb3NH9aOXwztuEdX7eAJK27VcwtjJ02/qwehf\nq32nto+VU0CvL2ebLHbQDN135HeO64CP+yP7/aQ1iFqzqzfJwiLnguAJwd1b8AI2\n3onpfABc7wKBgADu1caYd5qMr9NJKsC1RHxkCmOFej/g0kW8XYfg1Sbp1Pfjgdds\nhdepyzgtQ8rb6AZiv77E4duJI1D4I9xbJcdn/MTe7/Ws42IqjQYrZs+HAcjtuvWU\nEKg7zB9bLkRNP0iAW1Zk3dHyjnizVJbVd4rhjWukYuv6F/81m1X8IWoRAoGBAMSL\nuZM83uWB7TmXhiuOIeX+pRVrNXiHZxMtIl8iGhaKhSlhecU4+DR9110BP0oTk8S7\nCfP/CdDGculNa53QJ9q6mhoAvjCC5iMnr0EPW+4bNorkwlCQ8q1oAa/Fa7LqaPRZ\nc6GLT27XmfRFqPzKuW91u2F90+Lh976gXqtIhLIjAoGBAL5hjCU9Jn9D/R1k+X/9\nuB+dnebiL+I89nIMpnAVV7NCvynqKxdXXLDIrxXXITsH1x7wtTVYiVdfvpn5/WJj\nAfiphe1V0zrQ8i/5UaQCWNlQYOPdTVg/pw9sO442J55ma3GDRO0dbZvofIlzmVCn\nSM5hcrsa4wbOoNykXN4VL4Ik\n-----END PRIVATE KEY-----\n",
+  "client_email": "speech-to-text-quickstart@potent-shade-367300.iam.gserviceaccount.com",
+  "client_id": "110390925621031393724",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/speech-to-text-quickstart%40potent-shade-367300.iam.gserviceaccount.com"
+}

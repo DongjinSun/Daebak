@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 
 <head>
@@ -10,14 +11,14 @@
   <meta name="author" content="" />
 
   <title>Mr.Daebak Dinner Employee</title>
-  <link rel="icon" href="images/restaurant.png">
+  <link rel="icon" href="{% static 'images/restaurant.png' %}">
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
 </head>
 
 <body>
@@ -32,7 +33,7 @@
       </a>
     </div>
     <div class="brand_img">
-      <img src="images/fine-dining-gf22fda13e_1920.jpg" alt="">
+      <img src="{% static 'images/fine-dining-gf22fda13e_1920.jpg' %}" alt="">
     </div>   
   </div>
   <!-- end header section -->
@@ -109,7 +110,7 @@
   </section>
   <!-- end footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
 
 </body>
