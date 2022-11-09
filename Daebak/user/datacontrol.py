@@ -8,7 +8,7 @@ def get_data(num,*args):
     if num == 0: ## 이름, 비밀번호 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT name,password from user where phone ="+str(args[0])
+            strSql = "SELECT name,password from user where phone="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
@@ -19,24 +19,28 @@ def get_data(num,*args):
     if num == 1: ## order list 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT * from order_list where phonenum="+str(args[0])
+            strSql = "SELECT * from order_list where user="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
             return result
         except:
             connection.rollback()
+            print("error")
             return -10
-    if num ==2:
+    if num ==2: ## currunt_order_state 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT * from order_list where phonenum="+str(args[0])
+            strSql = "SELECT * from currunt_order_state where TIME="+str(args[0])
             cursor.execute(strSql)
-            result = cursor.fetchall()
+            result = [i for i in cursor.fetchall()[0][1:] if i != None]
             connection.close()
+            if len(result) >=5:
+                return -9 ## 이미 예약이 꽉참
             return result
         except:
             connection.rollback()
+            print("error")
             return -10
 
 def Insert_data(request,num):

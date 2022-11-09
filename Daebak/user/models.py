@@ -162,7 +162,7 @@ class User(models.Model):
     password = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     card = models.CharField(max_length=16)
-
+    Order_list = list()
     class Meta:
         managed = False
         db_table = 'user'

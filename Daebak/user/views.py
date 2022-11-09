@@ -31,17 +31,18 @@ def loginpage(request):
 
 def login(request):
     if request.method == 'POST':
-        login = Login_main()
-        
-        try:
-            login._user_login_init(int(request.POST['phonenumber']),request.POST['password'])
-        except:
-            pass
+        _login = Login_main()
+        request.session["user"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
+        if isinstance(request.session["user"],int): ## 오류가 난 경우 로그인 다시
+            return redirect('lp')
 
     return redirect('uolp')
 
 # 이전 주문내역 불러오기
 def userorderlistpage(request):
+    print(request.session["user"])
+    if get_data(2,1630) == -9: ##
+        pass
     return render(request, 'userorderlist.html')
 
 def index(request):
