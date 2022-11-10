@@ -64,6 +64,8 @@
   <!-- start dinner section -->
 
   <section class="dinner_section layout_padding">
+    <h2>&nbsp;&nbsp;&nbsp;{{user_name}}님, 안녕하세요.</h2>
+    <br><br>
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -76,7 +78,7 @@
 
       <div class="dinner_container">
         <div class="box">
-          <img src="images/valentine.jpg" alt="">
+          <img src="{% static 'images/valentine.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               Valentine dinner
@@ -90,13 +92,15 @@
               와인 1병<br><br>
               * 사진 속 접시와 냅킨이 제공됩니다.<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'df' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>     
           </div>
         </div>
         <div class="box">
-          <img src="images/french.jpg" alt="">
+          <img src="{% static 'images/french.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               French dinner
@@ -111,13 +115,15 @@
               커피 1잔<br>
               와인 1잔<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'df' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/english.jpg" alt="">
+          <img src="{% static 'images/english.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               English dinner
@@ -132,13 +138,15 @@
               빵<br>
               스테이크<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'df' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/chamfeast.jpg" alt="">
+          <img src="{% static 'images/chamfeast.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               Champagne Feast dinner
@@ -153,19 +161,16 @@
               샴페인 1병<br>
               커피 1포트<br>
               와인 1병<br><br>
-              * 2인 식사만 가능합니다.<br><br>
+              * 2인 세트로 제공됩니다.<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'df' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
       </div>
-    </div>
-    <div class="btn-box">
-      <a href="{% url 'dsp' %}">
-        다음으로 →
-      </a>
     </div>
   </section>
 
@@ -225,7 +230,7 @@
 
 
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 

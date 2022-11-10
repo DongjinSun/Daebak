@@ -63,9 +63,6 @@
 
   <!-- start order section -->
   <section class="order_section layout_padding">
-
-
-
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -73,10 +70,6 @@
           주문 상품
         </h2>
       </div>
-
-
-
-
       <div class="box"> 
         <div class="orderbox">
             <div class="orderInfo">
@@ -108,6 +101,7 @@
                   <option value="12">21:30</option>
                 </select>
                 <br><br>
+                배달요청사항 <input type="text" name="want"><br>
                 <div class="heading_container">
                   <hr>
                   <h2>
@@ -116,6 +110,7 @@
                 </div>
                 할인 여부 {'discount'}
                 결제 금액 {'money'}
+                <br><br>
                 <input type="submit" id="sub" value="결제하기">
               </form>            
             </div>
@@ -123,23 +118,7 @@
       </div>
     </div>
     <br><br><br>
-    <div class="container">
-        <div class="heading_container">
-          <hr>
-          <h2>
-            총 결제금액
-          </h2>
-        </div>
-      </div>
-      <div class="container-fluid">
-      <br>
-      <p>할인여부</p>
-      <p>결제금액</p>
-      <div class="btn-box">
-        <a href="{% url 'cm' %}">   <!-- 수정하기 -->
-          결제하기
-        </a>
-      </div>
+      
   </section>
   <!-- end order section -->
 
@@ -195,7 +174,7 @@
   <!-- end footer section -->
 
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 

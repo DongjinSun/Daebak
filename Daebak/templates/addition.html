@@ -64,6 +64,8 @@
   <!-- start add section -->
 
   <section class="add_section layout_padding">
+    <h2>&nbsp;&nbsp;&nbsp;{{user_name}}님, 안녕하세요.</h2>
+    <br><br>
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -76,7 +78,7 @@
       <h3 align="center">디너 종류</h3>
       <div class="add_container">
         <div class="box">
-          <img src="images/steak.jpg" alt="">
+          <img src="{% static 'images/steak.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               스테이크
@@ -84,16 +86,20 @@
             <p>
               38,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/salad.jpg" alt="">
+          <img src="{% static 'images/salad.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               샐러드
@@ -101,16 +107,20 @@
             <p>
               12,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/eggscramble.jpg" alt="">
+          <img src="{% static 'images/eggscramble.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               에그스크램블
@@ -118,16 +128,20 @@
             <p>
               8,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/bacon.jpg" alt="">
+          <img src="{% static 'images/bacon.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               베이컨
@@ -135,16 +149,20 @@
             <p>
               8,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/bread.jpg" alt="">
+          <img src="{% static 'images/bread.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               빵
@@ -152,16 +170,20 @@
             <p>
               4,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/baguette.jpg" alt="">
+          <img src="{% static 'images/baguette.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               바게트빵
@@ -169,16 +191,20 @@
             <p>
               4,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/coffeecup.jpg" alt="">
+          <img src="{% static 'images/coffeecup.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               커피 1잔
@@ -186,16 +212,20 @@
             <p>
               5,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/coffeeport.jpg" alt="">
+          <img src="{% static 'images/coffeeport.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               커피 1포트
@@ -203,16 +233,20 @@
             <p>
               18,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/winecup.jpg" alt="">
+          <img src="{% static 'images/winecup.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               와인 1잔
@@ -220,16 +254,20 @@
             <p>
               7,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/wine.jpg" alt="">
+          <img src="{% static 'images/wine.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               와인 1병
@@ -237,16 +275,20 @@
             <p>
               40,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/champ.jpg" alt="">
+          <img src="{% static 'images/champ.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               샴페인 1병
@@ -254,12 +296,16 @@
             <p>
               70,000 won
             </p>
-            <a href="">
-              추가
-            </a>
-            <a href="">
-              삭제
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'delete' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
           </div>
         </div>
       </div>
@@ -268,7 +314,7 @@
       <h3 align="center"><br>디너 스타일</h3>
       <div class="add_container">
         <div class="box">
-          <img src="images/box.jpg" alt="">
+          <img src="{% static 'images/box.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               상자 접시
@@ -276,13 +322,15 @@
             <p>
               0 won
             </p>
-            <a href="">
-              추가
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/pottery.jpg" alt="">
+          <img src="{% static 'images/pottery.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               도자기 접시
@@ -290,13 +338,15 @@
             <p>
               3,000 won
             </p>
-            <a href="">
-              추가
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/cup.jpg" alt="">
+          <img src="{% static 'images/cup.jpg' %}" alt="">
           <div class="link_box">
             <h5>
               컵
@@ -304,9 +354,11 @@
             <p>
               2,000 won
             </p>
-            <a href="">
-              추가
-            </a>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="number" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
           </div>
         </div>
       </div>
@@ -374,7 +426,7 @@
 
 
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 

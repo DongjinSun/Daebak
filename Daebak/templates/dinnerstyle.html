@@ -64,6 +64,8 @@
   <!-- start dinner section -->
 
   <section class="dinner_section layout_padding">
+    <h2>&nbsp;&nbsp;&nbsp;{{user_name}}님, 안녕하세요.</h2>
+    <br><br>
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -76,7 +78,7 @@
 
       <div class="dinner_container">
         <div class="box">
-          <img src="images/simple.jpg" alt="">
+          <img src="{% static 'images/simple.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               Simple dinner
@@ -92,13 +94,14 @@
               * 와인이 포함될 경우 플라스틱 잔이 제공됩니다.<br>
               * Champagne Feast Dinner 적용 불가<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/grand.jpg" alt="">
+          <img src="{% static 'images/grand.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               Grand dinner
@@ -113,13 +116,14 @@
               컵<br>
               흰색 면 냅킨<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
         <div class="box">
-          <img src="images/deluxe.jpg" alt="">
+          <img src="{% static 'images/deluxe.jpg' %}" alt="">
           <div class="link_box">
             <h3>
               Deluxe dinner
@@ -134,17 +138,13 @@
               도자기 접시<br>
               린넨 냅킨<br><br>
             </p>
-            <a href="">
-              장바구니에 담기
-            </a>
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+              {% csrf_token %}
+              <input type="submit" id="sub" value = "장바구니에 담기">
+            </form>
           </div>
         </div>
       </div>
-    </div>
-    <div class="btn-box">
-      <a href="{% url 'ap' %}">
-        다음으로 →
-      </a>
     </div>
   </section>
 
@@ -204,7 +204,7 @@
 
 
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
 
 </body>
 

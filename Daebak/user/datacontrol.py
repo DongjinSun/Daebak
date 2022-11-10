@@ -66,4 +66,3 @@ def change_data(request, pk,num):
     
     if serializer.is_valid():
         serializer.save()
-        
