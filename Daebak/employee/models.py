@@ -77,6 +77,19 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class CurruntOrderState(models.Model):
+    time = models.IntegerField(db_column='TIME')  # Field name made lowercase.
+    field_1 = models.IntegerField(db_column='_1', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_2 = models.IntegerField(db_column='_2', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_3 = models.IntegerField(db_column='_3', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_4 = models.IntegerField(db_column='_4', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_5 = models.IntegerField(db_column='_5', blank=True, null=True)  # Field renamed because it started with '_'.
+
+    class Meta:
+        managed = False
+        db_table = 'currunt_order_state'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -139,6 +152,7 @@ class OrderList(models.Model):
     user = models.IntegerField()
     ordernum = models.IntegerField()
     price = models.IntegerField()
+    time = models.DateTimeField(db_column='TIME', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -163,6 +177,7 @@ class User(models.Model):
     address = models.CharField(max_length=50)
     card = models.CharField(max_length=16)
     Order_list = list()
+    
     class Meta:
         managed = False
         db_table = 'user'

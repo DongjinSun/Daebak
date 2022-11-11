@@ -6,7 +6,6 @@ from django.db import connection
 
         
 def get_data(num,*args):
-    
     if num == 0: ## 이름, 비밀번호, 타입 가져오기
         try:
             cursor = connection.cursor()
@@ -18,14 +17,39 @@ def get_data(num,*args):
         except:
             connection.rollback()
             return -10 # 데이터 가져오기 실패 오류코드 
-    if num == 1: ## order list 가져오기
+    if num == 1: ## currunt_order_list 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT * from order_list where phonenum="+str(args[0])
+            print(str(args[0])+str(args[1]))
+            strSql = "SELECT * from currunt_order_state where TIME >"+str(args[0])+str(args[1])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            data = list()
+            print(result)
+            for i in range(len(result)):
+                data.append(list())
+                data[i].append(result[i][0])
+                for j in range(1,6):
+                    if result[i][j] == None:
+                        break
+                    strSql = "SELECT ordernum from order_list where _id"+str(result[i][j])
+                    cursor.execute(strSql)
+                    result = cursor.fetchall()
+                    data[i].append(result[0])
+            return data
+    if num == 2:
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT name,password from user where phone="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
-            return result
+            return result[0]
+        except:
+            connection.rollback()
+            return -10
+    
+    
         except:
             connection.rollback()
             return -10

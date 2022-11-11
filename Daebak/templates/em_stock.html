@@ -82,17 +82,15 @@
       <table class="table table-striped">
         <thead>
         <tr>
-            <td><B>디너 종류</B></td>
-            <td><B>디너 스타일</B></td>
-            <td><B>추가 사항</B></td>
+            <td><B>이름</B></td>
+            <td><B>양</B></td>
         </tr>
         </thead>
         <tbody>
         {% for u in users %}
         <tr>
-            <td>{{u.food}}번</td>
-            <td>{{u.style}}</td>
-            <td>{{u.add}}</td>
+            <td>{{u.name}}번</td>
+            <td>{{u.quantity}}</td>
         </tr>
         {% endfor %}
         <tbody>

@@ -9,15 +9,16 @@ urlpatterns = [
     path('emsignuppage/', views.emsignuppage, name='esp'),
     path('emchoosepage/', views.emchoosepage, name='ecp'),
     path('emstockpage/', views.emstockpage, name='estp'),
-    path('emcookpage/', views.emcookpage, name='ecop'),
+    path('emcookpage/', views.emcook, name='ecop'),
     path('emempage/', views.emempage, name='eep'),
     path('emdeliverypage/', views.emdeliverypage, name='edep'),
 
 
     path('emlogin/', views.emlogin, name='emlogin'),
     path('emsignup/', views.emsignup, name='emsignup'),
+    path('emem/', views.emem, name='emem'),
     path('emstock/', views.emstock, name='emstock'),
-    path('emcook/', views.emcook, name='emcook'),
+    #path('emcook/', views.emcook, name='emcook'),
     path('emdelivery/', views.emdelivery, name='emdelivery'),
     path('root_check/', views.root_check, name='root_check')
 ]

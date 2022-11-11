@@ -94,7 +94,7 @@
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" min="1" max="50" value="1">
+              <input type="number" name="valnum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>     
           </div>
@@ -117,7 +117,7 @@
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" min="1" max="50" value="1">
+              <input type="number" name="frenum"min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -140,7 +140,7 @@
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" min="1" max="50" value="1">
+              <input type="number" name="engnum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -165,7 +165,7 @@
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" min="1" max="50" value="1">
+              <input type="number" name="chanum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>

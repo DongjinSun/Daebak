@@ -2,13 +2,12 @@
 
 from .datacontrol import *
 from .models import Employee
+from datetime import datetime
 
 class Login_main:
     def __init__(self):
         self.employee = Employee()
-        self.root = 0
-    
-    
+
     def _user_login_init(self,phone,password):
         data = get_data(0,phone)
         print(data)
@@ -27,8 +26,8 @@ class Login_main:
     def _user_create_init(self,phone,password):
         pass
         
+def get_currunt_order_list():
+    _ = datetime.now()
+    data = get_data(1,_.hour,_.minute)
+    return data
     
-    
-            
-        
-        

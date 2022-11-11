@@ -55,17 +55,19 @@
       <table class="table table-striped">
         <thead>
         <tr>
-            <td><B>디너 종류</B></td>
-            <td><B>디너 스타일</B></td>
-            <td><B>추가 사항</B></td>
+            <td><B>배달 시간</B></td>
+            <td><B>전화번호</B></td>
+            <td><B>주소</B></td>
+            <td><B>진행 상태</B></td>
         </tr>
         </thead>
         <tbody>
         {% for u in users %}
         <tr>
-            <td>{{u.food}}번</td>
-            <td>{{u.style}}</td>
-            <td>{{u.add}}</td>
+            <td>{{u.time}}</td>
+            <td>{{u.phone}}</td>
+            <td>{{u.address}}</td>
+            <td>{{u.state}}</td>
         </tr>
         {% endfor %}
         <tbody>

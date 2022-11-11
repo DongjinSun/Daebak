@@ -67,19 +67,29 @@ def emstockpage(request):
     return render(request, 'em_stock.html')
 
 def emstock(request):
-    user = User()
+    users = User()
     user
-    context = {'user':user}
+    context = {'users':users}
 
     return render(request, 'em_stock.html', context)
 
 # 주문 조회
 def emcookpage(request):
+    
     return render(request, 'em_cook.html')
 
 
 def emcook(request):
-    users = User.objects.all()
+    data = get_currunt_order_list()
+    users = list()
+    for i in data:
+        _ = User()
+        _.time = i[0]
+        for j in i:
+            pass # Dinner 변환 구현되면 입력예정
+        users.append(_)
+    
+    
     context = {'users':users}
     # 배달 시간은 time, 디너 종류는 food, 디너 스타일은 style, 추가사항은 add입니다.
     # '' 안의 'users'는 html안 이름이니 바꾸지 말아주세요. 
@@ -90,12 +100,18 @@ def emcook(request):
 def emempage(request):
     return render(request, 'em_employee.html')
 
+def emem(request):
+    users = User.objects.all()
+    context = {'users':users}
+    
+    return render(request, 'em_employee.html', context)
+
 # 배달 조회
 def emdeliverypage(request):
     return render(request, 'em_delivery.html')
 
 def emdelivery(request):
-    user = User.objects.all()
-    context = {'user':user}
-
+    users = User.objects.all()
+    context = {'users':users}
+    
     return render(request, 'em_delivery.html', context)

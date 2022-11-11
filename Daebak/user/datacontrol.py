@@ -12,7 +12,7 @@ def get_data(num,*args):
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
-            return result
+            return result[0]
         except:
             connection.rollback()
             return -10 # 데이터 가져오기 실패 오류코드 

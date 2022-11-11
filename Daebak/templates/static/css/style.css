@@ -303,24 +303,6 @@ body {
     opacity: 0.9;
   }
   
-  .dinner_section .btn-box {
-    margin-top: 25px;
-    text-align: center;
-  }
-  
-  .dinner_section .btn-box a {
-    display: inline-block;
-    padding: 8px 40px;
-    background-color: #313131;
-    border: 1px solid #313131;
-    color: #ffffff;
-  }
-  
-  .dinner_section .btn-box a:hover {
-    background-color: transparent;
-    color: #313131;
-  }
-  
   .dinner_section .dinner_container .box img {
     width: 100%;
   }
@@ -433,24 +415,6 @@ body {
   .add_section .add_container .box:hover .link_box {
     top: 0;
     opacity: 0.9;
-  }
-  
-  .add_section .btn-box {
-    margin-top: 25px;
-    text-align: center;
-  }
-  
-  .add_section .btn-box a {
-    display: inline-block;
-    padding: 8px 40px;
-    background-color: #313131;
-    border: 1px solid #313131;
-    color: #ffffff;
-  }
-  
-  .add_section .btn-box a:hover {
-    background-color: transparent;
-    color: #313131;
   }
   
   .add_section .add_container .box img {
@@ -666,8 +630,6 @@ body {
 
   /* end order section*/
   
-  /* 여기부터는 employee system에만 해당하는거 */
-  
   /* start choose section */
   .choose_section .box {
     display: -webkit-box;
@@ -702,6 +664,7 @@ body {
   
   /* end choose section */
   
+  /* 여기부터는 employee system에만 해당하는거 */
   /* start inquire section */
   .inquire_section .heading_container {
     display: -webkit-box;

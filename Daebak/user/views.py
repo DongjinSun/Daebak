@@ -14,15 +14,17 @@ def signuppage(request):
     return render(request, 'signup.html')
 
 def signup(request):
+    _login = Login_main()
     if request.method == 'POST':
         user = User()
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
+        if _login._login_check(user.phone):
+            return redirect('sp')
         user.password = request.POST['password']
         user.address = request.POST['address']   # 모델에 추가해야함.
         user.card = request.POST['card']  # 모델에 추가해야 함.
         user.save()
-
     return redirect('cm')
 
 # 로그인
@@ -34,7 +36,8 @@ def login(request):
         _login = Login_main()
         request.session["user"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
         if isinstance(request.session["user"],int): ## 오류가 난 경우 로그인 다시
-            return redirect('lp')
+            return render(request, 'login.html', {'code': #에러코드 변수 여기 넣어주세요})
+            # return redirect('lp')
 
     return redirect('uolp')
 
@@ -44,8 +47,8 @@ def userorderlistpage(request):
     return render(request, 'userorderlist.html', {'user_name': name})
 
 def userorderlist(request):
-    user = User.objects.all()
-    context = {'user':user}
+    users = User.objects.all()
+    context = {'users':users}
 
     return render(request, 'userorderlist.html', context)
 
@@ -94,9 +97,11 @@ def addpage(request):
 
 def add(request):
     if request.method == 'POST':
+        
         user = User()
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
+
         user.password = request.POST['password']
         user.address = request.POST['address']   # 모델에 추가해야함.
         user.card = request.POST['card']  # 모델에 추가해야 함.
