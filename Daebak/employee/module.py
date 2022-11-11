@@ -12,7 +12,7 @@ class Login_main:
         data = get_data(0,phone)
         print(data)
         if isinstance(data,int):
-            return -10
+            return data
         if not len(data): ### 아이디가 있는지 확인
             return -1 ## 오류코드 -1 출력 // 아이디 없음 데이터 오류
         

@@ -11,7 +11,7 @@
   <meta name="author" content="" />
 
   <title>Mr.Daebak Dinner</title>
-  <link rel="icon" href="{% static 'images/restaurant.png' %}">
+  <!--<link rel="icon" href="{% static 'images/restaurant.png' %}">-->
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -44,7 +44,11 @@
       <div class="box">
         <div class="loginbox">
             <h1>LOGIN</h1>
-            <br>
+            {% for message in messages %}
+              {{ message.tag }}
+              {{ message }}
+            {% endfor %}
+            <br><br>
             <form action="{% url 'login' %}" method="POST" id="loginform">
               {% csrf_token %}
                 <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">
@@ -52,23 +56,23 @@
                 <br><br>
                 <input type="submit" id="sub" value = "로그인">
             </form>
+            <br><br>
+            <!--
             <script type="text/javascript">
-              function loginfunc () {
-                var errorcode = "{{code}}";
+              document.querySelector("#sub").addEventListener("click",function(){
+                  var errorcode = "{{code}}";
 
-                if(errorcode == -10) {
-                  alert("로그인 실패");
-                  console.log("DB 오류입니다. 로그인을 다시 해주세요.");
-                } else if(errorcode == -1){
-                  alert("로그인 실패");
-                  console.log("없는 계정입니다. 로그인을 다시 해주세요.");
-                } else if(errorcode == -2){
-                  alert("로그인 실패");
-                  console.log("비밀번호가 틀렸습니다. 로그인을 다시 해주세요.");
-                }
-              }
+                  if(errorcode == -10) {
+                    alert("DB 오류입니다. 로그인을 다시 해주세요.");
+                  } else if(errorcode == -1){
+                    alert("없는 계정입니다. 로그인을 다시 해주세요.");
+                  } else if(errorcode == -2){
+                    alert("비밀번호가 틀렸습니다. 로그인을 다시 해주세요.");
+                  }
+                });
               
-            </script>   
+            </script>
+            -->   
         </div>
       </div>
     </div>

@@ -37,6 +37,9 @@ def get_data(num,*args):
                     result = cursor.fetchall()
                     data[i].append(result[0])
             return data
+        except:
+            connection.rollback()
+            return -10
     if num == 2:
         try:
             cursor = connection.cursor()
@@ -45,22 +48,6 @@ def get_data(num,*args):
             result = cursor.fetchall()
             connection.close()
             return result[0]
-        except:
-            connection.rollback()
-            return -10
-    
-    
-        except:
-            connection.rollback()
-            return -10
-    if num ==2:
-        try:
-            cursor = connection.cursor()
-            strSql = "SELECT * from order_list where phonenum="+str(args[0])
-            cursor.execute(strSql)
-            result = cursor.fetchall()
-            connection.close()
-            return result
         except:
             connection.rollback()
             return -10

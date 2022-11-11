@@ -12,6 +12,8 @@ def get_data(num,*args):
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
+            if len(result)==0:
+                return -1
             return result[0]
         except:
             connection.rollback()

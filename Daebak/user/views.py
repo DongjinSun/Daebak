@@ -3,11 +3,22 @@ from .models import User
 from django.http import HttpResponse
 from .module import *
 from .datacontrol import *
+from django.contrib import messages
 
 # USER
 # 메인
 def cusmainpage(request):
+    try:
+        request.session["user"]
+    except:
+        request.session["user"]=None
     return render(request, 'customermain.html')
+
+# 로그아웃
+def logout(request):
+    del request.session["user"]
+
+    return redirect('cm')
 
 # 회원가입
 def signuppage(request):
@@ -19,7 +30,9 @@ def signup(request):
         user = User()
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
-        if _login._login_check(user.phone):
+        err=_login._login_check(user.phone)
+        if err:
+            print("errer=",err)
             return redirect('sp')
         user.password = request.POST['password']
         user.address = request.POST['address']   # 모델에 추가해야함.
@@ -29,18 +42,30 @@ def signup(request):
 
 # 로그인
 def loginpage(request):
+    if request.session["user"] != None:
+        return redirect("uolp")
     return render(request, 'login.html')
 
 def login(request):
-    if request.method == 'POST':
+    if request.method == 'POST': 
         _login = Login_main()
         request.session["user"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
         if isinstance(request.session["user"],int): ## 오류가 난 경우 로그인 다시
-            return render(request, 'login.html', {'code': #에러코드 변수 여기 넣어주세요})
-            # return redirect('lp')
-
-    return redirect('uolp')
-
+            if request.session["user"] == -1:
+                messages.warning(request,"없는 계정입니다.")
+                request.session["user"] = None
+            elif request.session["user"] == -2:
+                messages.warning(request,"비밀번호가 다릅니다.")
+                request.session["user"] = None
+            elif request.session["user"] == -10:
+                messages.warning(request,"데이터를 가져오지 못했습니다. 다시 시도해주세요.")
+                request.session["user"] = None
+            return redirect('lp')
+        else:
+            return redirect('uolp')
+    # else: 
+    #     print("errer = ",request.session["user"])
+    #     return render(request, 'login.html', {'code': request.session["user"]})
 # 이전 주문내역 불러오기
 def userorderlistpage(request):
     name = request.session["user"][0]
@@ -59,14 +84,8 @@ def dfpage(request):
 
 def df(request):
     if request.method == 'POST':
-        user = User()
-        user.name = request.POST['name']
-        user.phone = request.POST['phonenumber']
-        user.password = request.POST['password']
-        user.address = request.POST['address']   # 모델에 추가해야함.
-        user.card = request.POST['card']  # 모델에 추가해야 함.
-        user.save()
-
+        a = request.session["user"]
+        print("print",a)
     return redirect('dsp')
 
 # 디너스타일 고르기
@@ -76,13 +95,7 @@ def dspage(request):
 
 def ds(request):
     if request.method == 'POST':
-        user = User()
-        user.name = request.POST['name']
-        user.phone = request.POST['phonenumber']
-        user.password = request.POST['password']
-        user.address = request.POST['address']   # 모델에 추가해야함.
-        user.card = request.POST['card']  # 모델에 추가해야 함.
-        user.save()
+        a = request.POST['dinnerform']
 
     return redirect('cp')
 
@@ -97,16 +110,8 @@ def addpage(request):
 
 def add(request):
     if request.method == 'POST':
-        
-        user = User()
-        user.name = request.POST['name']
-        user.phone = request.POST['phonenumber']
-
-        user.password = request.POST['password']
-        user.address = request.POST['address']   # 모델에 추가해야함.
-        user.card = request.POST['card']  # 모델에 추가해야 함.
-        user.save()
-
+        a = request.POST['dinnerform']
+        print("a")
     return redirect('ap')
 
 def delete(request):
