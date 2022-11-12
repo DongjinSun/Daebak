@@ -5,7 +5,7 @@ body {
   }
   
   .layout_padding {
-    padding: 90px 0;
+    padding: 45px 0;
   }
   
   .layout_padding2 {
@@ -139,11 +139,11 @@ body {
     color: #313131;
   }
   
-  .intro_section .box .signupbtn_box {
-    margin-top: 25px;
+  .intro_section .signupbtn_box {
+    text-align: right;
   }
   
-  .intro_section .box .signupbtn_box a {
+  .intro_section .signupbtn_box a {
     display: inline-block;
     padding: 8px 40px;
     background-color: #949395;
@@ -151,7 +151,7 @@ body {
     color: #ffffff;
   }
   
-  .intro_section .box .signupbtn_box a:hover {
+  .intro_section .signupbtn_box a:hover {
     background-color: transparent;
     color: #949395;
   }
@@ -192,6 +192,7 @@ body {
   }
   
   #signupform > #sub{
+    text-align: center;
     width: 20%;
     padding: 8px 40px;
     background-color: #313131;
@@ -208,9 +209,30 @@ body {
     background-color: #F8F8F8;
   }
 
-  
   /* end signup section */
   
+  /* start progress section */
+
+  #progress {
+    appearance: none;
+    width:100%;
+  }
+
+  #progress::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius:10px;
+    box-shadow: inset 3px 3px 10px #ccc;
+  }
+
+  #progress::-webkit-progress-value {
+    border-radius:10px;
+    background: #1D976C;
+    background: -webkit-linear-gradient(to right, #D0A9F5, #4B088A);
+    background: linear-gradient(to right, #D0A9F5, #4B088A);
+
+  }
+  /* end progress section */
+
   /* start dinner section */
   .dinner_section .heading_container {
     display: -webkit-box;
@@ -283,6 +305,7 @@ body {
             justify-content: center;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    text-align: center;
   }
   
   .dinner_section .dinner_container .box .link_box a {
@@ -299,6 +322,7 @@ body {
   }
   
   .dinner_section .dinner_container .box:hover .link_box {
+    text-align: center;
     top: 0;
     opacity: 0.9;
   }
@@ -308,20 +332,47 @@ body {
   }
 
   #dinnerform > input{
-    width: 50%;
-    height: 48px;
+    width: 30%;
+    height: 35px;
     padding: 0 10px;
     box-sizing: border-box;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     background-color: #F8F8F8;
   }
   
   #dinnerform >#sub{
-    width: 100%;
-    padding: 8px 40px;
-    background-color: #313131;
-    border: 1px solid #313131;
+    width: 70%;
+    height: 48px;
+    padding: 8px 25px;
+    background-color: #848484;
+    border: 1px solid #848484;
     color: #ffffff;
+  }
+
+  #dinnerform >#ssub{
+    width: 70%;
+    height: 48px;
+    padding: 8px 25px;
+    background-color: #848484;
+    border: 1px solid #848484;
+    color: #ffffff;
+  }
+
+  .dinner_section .link_box {
+    text-align: right;
+  }
+  
+  .dinner_section .link_box a {
+    display: inline-block;
+    padding: 8px 40px;
+    background-color: #949395;
+    border: 1px solid #949395;
+    color: #ffffff;
+  }
+  
+  .dinner_section .link_box a:hover {
+    background-color: transparent;
+    color: #949395;
   }
   /* end dinner section */
   
@@ -397,6 +448,7 @@ body {
             justify-content: center;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
+    text-align: center;
   }
   
   .add_section .add_container .box .link_box a {
@@ -415,6 +467,7 @@ body {
   .add_section .add_container .box:hover .link_box {
     top: 0;
     opacity: 0.9;
+    text-align: center;
   }
   
   .add_section .add_container .box img {
@@ -422,21 +475,54 @@ body {
   }
 
   #addform > input{
-    width: 50%;
-    height: 48px;
-    padding: 0 10px;
+    width: 35%;
+    height: 30px;
+    padding: 5px 10px;
     box-sizing: border-box;
-    margin-bottom: 25px;
     background-color: #F8F8F8;
+    margin-bottom: 10px;
   }
   
   #addform >#sub{
-    width: 100%;
+    text-align: center;
+    width: 40%;
+    padding: 3px 15px;
+    background-color: #848484;
+    border: 1px solid #848484;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .add_section .btn-box {
+    margin-top: 25px;
+    text-align:center;
+  }
+  
+  .add_section .btn-box a {
+    display: inline-block;
     padding: 8px 40px;
     background-color: #313131;
     border: 1px solid #313131;
     color: #ffffff;
   }
+  
+  .add_section .btn-box a:hover {
+    background-color: transparent;
+    color: #313131;
+  }
+  
+  .add_section .formcontainer{
+    text-align:center;
+  }
+  #orderform >#sub{
+    width: 15%;
+    height: 48px;
+    padding: 8px 25px;
+    background-color: #380B61;
+    border: 1px solid #380B61;
+    color: #ffffff;
+  }
+
   /* end add section */
   
   /* start info section */
@@ -526,7 +612,7 @@ body {
     font-size: 50px;
     font-weight: bold;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   #loginform > input{

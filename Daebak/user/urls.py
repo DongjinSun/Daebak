@@ -11,16 +11,21 @@ urlpatterns = [
     path('orderpage/', views.orderpage, name='op'),
     path('dfpage/', views.dfpage, name='dfp'),
     path('dspage/', views.dspage, name='dsp'),
-    path('cpage/', views.cpage, name='cp'),
+    # path('cpage/', views.cpage, name='cp'),
     path('addpage/', views.addpage, name='ap'),
     
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
     path('signup/', views.signup, name='signup'),
-    path('df/', views.df, name='df'),
-    path('ds/', views.ds, name='ds'),
+    ## 디너 종류
+    path('df/', views.df, name='df'), 
+    #디너 스타일
+    #path('ds/', views.ds, name='ds'),
+    path('simnum/', views.simnum, name='simnum'),
+    path('granum/', views.granum, name='granum'),
+    path('delnum/', views.delnum, name='delnum'),
     path('add/', views.add, name='add'),
-    path('delete/', views.delete, name='delete'),
+    path('addorder/', views.addorder, name='addorder'),
     path('order/', views.order, name='order'),
     path('userorderlist/', views.userorderlist, name='userorderlist')
 ]

@@ -18,7 +18,7 @@
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -34,7 +34,7 @@
   </div>
   <!-- end header section -->
 
-  <!-- start bar section -->
+  <!-- start bar section
 
   <section class="bar_section">
     <div class="container">
@@ -59,13 +59,27 @@
     </div>
   </section>
 
-  <!-- end bar section -->
+  end bar section -->
+
+  <!-- start progress section -->
+
+  <section class="progress_section layout_padding">    
+    <div class="container">
+      <h3>진행상태</h3>
+      <br>
+      <div>
+        <progress id="progress" value="60" max="90"></progress>
+      </div>
+    <div>
+    <br><br><br>
+    <h2>{{user_name}}님, 안녕하세요.</h2>
+  </section>
+  
+  <!-- end progress section -->
 
   <!-- start dinner section -->
 
   <section class="dinner_section layout_padding">
-    <h2>&nbsp;&nbsp;&nbsp;{{user_name}}님, 안녕하세요.</h2>
-    <br><br>
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -94,9 +108,8 @@
               * 와인이 포함될 경우 플라스틱 잔이 제공됩니다.<br>
               * Champagne Feast Dinner 적용 불가<br><br>
             </p>
-            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+            <form action="{% url 'simnum' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" name="simnum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -117,9 +130,8 @@
               컵<br>
               흰색 면 냅킨<br><br>
             </p>
-            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+            <form action="{% url 'granum' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" name="granum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -140,9 +152,8 @@
               도자기 접시<br>
               린넨 냅킨<br><br>
             </p>
-            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+            <form action="{% url 'delnum' %}" method="POST" id="dinnerform">
               {% csrf_token %}
-              <input type="number" name="delnum" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>

@@ -18,7 +18,7 @@
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet">
 </head>
 
 <body>
@@ -40,7 +40,17 @@
   <!-- start intro section -->
   <section class="intro_section layout_padding">
     <div class="container">
-      <div class="box">
+      <div class="signupbtn_box">
+        <a href="{% url 'sp' %} ">
+          회원가입
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %} ">
+          로그아웃
+        </a>
+      </div>
+      <div class="box">        
+        <br><br>
         <div class="text_box">
           <h3>
             미스터 대박 서비스를 통해 특별한 날 집에서 만찬을 즐겨보세요.
@@ -59,17 +69,7 @@
             비회원 주문하러 가기
           </a>
           <br>          
-        </div>
-        <div class="signupbtn_box">
-          <a href="{% url 'sp' %} ">
-            회원가입
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="{% url 'logout' %} ">
-            로그아웃
-          </a>
-        </div>
-      
+        </div>      
       </div>
     </div>
   </section>

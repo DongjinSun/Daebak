@@ -18,7 +18,7 @@
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -34,7 +34,7 @@
   </div>
   <!-- end header section -->
 
-  <!-- start bar section -->
+  <!-- start bar section 
 
   <section class="bar_section">
     <div class="container">
@@ -59,13 +59,27 @@
     </div>
   </section>
 
-  <!-- end bar section -->
+   end bar section -->
+
+  <!-- start progress section -->
+
+  <section class="progress_section layout_padding">    
+    <div class="container">
+      <h3>진행상태</h3>
+      <br>
+      <div>
+        <progress id="progress" value="90" max="90"></progress>
+      </div>
+    <div>
+    <br><br><br>
+    <h2>{{user_name}}님, 안녕하세요.</h2>
+  </section>
+  
+  <!-- end progress section -->
 
   <!-- start add section -->
 
   <section class="add_section layout_padding">
-    <h2>&nbsp;&nbsp;&nbsp;{{user_name}}님, 안녕하세요.</h2>
-    <br><br>
     <div class="container">
       <div class="heading_container">
         <hr>
@@ -74,242 +88,7 @@
         </h2>
       </div>
     </div>
-    <div class="container-fluid">
-      <h3 align="center">디너 종류</h3>
-      <div class="add_container">
-        <div class="box">
-          <img src="{% static 'images/steak.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              스테이크
-            </h5>
-            <p>
-              38,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="steakadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="steakdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/salad.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              샐러드
-            </h5>
-            <p>
-              12,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="saladadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="saladdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/eggscramble.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              에그스크램블
-            </h5>
-            <p>
-              8,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="eggadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="eggdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/bacon.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              베이컨
-            </h5>
-            <p>
-              8,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="baconadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="bacondel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/bread.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              빵
-            </h5>
-            <p>
-              4,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="breadadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="breaddel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/baguette.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              바게트빵
-            </h5>
-            <p>
-              4,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="bagadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="bagdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/coffeecup.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              커피 1잔
-            </h5>
-            <p>
-              5,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="cofadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="cofdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/coffeeport.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              커피 1포트
-            </h5>
-            <p>
-              18,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="cofpadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="cofpdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/winecup.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              와인 1잔
-            </h5>
-            <p>
-              7,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="wineadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="winedel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/wine.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              와인 1병
-            </h5>
-            <p>
-              40,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="winebadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="winebdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/champ.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              샴페인 1병
-            </h5>
-            <p>
-              70,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="champadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-            <form action="{% url 'delete' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="number" name="champdel" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "삭제">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="container-fluid">
       <h3 align="center"><br>디너 스타일</h3>
       <div class="add_container">
@@ -324,6 +103,8 @@
             </p>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
+              <input type="hidden" name="name" value="box">
+              <input type="hidden" name="mode" value="add">
               <input type="number" name="boxadd" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
@@ -340,7 +121,27 @@
             </p>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
+              <input type="hidden" name="name" value="pot">
+              <input type="hidden" name="mode" value="add">
               <input type="number" name="potadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/valplate.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              발렌타인 접시
+            </h5>
+            <p>
+              3,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="val">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="valadd" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
           </div>
@@ -356,6 +157,26 @@
             </p>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
+              <input type="hidden" name="name" value="cup">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="plaadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/plastic.png' %}" alt="">
+          <div class="link_box">
+            <h5>
+              플라스틱 잔
+            </h5>
+            <p>
+              1,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="pla">
+              <input type="hidden" name="mode" value="add">
               <input type="number" name="cupadd" min="1" max="50" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
@@ -363,11 +184,307 @@
         </div>
       </div>
     </div>
-    <div class="btn-box">
-      <a href="{% url 'op' %}">
-        주문하기
-      </a>
+    <br><br>
+    <div class="container-fluid">
+      <h3 align="center">디너 종류</h3>
+      <div class="add_container">
+        <div class="box">
+          <img src="{% static 'images/steak.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              스테이크
+            </h5>
+            <p>
+              38,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="steak">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="steakadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="steak">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="steakdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/salad.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              샐러드
+            </h5>
+            <p>
+              12,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="salad">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="saladadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="salad">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="saladdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/eggscramble.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              에그스크램블
+            </h5>
+            <p>
+              8,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="egg">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="eggadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="egg">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="eggdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/bacon.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              베이컨
+            </h5>
+            <p>
+              8,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bacon">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="baconadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bacon">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="bacondel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/bread.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              빵
+            </h5>
+            <p>
+              4,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bread">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="breadadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bread">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="breaddel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/baguette.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              바게트빵
+            </h5>
+            <p>
+              4,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bag">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="bagadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="bag">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="bagdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/coffeecup.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              커피 1잔
+            </h5>
+            <p>
+              5,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="cof">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="cofadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="cof">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="cofdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/coffeeport.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              커피 1포트
+            </h5>
+            <p>
+              18,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="cofp">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="cofpadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="cofp">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="cofpdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/winecup.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              와인 1잔
+            </h5>
+            <p>
+              7,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="wine">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="wineadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="wine">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="winedel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/wine.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              와인 1병
+            </h5>
+            <p>
+              40,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="wineb">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="winebadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="wineb">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="winebdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/champ.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              샴페인 1병
+            </h5>
+            <p>
+              70,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="champ">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="champadd" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="champ">
+              <input type="hidden" name="mode" value="del">
+              <input type="number" name="champdel" min="1" max="50" value="1">
+              <input type="submit" id="sub" value = "삭제">
+            </form>
+          </div>
+        </div>        
+      </div>
+      <br><br>
+      <div class="formcontainer">
+        <form action="{% url 'addorder' %}" onclick="choose();" method="POST" id="orderform">
+          {% csrf_token %}
+          <input type="hidden" name="go" id="go">
+          <input type="submit" id="sub" value = "주문하기">
+        </form>
+      </div>
     </div>
+    <br>
+    <script type="text/javascript">            
+      function choose() {
+        var go = 0;
+        if (confirm("추가 주문 하시겠습니까?") == true){    //확인
+          go = 1;
+        } else{   //취소
+          go = 2;
+        }
+        $('input[name=go]').attr('value',go);
+      }            
+    </script>
   </section>
 
   <!-- end add section -->
