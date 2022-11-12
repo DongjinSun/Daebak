@@ -27,5 +27,4 @@ urlpatterns = [
     path('add/', views.add, name='add'),
     path('addorder/', views.addorder, name='addorder'),
     path('order/', views.order, name='order'),
-    path('userorderlist/', views.userorderlist, name='userorderlist')
 ]

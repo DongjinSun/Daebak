@@ -794,5 +794,24 @@ body {
     color: #313131;
   }
   
+  table.stable {
+    border-collapse: collapse;
+    border-top: 3px solid #168;
+  }  
+  table.stable thead td {
+    color: #168;
+    background: #f0f6f9;
+  }
+  table.stable thead td, table.stable tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  table.stable thead td:first-child, table.stable tbody td:first-child {
+    border-left: 0;
+  }
+  table.stable thead td:last-child, table.stable tbody td:last-child {
+    border-right: 0;
+  }
+
   /* end inquire section */
   /*# sourceMappingURL=style.css.map */

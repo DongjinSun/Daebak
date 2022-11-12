@@ -45,7 +45,11 @@
       <div class="box">
         <div class="loginbox">
           <h1>LOGIN</h1>
-          <br>
+          {% for message in messages %}
+            {{ message.tag }}
+            {{ message }}
+          {% endfor %}
+          <br><br>
           <form action="{% url 'emlogin' %}" method="POST" id="loginform">
             {% csrf_token %}
               <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">

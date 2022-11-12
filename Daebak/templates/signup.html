@@ -52,6 +52,11 @@
     <div class="container">
       <div class="box">
         <div class="signup_box">
+          {% for message in messages %}
+            {{ message.tag }}
+            {{ message }}
+          {% endfor %}
+          <br><br>
           <form action="{% url 'signup' %}" method="POST" id="signupform">
             {% csrf_token %}
             이름 <input type="text" name="name"><br>

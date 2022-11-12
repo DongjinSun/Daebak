@@ -2,26 +2,24 @@ from .datacontrol import *
 from .models import User
 
 class Login_main:
-    def __init__(self):
-        self.user = User()
-        self.sale = 0
-
     def _user_login_init(self,phone,password):
+        Order_list = []
         data = get_data(0,phone)
         print(data)
+        sale = 0
         if isinstance(data,int):
             return data
         if password==data[1]: ## 비밀번호 확인하고 맞으면 데이터 가져오기
-            self.user.name = data[0]
-            self.user.phone = phone
+            name = data[0]
             data = get_data(1,phone)
             for i in data:
-                self.user.Order_list.append(i)
-            if len(self.user.Order_list)>10:
-                self.sale = 1
+                Order_list.append(i)
+            if len(Order_list)>10:
+                sale = 1
+            print(Order_list)
         else: ## 없으면 오류코드 -2 
             return -2
-        return (self.user.name,self.user.phone,self.user.Order_list,self.sale)
+        return (name,phone,Order_list,sale)
     def _user_create_init(self,phone,password):
         pass
     def _login_check(self,phone):
@@ -55,8 +53,22 @@ def dinner_convert(dinner_l):
             _l[-1] += num//2 # 샴페인 한병
     return _l
     
-        
-    
+def dinner_reverse(ordernum):
+    menu_s = ordernum[:4]
+    for i,n in enumerate(menu_s):
+        if i == 0:
+            menu = "Valentine dinner "+str(n)+"개"
+        if i == 1:
+            menu = "French dinner "+str(n)+"개"
+        if i == 2:
+            menu = "English dinner "+str(n)+"개"
+        if i == 0:
+            menu = "Champagne Feast dinner "+str(n)+"개"
+    style = ordernum[4]
+    add = ordernum[5:]
+    return (menu,style,add)
+            
+
     
         
     

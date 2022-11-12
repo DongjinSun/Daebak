@@ -1,6 +1,8 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from employee import views
+from django.conf import settings
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,12 +15,11 @@ urlpatterns = [
     path('emempage/', views.emempage, name='eep'),
     path('emdeliverypage/', views.emdeliverypage, name='edep'),
 
-
     path('emlogin/', views.emlogin, name='emlogin'),
     path('emsignup/', views.emsignup, name='emsignup'),
-    path('emem/', views.emem, name='emem'),
     path('emstock/', views.emstock, name='emstock'),
     #path('emcook/', views.emcook, name='emcook'),
     path('emdelivery/', views.emdelivery, name='emdelivery'),
-    path('root_check/', views.root_check, name='root_check')
+    path('root_check/', views.root_check, name='root_check'),
+    path('__debug__/', include(debug_toolbar.urls))
 ]

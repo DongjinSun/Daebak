@@ -150,7 +150,7 @@ class Employee(models.Model):
 class OrderList(models.Model):
     field_id = models.AutoField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
     user = models.IntegerField()
-    ordernum = models.IntegerField()
+    ordernum = models.CharField(max_length=21, blank=True, null=True)
     price = models.IntegerField()
     time = models.DateTimeField(db_column='TIME', blank=True, null=True)  # Field name made lowercase.
 
@@ -176,8 +176,6 @@ class User(models.Model):
     password = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     card = models.CharField(max_length=16)
-    Order_list = list()
-    
     class Meta:
         managed = False
         db_table = 'user'

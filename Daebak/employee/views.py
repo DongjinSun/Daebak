@@ -14,8 +14,8 @@ def emmainpage(request):
 def emlogin(request):
     if request.method == 'POST':
         _login = Login_main()
-        data=request.session["user"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
-        if isinstance(request.session["user"],int): ## 오류가 난 경우 로그인 다시
+        data=request.session["employee"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
+        if isinstance(request.session["employee"],int): ## 오류가 난 경우 로그인 다시
             return redirect('em') ## 오류코드에 따른 오류 메세지 출력하는거 구현필요
         if data[2] == 2:
             return redirect('edep') ## 배달 직원 페이지로
@@ -27,12 +27,13 @@ def emsignuppage(request):
     return render(request, 'em_signup.html')
 
 def emsignup(request):
+    _login= Login_main()
     if request.method == 'POST':
         user = Employee()
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
         err=_login._login_check(user.phone)
-        if err:
+        if err: ## 오류 출력 구현해야됨
             return redirect('eep')
         user.password = request.POST['password']
         job = request.POST['job'] #cook: 조리, delivery: 배달, manage: 관리
@@ -61,19 +62,25 @@ def emchoosepage(request):
 
 # root 권한 확인
 def root_check(request):
-    if request.session["user"][2] != 0:
+    if request.session["employee"][2] != 0:
         return redirect('ecp') ##root 권한 없을경우 선택 불가
     return redirect('eep')
 
 # 재고 조회
 def emstockpage(request):
-    return render(request, 'em_stock.html')
+    _l = ["박스접시","도자기 접시","도자기 컵","발랜테인 접시","플라스틱 컵","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴폐인"]
+    stock = Stock.objects.all()
+    for i in zip(stock,_l):
+        i[0].name = i[1]
+    context = {'users':stock}
+    return render(request, 'em_stock.html', context)
 
 def emstock(request):
-    users = User()
-    user
-    context = {'users':users}
-
+    _l = ["박스접시","도자기 접시","도자기 컵","발랜테인 접시","플라스틱 컵","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴폐인"]
+    stock = Stock.objects.all()
+    for i in zip(stock,_l):
+        i[0].name = i[1]
+    context = {'users':stock}
     return render(request, 'em_stock.html', context)
 
 # 주문 조회
@@ -101,11 +108,15 @@ def emcook(request):
 
 # 직원 관리
 def emempage(request):
-    return render(request, 'em_employee.html')
-
-def emem(request):
-    users = User.objects.all()
-    context = {'users':users}
+    users = Employee.objects.all()
+    for i in users:
+        if i.type==0:
+            i.type ="관리자"
+        elif i.type==1:
+            i.type = "조리"
+        elif i.type==2:
+            i.type = "배달"
+    context = {'users':users[1:]}
     
     return render(request, 'em_employee.html', context)
 

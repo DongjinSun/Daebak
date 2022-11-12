@@ -9,7 +9,7 @@ def get_data(num,*args):
     if num == 0: ## 이름, 비밀번호 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT name,password from user where phone="+str(args[0])
+            strSql = "SELECT name,password,type from employee where phone="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()

@@ -23,11 +23,5 @@ urlpatterns = [
     path('user/',include('user.urls')),
     path('employee/',include('employee.urls')),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns += [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ]
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root = settings.MEDIA_ROOT)
+import mimetypes
+mimetypes.add_type("application/javascript", ".js", True)

@@ -21,7 +21,7 @@ def get_data(num,*args):
     if num == 1: ## order list 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT * from order_list where user="+str(args[0])
+            strSql = "SELECT ordernum from order_list where user="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
@@ -33,7 +33,7 @@ def get_data(num,*args):
     if num ==2: ## currunt_order_state 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT * from currunt_order_state where TIME="+str(args[0])
+            strSql = "SELECT  from currunt_order_state where TIME="+str(args[0])
             cursor.execute(strSql)
             result = [i for i in cursor.fetchall()[0][1:] if i != None]
             connection.close()

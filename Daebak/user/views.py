@@ -12,6 +12,7 @@ def cusmainpage(request):
         request.session["user"]
     except:
         request.session["user"]=None
+    request.session["order"] = []
     return render(request, 'customermain.html')
 
 # 로그아웃
@@ -63,19 +64,28 @@ def login(request):
             return redirect('uolp')
 # 이전 주문내역 불러오기
 def userorderlistpage(request):
-    name = request.session["user"][0]
-    request.session["order"] = []
-    return render(request, 'userorderlist.html', {'user_name': name})
-
-def userorderlist(request):
-    users = User.objects.all()
-    context = {'users':users}
-
-    return render(request, 'userorderlist.html', context)
+    if request.session["user"]:
+        name = request.session["user"][0]
+    else:
+        name = "Anonymous User"
+    temp = request.session["user"][2]
+    order = []
+    temp2 = OrderList()
+    for i in temp:
+        _ = dinner_reverse(i[0])
+        temp2.food = _[0]
+        temp2.style = _[1]
+        temp2.add = _[2]
+        temp2.state = 0
+        order.append(temp2)
+    return render(request, 'userorderlist.html', {'user_name': name,'users':order})
 
 # 디너종류 고르기
 def dfpage(request):
-    name = request.session["user"][0]
+    if request.session["user"]:                                                 #
+        name = request.session["user"][0]
+    else:
+        name = "Anonymous User"
     request.session["addition"]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     return render(request, 'dinnerfood.html', {'user_name': name})
 
@@ -94,7 +104,10 @@ def df(request):
 
 # 디너스타일 고르기
 def dspage(request):
-    name = request.session["user"][0]
+    if request.session["user"]:
+        name = request.session["user"][0]
+    else:
+        name = "Anonymous User"
     return render(request, 'dinnerstyle.html', {'user_name': name})
 
 def simnum(request):
@@ -115,7 +128,10 @@ def delnum(request):
 
 # 수정할 추가사항 고르기
 def addpage(request):
-    name = request.session["user"][0]
+    if request.session["user"]:
+        name = request.session["user"][0]
+    else:
+        name = "Anonymous User"
     return render(request, 'addition.html', {'user_name': name})
 
 def add(request):
@@ -137,6 +153,7 @@ def addorder(request):
     _l = [x+y for x,y in zip(request.session["addition"],request.session["base"])]
     request.session["order"].append(request.session["dinner_menu"]+request.session["dinner_style"]+ _l)
     print(request.session["order"])
+    request.session["order"] = request.session["order"]
     if request.POST.get('go') == '1':
             return redirect('dfp')
     elif request.POST.get('go') == '2':
@@ -144,6 +161,7 @@ def addorder(request):
             
 # 주문
 def orderpage(request):
+    print(request.session["order"])
     return render(request, 'order.html')
 
 def order(request):
