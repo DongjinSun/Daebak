@@ -13,9 +13,6 @@ class Login_main:
         print(data)
         if isinstance(data,int):
             return data
-        if not len(data): ### 아이디가 있는지 확인
-            return -1 ## 오류코드 -1 출력 // 아이디 없음 데이터 오류
-        
         if password==data[1]: ## 비밀번호 확인하고 맞으면 데이터 가져오기
             self.employee.name = data[0]
             self.employee.phone = phone
@@ -25,6 +22,13 @@ class Login_main:
         return (self.employee.name,self.employee.phone,self.employee.type)
     def _user_create_init(self,phone,password):
         pass
+    
+    def _login_check(self,phone):
+        data = get_data(0,phone)
+        print(data)
+        if data==-1:
+            return 0
+        return data
         
 def get_currunt_order_list():
     _ = datetime.now()

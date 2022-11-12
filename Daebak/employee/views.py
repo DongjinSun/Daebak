@@ -31,6 +31,9 @@ def emsignup(request):
         user = Employee()
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
+        err=_login._login_check(user.phone)
+        if err:
+            return redirect('eep')
         user.password = request.POST['password']
         job = request.POST['job'] #cook: 조리, delivery: 배달, manage: 관리
         if job =="manage":
