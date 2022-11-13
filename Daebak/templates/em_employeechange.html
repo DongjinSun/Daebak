@@ -75,13 +75,9 @@
       </div>
     </div>
     <div class="btn_box">
-      <a href="{% url 'eecp' %}">
-        수정하기
-      </a>
-      &nbsp;&nbsp;&nbsp;
-      <a href="{% url 'esp' %}">
-        직원 등록
-      </a>   
+      <a href="{% url 'eep' %}">
+        수정 완료
+      </a>  
     </div>
     <div class="container-fluid">
       <table class="stable">
@@ -96,8 +92,12 @@
         {% for u in users %}
         <tr>
             <td>{{u.name}}</td>
-            <td>{{u.phone}}</td>
-            <td>{{u.type}}</td>
+            <td><input type="text" name="newphone" value={{u.phone}}></td>
+            <td>
+                <input type="radio" id="job" name="job" value="cook">조리&nbsp;
+                <input type="radio" id="job" name="job" value="delivery">배달&nbsp;
+                <input type="radio" id="job" name="job" value="manage">관리
+            </td>
         </tr>
         {% endfor %}
         <tbody>

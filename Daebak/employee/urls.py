@@ -11,9 +11,13 @@ urlpatterns = [
     path('emsignuppage/', views.emsignuppage, name='esp'),
     path('emchoosepage/', views.emchoosepage, name='ecp'),
     path('emstockpage/', views.emstockpage, name='estp'),
+    path('emstockchangepage/', views.emstockchangepage, name='estcp'),
     path('emcookpage/', views.emcook, name='ecop'),
+    path('emcookchangepage/', views.emcookchange, name='ecocp'),
     path('emempage/', views.emempage, name='eep'),
+    path('ememchangepage/', views.ememchangepage, name='eecp'),
     path('emdeliverypage/', views.emdeliverypage, name='edep'),
+    # path('emdeliverychangepage/', views.emdeliverychangepage, name='edecp'),
 
     path('emlogin/', views.emlogin, name='emlogin'),
     path('emsignup/', views.emsignup, name='emsignup'),

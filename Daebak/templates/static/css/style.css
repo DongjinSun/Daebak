@@ -714,6 +714,19 @@ body {
     color: #ffffff;
   }
 
+  #userform >#dtime{
+    width: 7%;
+    height: 35px;
+    padding: 5px 18px;
+    background-color: #585858;
+    border: 1px solid #585858;
+    color: #ffffff;
+  }
+
+  #userform >#dtime:focus {
+    background-color: #BE81F7;
+  }
+
   /* end order section*/
   
   /* start choose section */
@@ -793,14 +806,31 @@ body {
     background-color: transparent;
     color: #313131;
   }
+
+  .inquire_section .container-fluid {
+    width: 100%;
+    text-align:center;
+    display: inline-block;
+    padding: 50px;
+  }
   
   table.stable {
+    width: 700px;
+    margin-left:auto; 
+    margin-right:auto;
     border-collapse: collapse;
-    border-top: 3px solid #168;
-  }  
+    border-top: 3px solid #2E2E2E;
+    border-bottom: 3px solid #2E2E2E;
+  } 
+  
+  table.stable thead {
+    border-bottom: 1.5px solid #2E2E2E;
+  }
+
   table.stable thead td {
-    color: #168;
-    background: #f0f6f9;
+    color: #2E2E2E;
+    background: #F2F2F2;
+    border-bottom: 3px solid #2E2E2E;
   }
   table.stable thead td, table.stable tbody td {
     padding: 10px;

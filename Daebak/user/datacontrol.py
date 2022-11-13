@@ -58,13 +58,21 @@ def Insert_data(request,num):
     # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def change_data(request, pk,num):
-    reqData = request.data
-    data_l = [Stock,User,Employee, OrderList]
-    data = data_l[num].objects.get(id=pk)
-    f_d = {0:stockDataSerializer,1:userDataSerializer,
-           2:employeeDataSerializer,3:orderDataSerializer}
-    serializer = f_d[num](instance=data, data=reqData)
+def change_data(request,num,*args):
+    if num==0: ##stock 데이터 바꾸기
+        _l = ["박스접시","도자기 접시","도자기 컵","발랜테인 접시","플라스틱 컵","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴폐인"]
+        _l2 = ["box","pot","cup","val","pla","steak","salad","egg","bacon","bread","bag","cof","wine","champ"]
+        i = _l.index(args[0])
+        try:
+            cursor = connection.cursor()
+            strSql = "UPDATE stock set quantity="+str(args[1])+"where name="+str(_l2[i])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            return result
+        except:
+            connection.rollback()
+            print("error")
+            return -10
+        
     
-    if serializer.is_valid():
-        serializer.save()

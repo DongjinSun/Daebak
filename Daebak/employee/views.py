@@ -76,16 +76,23 @@ def emstockpage(request):
     return render(request, 'em_stock.html', context)
 
 def emstock(request):
+    if request.method == 'POST':
+        name = request.POST["name"]
+        num = request.POST["stockadd"]
+        err = change_data(0,name,num)
+    return redirect('estcp')
+
+def emstockchangepage(request):
     _l = ["박스접시","도자기 접시","도자기 컵","발랜테인 접시","플라스틱 컵","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴폐인"]
     stock = Stock.objects.all()
     for i in zip(stock,_l):
         i[0].name = i[1]
     context = {'users':stock}
-    return render(request, 'em_stock.html', context)
+    
+    return render(request, 'em_stockchange.html', context)
 
 # 주문 조회
-def emcookpage(request):
-    
+def emcookpage(request):   
     return render(request, 'em_cook.html')
 
 
@@ -106,6 +113,27 @@ def emcook(request):
 
     return render(request, 'em_cook.html', context)
 
+def emcookchange(request):
+    data = get_currunt_order_list()
+    users = list()
+    for i in data:
+        _ = User()
+        _.time = i[0]
+        for j in i:
+            pass # Dinner 변환 구현되면 입력예정
+        users.append(_)
+    
+    
+    context = {'users':users}
+    # 배달 시간은 time, 디너 종류는 food, 디너 스타일은 style, 추가사항은 add입니다.
+    # '' 안의 'users'는 html안 이름이니 바꾸지 말아주세요. 
+
+    return render(request, 'em_cookchange.html', context)
+
+def emcookchangepage(request):   
+    return render(request, 'em_cookchange.html')
+
+
 # 직원 관리
 def emempage(request):
     users = Employee.objects.all()
@@ -119,6 +147,19 @@ def emempage(request):
     context = {'users':users[1:]}
     
     return render(request, 'em_employee.html', context)
+
+def ememchangepage(request):
+    users = Employee.objects.all()
+    for i in users:
+        if i.type==0:
+            i.type ="관리자"
+        elif i.type==1:
+            i.type = "조리"
+        elif i.type==2:
+            i.type = "배달"
+    context = {'users':users[1:]}
+    
+    return render(request, 'em_employeechange.html', context)
 
 # 배달 조회
 def emdeliverypage(request):

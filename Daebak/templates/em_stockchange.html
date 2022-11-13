@@ -48,10 +48,10 @@
                   <a class="nav-link" href="{% url 'estp' %} ">재고 조회 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'ecop' %} ">주문 조회 (조리) </a>
+                  <a class="nav-link" href="{% url 'ecop' %} ">주문 조회 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'edep' %} ">주문 조회 (배달) </a>
+                  <a class="nav-link" href="{% url 'eep' %} ">직원 관리 </a>
                 </li>
             </div>
           </div>
@@ -74,13 +74,35 @@
       </div>
     </div>
     <div class="btn_box">
-      <a href="em_stock.html">
+      <a href="{% url 'estp' %}">
         수정 완료
       </a>
     </div>
     <div class="container-fluid">
-        <!-- 재고 표 -->
-        
+      <table class="stable">
+        <thead>
+        <tr>
+            <td><B>이름</B></td>
+            <td><B>양</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{u.name}}</td>
+            <td>
+              <form action="{% url 'emstock' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" value="{{u.name}}">
+                <input type="number" name="stockadd" min="0" max="50" value={{u.quantity}}>
+                <input type="submit" value = "수정">
+              </form>
+            </td>
+        </tr>
+        {% endfor %}
+        <tbody>
+      </table>
+    
     </div>
   </section>
 

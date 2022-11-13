@@ -35,32 +35,6 @@
   </div>
   <!-- end header section -->
 
-  <!-- start bar section -->
-
-  <section class="bar_section">
-    <div class="container">
-      <div class="bar">
-        <nav class="navbar navbar-expand bar_box">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex  flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="item">
-                  <a class="nav-link" href="{% url 'estp' %} ">재고 조회 </a>
-                </li>
-                <li class="item">
-                  <a class="nav-link" href="{% url 'ecop' %} ">주문 조회 (조리) </a>
-                </li>
-                <li class="item">
-                  <a class="nav-link" href="{% url 'edep' %} ">주문 조회 (배달) </a>
-                </li>
-          </div>
-        </nav>
-      </div>
-    </div>
-  </section>
-
-  <!-- end bar section -->
-
   <!-- start inquire section -->
 
   <section class="inquire_section layout_padding">
@@ -68,18 +42,36 @@
       <div class="heading_container">
         <hr>
         <h2>
-          주문 조회 (배달)
+          배달 조회
         </h2>
       </div>
     </div>
     <div class="btn_box">
-      <a href="em_delivery.html">
+      <a href="{% url 'edep' %} ">
         수정 완료
       </a>
     </div>
     <div class="container-fluid">
-        <!-- 재고 표 -->
-        
+      <table class="stable">
+        <thead>
+        <tr>
+            <td><B>배달 시간</B></td>
+            <td><B>전화번호</B></td>
+            <td><B>주소</B></td>
+            <td><B>진행 상태</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{u.time}}</td>
+            <td>{{u.phone}}</td>
+            <td>{{u.address}}</td>
+            <td>{{u.state}}</td>
+        </tr>
+        {% endfor %}
+        <tbody>
+      </table>
     </div>
   </section>
 

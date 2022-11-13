@@ -48,10 +48,10 @@
                   <a class="nav-link" href="{% url 'estp' %} ">재고 조회 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'ecop' %} ">주문 조회 (조리) </a>
+                  <a class="nav-link" href="{% url 'ecop' %} ">주문 조회 </a>
                 </li>
                 <li class="item">
-                  <a class="nav-link" href="{% url 'edep' %} ">주문 조회 (배달) </a>
+                  <a class="nav-link" href="{% url 'eep' %} ">직원 관리 </a>
                 </li>
             </div>
           </div>
@@ -69,18 +69,43 @@
       <div class="heading_container">
         <hr>
         <h2>
-          주문 조회 (조리)
+          주문 조회
         </h2>
       </div>
     </div>
     <div class="btn_box">
-      <a href="em_cook.html">
+      <a href="{% url 'ecop' %} ">
         수정 완료
       </a>
     </div>
     <div class="container-fluid">
-        <!-- 재고 표 -->
-        
+      <table class="stable">
+        <thead>
+        <tr>
+            <td><B>배달 시간</B></td>
+            <td><B>디너 종류</B></td>
+            <td><B>디너 스타일</B></td>
+            <td><B>추가 사항</B></td>
+            <td><B>진행 상태</B></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{u.time}}</td>
+            <td>{{u.food}}</td>
+            <td>{{u.style}}</td>
+            <td>{{u.add}}</td>
+            <td>
+              <input type="radio" id="state" name="state" value="nowcook">조리중&nbsp;
+              <input type="radio" id="state" name="state" value="finishcook">조리완료&nbsp;
+              <input type="radio" id="state" name="state" value="nowdelivery">배달중&nbsp;
+              <input type="radio" id="state" name="state" value="finishdelivery">배달완료
+          </td>
+        </tr>
+        {% endfor %}
+        <tbody>
+      </table>
     </div>
   </section>
 
