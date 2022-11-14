@@ -77,6 +77,17 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class CurruntOrder(models.Model):
+    field_id = models.IntegerField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
+    name = models.CharField(max_length=10)
+    phone = models.IntegerField()
+    address = models.CharField(max_length=20)
+
+    class Meta:
+        managed = False
+        db_table = 'currunt_order'
+
+
 class CurruntOrderState(models.Model):
     time = models.IntegerField(db_column='TIME')  # Field name made lowercase.
     field_1 = models.IntegerField(db_column='_1', blank=True, null=True)  # Field renamed because it started with '_'.
@@ -153,6 +164,8 @@ class OrderList(models.Model):
     ordernum = models.CharField(max_length=21, blank=True, null=True)
     price = models.IntegerField()
     time = models.DateTimeField(db_column='TIME', blank=True, null=True)  # Field name made lowercase.
+    state = models.IntegerField(blank=True, null=True)
+    info = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -176,6 +189,7 @@ class User(models.Model):
     password = models.CharField(max_length=20)
     address = models.CharField(max_length=50)
     card = models.CharField(max_length=16)
+
     class Meta:
         managed = False
         db_table = 'user'

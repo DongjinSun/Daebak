@@ -27,17 +27,16 @@ def get_data(num,*args):
             cursor.execute(strSql)
             result = cursor.fetchall()
             data = list()
-            print(result)
             for i in range(len(result)):
                 data.append(list())
                 data[i].append(result[i][0])
                 for j in range(1,6):
                     if result[i][j] == None:
                         break
-                    strSql = "SELECT ordernum from order_list where _id"+str(result[i][j])
+                    strSql = "SELECT _id,ordernum,state from order_list where _id="+str(result[i][j])
                     cursor.execute(strSql)
-                    result = cursor.fetchall()
-                    data[i].append(result[0])
+                    result_ = cursor.fetchall()
+                    data[i].append(result_[0])
             return data
         except:
             connection.rollback()
@@ -46,6 +45,18 @@ def get_data(num,*args):
         try:
             cursor = connection.cursor()
             strSql = "SELECT name,password from user where phone="+str(args[0])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            return result[0]
+        except:
+            connection.rollback()
+            return -10
+    
+    if num == 3:
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT state from ordernum where _id="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
@@ -82,5 +93,44 @@ def change_data(num,*args):
             connection.rollback()
             print("error")
             return -10
-        
-        
+    if num==1:
+        try:
+            cursor = connection.cursor()
+            strSql = "UPDATE employee set phone="+str(args[1])+" where name=\""+str(args[0])+"\""
+            cursor.execute(strSql)
+            print(strSql)
+            connection.commit()
+            connection.close()
+            return 0
+        except:
+            connection.rollback()
+            print("error")
+            return -10
+    if num==2:
+        try:
+            _l = ["manage","cook","delivery"]
+            i = _l.index(args[1])
+            cursor = connection.cursor()
+            strSql = "UPDATE employee set type="+str(i)+" where name=\""+str(args[0])+"\""
+            print(strSql)
+            cursor.execute(strSql)
+            connection.commit()
+            connection.close()
+            return 0
+        except:
+            connection.rollback()
+            print("error")
+            return -10
+    if num==3:
+        try:
+            cursor = connection.cursor()
+            strSql = "UPDATE order_list set state="+str(args[1])+" where _id="+str(args[0])
+            print(strSql)
+            cursor.execute(strSql)
+            connection.commit()
+            connection.close()
+            return 0
+        except:
+            connection.rollback()
+            print("error")
+            return -10

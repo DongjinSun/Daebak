@@ -61,6 +61,13 @@
         <div class="loginbox">
           <h1>LOGIN</h1>
           <br>
+          <div class="errormsg">
+            {% for message in messages %}
+              {{ message.tag }}
+              {{ message }}
+            {% endfor %}
+          </div>
+          <br>
           <form action="{% url 'emlogin' %}" method="POST" id="loginform">
             {% csrf_token %}
               <input type="text" name="phonenumber" class="userPhonenumber" placeholder="Phonenumber">

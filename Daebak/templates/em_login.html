@@ -45,10 +45,13 @@
       <div class="box">
         <div class="loginbox">
           <h1>LOGIN</h1>
-          {% for message in messages %}
-            {{ message.tag }}
-            {{ message }}
-          {% endfor %}
+          <br>
+          <div class="errormsg">
+            {% for message in messages %}
+              {{ message.tag }}
+              {{ message }}
+            {% endfor %}
+          </div>
           <br><br>
           <form action="{% url 'emlogin' %}" method="POST" id="loginform">
             {% csrf_token %}

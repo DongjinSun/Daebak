@@ -3,6 +3,9 @@ from .models import User
 from django.http import HttpResponse
 from .module import *
 from .datacontrol import *
+from django.db.models import Q
+from django.contrib import messages
+
 
 # EMPLOYEE
 # 메인 + 로그인
@@ -15,7 +18,14 @@ def emlogin(request):
     if request.method == 'POST':
         _login = Login_main()
         data=request.session["employee"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
-        if isinstance(request.session["employee"],int): ## 오류가 난 경우 로그인 다시
+        if isinstance(request.session["employee"],int):
+            if request.session["employee"] == -1:
+                messages.warning(request,"없는 계정입니다.")
+            elif request.session["employee"] == -2:
+                messages.warning(request,"비밀번호가 다릅니다.")
+            elif request.session["employee"] == -10:
+                messages.warning(request,"데이터를 가져오지 못했습니다. 다시 시도해주세요.")
+            request.session["employee"] = None
             return redirect('em') ## 오류코드에 따른 오류 메세지 출력하는거 구현필요
         if data[2] == 2:
             return redirect('edep') ## 배달 직원 페이지로
@@ -33,8 +43,12 @@ def emsignup(request):
         user.name = request.POST['name']
         user.phone = request.POST['phonenumber']
         err=_login._login_check(user.phone)
-        if err: ## 오류 출력 구현해야됨
-            return redirect('eep')
+        if err: 
+            if err == -1:
+                messages.warning(request,"이미 있는 계정입니다.")
+            elif err == -10:
+                messages.warning(request,"데이터를 가져오지 못했습니다. 다시 시도해주세요.")
+            return redirect('esp')
         user.password = request.POST['password']
         job = request.POST['job'] #cook: 조리, delivery: 배달, manage: 관리
         if job =="manage":
@@ -60,11 +74,13 @@ def emsignup(request):
 def emchoosepage(request):
     return render(request, 'em_choose.html')
 
+
 # root 권한 확인
 def root_check(request):
     if request.session["employee"][2] != 0:
         return redirect('ecp') ##root 권한 없을경우 선택 불가
     return redirect('eep')
+
 
 # 재고 조회
 def emstockpage(request):
@@ -74,6 +90,7 @@ def emstockpage(request):
         i[0].name = i[1]
     context = {'users':stock}
     return render(request, 'em_stock.html', context)
+
 
 def emstock(request):
     if request.method == 'POST':
@@ -88,50 +105,61 @@ def emstockchangepage(request):
     for i in zip(stock,_l):
         i[0].name = i[1]
     context = {'users':stock}
-    
     return render(request, 'em_stockchange.html', context)
 
 # 주문 조회
 def emcookpage(request):   
-    return render(request, 'em_cook.html')
-
-
-def emcook(request):
     data = get_currunt_order_list()
     users = list()
+    print(data)
     for i in data:
-        _ = User()
-        _.time = i[0]
-        for j in i:
-            pass # Dinner 변환 구현되면 입력예정
-        users.append(_)
-    
-    
+        for j in i[1:]:
+            _ = OrderList()
+            _.time = i[0]
+            _2 = dinner_reverse(j[1])
+            _.food = _2[0]
+            _.style = _2[1]
+            _.add = _2[2]
+            _.state = j[2]
+            if _.state!=2 :
+                users.append(_)
     context = {'users':users}
-    # 배달 시간은 time, 디너 종류는 food, 디너 스타일은 style, 추가사항은 add입니다.
-    # '' 안의 'users'는 html안 이름이니 바꾸지 말아주세요. 
-
     return render(request, 'em_cook.html', context)
 
-def emcookchange(request):
+def emcook(request):
+    if request.method == "POST":
+        id = request.POST["name"]
+        print("id=",id)
+        try:
+            state = request.POST["state"]
+            if id:
+                if state =="nowcook":
+                    state = 1
+                if state =="finishcook":
+                    state = 2
+                change_data(3,id,state)
+        except:
+            pass
+    return redirect('ecocp')
+
+def emcookchangepage(request):  
     data = get_currunt_order_list()
     users = list()
     for i in data:
-        _ = User()
-        _.time = i[0]
-        for j in i:
-            pass # Dinner 변환 구현되면 입력예정
-        users.append(_)
-    
-    
-    context = {'users':users}
-    # 배달 시간은 time, 디너 종류는 food, 디너 스타일은 style, 추가사항은 add입니다.
-    # '' 안의 'users'는 html안 이름이니 바꾸지 말아주세요. 
-
+        for j in i[1:]:
+            _ = OrderList()
+            _.time = i[0]
+            _2 = dinner_reverse(j[1])
+            _.food = _2[0]
+            _.style = _2[1]
+            _.add = _2[2]
+            _.state = j[2]
+            _.field_id = j[0]
+            if _.state!=2 :
+                users.append(_)
+            users.append(_)
+    context = {'users':users} 
     return render(request, 'em_cookchange.html', context)
-
-def emcookchangepage(request):   
-    return render(request, 'em_cookchange.html')
 
 
 # 직원 관리
@@ -144,8 +172,8 @@ def emempage(request):
             i.type = "조리"
         elif i.type==2:
             i.type = "배달"
+        i.phone = "0"+str(i.phone)
     context = {'users':users[1:]}
-    
     return render(request, 'em_employee.html', context)
 
 def ememchangepage(request):
@@ -157,16 +185,64 @@ def ememchangepage(request):
             i.type = "조리"
         elif i.type==2:
             i.type = "배달"
+        i.phone = "0"+str(i.phone)
     context = {'users':users[1:]}
     
     return render(request, 'em_employeechange.html', context)
 
 # 배달 조회
 def emdeliverypage(request):
-    return render(request, 'em_delivery.html')
+    state_l = ["배달준비","배달중","배달완료"]
+    order = OrderList.objects.filter(Q(state=2)|Q(state=3))
+    for i in order:
+        users = User.objects.filter(phone=i.user)
+        for j in users:
+            j.state=state_l[i.state-2]
+    try:
+        context = {'users':users}
+    except:
+        context = {'users':None}
+    return render(request, 'em_delivery.html', context)
+
+def emdeliverychangepage(request):
+    state_l = ["배달준비","배달중","배달완료"]
+    order = OrderList.objects.filter(Q(state=2)|Q(state=3))
+    for i in order:
+        users = User.objects.filter(phone=i.user)
+        for j in users:
+            j.state=state_l[i.state-2]
+            j.field_id=i.field_id
+    try:
+        context = {'users':users}
+    except:
+        context = {'users':None}
+    return render(request, 'em_deliverychange.html', context)
 
 def emdelivery(request):
-    users = User.objects.all()
-    context = {'users':users}
+    state_l = ["readydelivery","nowdelivery","finishdelivery"]
+    if request.method =="POST":
+        id=request.POST["name"]
+        state = request.POST["state"]
+        i = int(state_l.index(state))+2
+        change_data(3,id,i)
+    return redirect('edecp')
     
-    return render(request, 'em_delivery.html', context)
+
+def emphone(request):
+    if request.method =="POST":
+        name = request.POST["name"]
+        phone = request.POST["newphone"]
+        print(name,phone)
+        err = change_data(1,name,phone)
+        if err:
+            pass
+    return redirect("eecp")
+
+def emjob(request):
+    if request.method =="POST":
+        name = request.POST["name"]
+        job = request.POST["job"]
+        err = change_data(2,name,job)
+        if err:
+            pass
+    return redirect("eecp")

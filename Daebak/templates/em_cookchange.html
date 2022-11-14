@@ -96,11 +96,15 @@
             <td>{{u.food}}</td>
             <td>{{u.style}}</td>
             <td>{{u.add}}</td>
+            <td>{{u.state}}</td>
             <td>
-              <input type="radio" id="state" name="state" value="nowcook">조리중&nbsp;
-              <input type="radio" id="state" name="state" value="finishcook">조리완료&nbsp;
-              <input type="radio" id="state" name="state" value="nowdelivery">배달중&nbsp;
-              <input type="radio" id="state" name="state" value="finishdelivery">배달완료
+              <form action="{% url 'emcook' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" value={{u.field_id}}>
+                <input type="radio" id="state" name="state" value="nowcook">조리중&nbsp;
+                <input type="radio" id="state" name="state" value="finishcook">조리완료&nbsp;
+                <input type="submit" value = "수정">
+              </form>            
           </td>
         </tr>
         {% endfor %}

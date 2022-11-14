@@ -55,7 +55,7 @@
       <table class="stable">
         <thead>
         <tr>
-            <td><B>배달 시간</B></td>
+            <td><B>이름</B></td>
             <td><B>전화번호</B></td>
             <td><B>주소</B></td>
             <td><B>진행 상태</B></td>
@@ -64,10 +64,19 @@
         <tbody>
         {% for u in users %}
         <tr>
-            <td>{{u.time}}</td>
+            <td>{{u.name}}</td>
             <td>{{u.phone}}</td>
             <td>{{u.address}}</td>
-            <td>{{u.state}}</td>
+            <td>
+              <form action="{% url 'emdelivery' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" value={{u.field_id}}>
+                <input type="radio" id="state" name="state" value="readydelivery">배달준비&nbsp;
+                <input type="radio" id="state" name="state" value="nowdelivery">배달중&nbsp;
+                <input type="radio" id="state" name="state" value="finishdelivery">배달완료
+                <input type="submit" value = "수정">
+              </form> 
+            </td>
         </tr>
         {% endfor %}
         <tbody>

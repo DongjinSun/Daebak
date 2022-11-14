@@ -47,23 +47,25 @@
         </h2>
       </div>
     </div>
-    <div class="container-fluid">
     <br><br>
     <div class="container">
       <div class="box">
         <div class="signup_box">
-          {% for message in messages %}
-            {{ message.tag }}
-            {{ message }}
-          {% endfor %}
+          <br>
+          <div class="errormsg">
+            {% for message in messages %}
+              {{ message.tag }}
+              {{ message }}
+            {% endfor %}
+          </div>
           <br><br>
           <form action="{% url 'signup' %}" method="POST" id="signupform">
             {% csrf_token %}
-            이름 <input type="text" name="name"><br>
-            전화번호 <input type="text" name="phonenumber"><br>
-            비밀번호 <input type="password" name="password"><br>
-            주소 <input type="text" name="address"><br>
-            카드번호 <input type="text" name="card"><br>
+            &nbsp;&nbsp;&nbsp;<b>* 이름</b>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name"><br>
+            <b>* 전화번호</b> <input type="text" name="phonenumber"><br>
+            <b>* 비밀번호</b> <input type="password" name="password"><br>
+            &nbsp;&nbsp;&nbsp;<b>* 주소</b>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="address"><br>
+            <b>* 카드번호</b> <input type="text" name="card"><br>
             <br><br>
             <input type="submit" id="sub" value="가입하기">
           </form> 

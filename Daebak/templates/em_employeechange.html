@@ -92,11 +92,23 @@
         {% for u in users %}
         <tr>
             <td>{{u.name}}</td>
-            <td><input type="text" name="newphone" value={{u.phone}}></td>
             <td>
+              <form action="{% url 'emphone' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" value={{u.name}}>
+                <input type="text" name="newphone" value={{u.phone}}>
+                <input type="submit" value = "수정">
+              </form>            
+            </td>
+            <td>
+              <form action="{% url 'emjob' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="name" value="{{u.name}}">
                 <input type="radio" id="job" name="job" value="cook">조리&nbsp;
                 <input type="radio" id="job" name="job" value="delivery">배달&nbsp;
                 <input type="radio" id="job" name="job" value="manage">관리
+                <input type="submit" value = "수정">
+              </form>                
             </td>
         </tr>
         {% endfor %}

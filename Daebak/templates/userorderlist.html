@@ -49,6 +49,7 @@
               <thead>
               <tr>
                   <td><B>디너 종류</B></td>
+                  <td><B>주문 수량</B></td>
                   <td><B>디너 스타일</B></td>
                   <td><B>추가 사항</B></td>
                   <td><B>진행 상태</B></td>
@@ -57,7 +58,8 @@
               <tbody>
               {% for u in users %}
               <tr>
-                  <td>{{u.food}}번</td>
+                  <td>{{u.food}}</td>
+                  <td>{{u.num}}</td>
                   <td>{{u.style}}</td>
                   <td>{{u.add}}</td>
                   <td>{{u.state}}</td>

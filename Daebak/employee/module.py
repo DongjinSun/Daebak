@@ -28,10 +28,26 @@ class Login_main:
         print(data)
         if data==-1:
             return 0
-        return data
+        if data==-10:
+            return data
+        return -1
         
 def get_currunt_order_list():
     _ = datetime.now()
     data = get_data(1,_.hour,_.minute)
     return data
     
+def dinner_reverse(ordernum):
+    menu_s = ordernum[:4]
+    for i,n in enumerate(menu_s):
+        if i == 0:
+            menu = "Valentine dinner "+str(n)+"개"
+        if i == 1:
+            menu = "French dinner "+str(n)+"개"
+        if i == 2:
+            menu = "English dinner "+str(n)+"개"
+        if i == 0:
+            menu = "Champagne Feast dinner "+str(n)+"개"
+    style = ordernum[4]
+    add = ordernum[5:]
+    return (menu,style,add)
