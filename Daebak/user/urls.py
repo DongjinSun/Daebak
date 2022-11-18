@@ -13,6 +13,8 @@ urlpatterns = [
     path('dspage/', views.dspage, name='dsp'),
     # path('cpage/', views.cpage, name='cp'),
     path('addpage/', views.addpage, name='ap'),
+    path('orderfinishpage/', views.orderfinishpage, name='ofp'),
+    path('voiceaipage/', views.voiceaipage, name='vp'),
     
     path('logout/', views.logout, name='logout'),
     path('login/', views.login, name='login'),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('add/', views.add, name='add'),
     path('addorder/', views.addorder, name='addorder'),
     path('order/', views.order, name='order'),
+    path('orderfin/', views.orderfinishpage, name='orderfin')
 ]

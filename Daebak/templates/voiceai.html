@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Mr.Daebak Dinner</title>
+  <!--<link rel="icon" href="{% static 'images/restaurant.png' %}">-->
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+  <!-- style -->
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <!-- start header section -->
+  <div class="main_area">
+    <div class="brand_box">
+      <a class="brand" href="{% url 'cm' %}">
+        <span>
+          Mr.Daebak DINNER
+        </span>
+      </a>
+    </div>
+  </div>
+  <!-- end header section -->
+
+  <div class="words"></div>
+  <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
+</body>
+</html>

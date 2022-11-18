@@ -3,8 +3,7 @@ def listToString(listMenu):            #[1,2,3,4] -> 1234
     result = ""
     for s in str_list:
         result += s
-    
-    result = int(result)               #int형으로 반환
+        #int형으로 반환
     return result
 
 def stringToList(intMenu):           #1234 -> [1,2,3,4]

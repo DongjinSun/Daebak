@@ -157,7 +157,6 @@ def emcookchangepage(request):
             _.field_id = j[0]
             if _.state!=2 :
                 users.append(_)
-            users.append(_)
     context = {'users':users} 
     return render(request, 'em_cookchange.html', context)
 
@@ -207,11 +206,13 @@ def emdeliverypage(request):
 def emdeliverychangepage(request):
     state_l = ["배달준비","배달중","배달완료"]
     order = OrderList.objects.filter(Q(state=2)|Q(state=3))
+    cos = CurruntOrder.objects.get(field_id = order.field_id)
     for i in order:
         users = User.objects.filter(phone=i.user)
         for j in users:
             j.state=state_l[i.state-2]
             j.field_id=i.field_id
+            j.address = cos.address
     try:
         context = {'users':users}
     except:

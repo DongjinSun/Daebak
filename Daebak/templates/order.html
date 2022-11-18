@@ -18,7 +18,7 @@
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
   <!-- style -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -62,14 +62,10 @@
   end bar section -->
 
   <!-- start order section -->
+  
   <section class="order_section layout_padding">
     <div class="container">
-      <div class="heading_container">
-        <hr>
-        <h2>
-          주문 상품
-        </h2>
-      </div>
+      
       <div class="box"> 
         <div class="orderbox">
             <div class="orderInfo">
@@ -77,27 +73,60 @@
                 <div class="heading_container">
                   <hr>
                   <h2>
+                    주문 상품
+                  </h2>
+
+                </div>
+                
+<!-- 수정 -->
+                  <table class="stable">
+                    <thead>
+                    <tr>
+                        <td><B>디너 종류</B></td>
+                        <td><B>주문 수량</B></td>
+                        <td><B>디너 스타일</B></td>
+                        <td><B>변경 사항</B></td>
+                        <td><B></B></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>               
+                      <td>{{context.dinner}}</td>
+                      <td>{{context.num}}</td>
+                      <td>{{context.style}}</td>
+                      <td>{{context.addition}}</td>
+                    </tr>
+                    <tbody>
+                  </table>
+
+<!-- 수정 끝 -->
+                <div class="heading_container">
+                  <hr>
+                  <h2>
                     주문자 정보
                   </h2>
                 </div>
-                이름 <input type="text" name="name"><br>
-                전화번호 <input type="text" name="phonenumber"><br>
-                주소 <input type="text" name="address"><br>
-                카드번호 <input type="text" name="card"><br>               
+                이름 <input type="text" name="name" value={{context.name}}><br>
+                전화번호 <input type="text" name="phonenumber" value = {{context.phonenumber}}><br>
+                주소 <input type="text" name="address" value = {{context.address}}><br>
+                카드번호 <input type="text" name="card" value = {{context.card}}><br>               
                 배달시간
                 <br>
-                <input type="button" id="dtime" name="time1" value="16:00">
-                <input type="button" id="dtime" name="time2" value="16:30">
-                <input type="button" id="dtime" name="time3" value="17:00">
-                <input type="button" id="dtime" name="time4" value="17:30">
-                <input type="button" id="dtime" name="time5" value="18:00">
-                <input type="button" id="dtime" name="time6" value="18:30">
-                <input type="button" id="dtime" name="time7" value="19:00">
-                <input type="button" id="dtime" name="time8" value="19:30">
-                <input type="button" id="dtime" name="time9" value="20:00">
-                <input type="button" id="dtime" name="time10" value="20:30">
-                <input type="button" id="dtime" name="time11" value="21:00">
-                <input type="button" id="dtime" name="time12" value="21:30">
+                <input type="hidden" name="arr" value="{{arr}}">
+                <input type="hidden" name="dtime" value="">
+                <input type="button" id="dtime" name="time1" value="16:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time2" value="16:30" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time3" value="17:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time4" value="17:30" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time5" value="18:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time6" value="18:30" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time7" value="19:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time8" value="19:30" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time9" value="20:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time10" value="20:30" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time11" value="21:00" onclick="deliverytime(this.name);">
+                <input type="button" id="dtime" name="time12" value="21:30" onclick="deliverytime(this.name);">
+              
                 <!--
                 <select name = "deliverytime">
                   <option selected>배달 시간 선택</option>
@@ -116,15 +145,18 @@
                 </select>
                 -->
                 <br>
-                배달요청사항 <input type="text" name="want"><br>
+                배달 요청사항<br>
+                <input type="text" name="want"><br>
                 <div class="heading_container">
                   <hr>
                   <h2>
-                    총 결제금액
+                    &nbsp;총 결제금액&nbsp;
                   </h2>
+                  <hr>
                 </div>
-                할인 여부 {'discount'}
-                결제 금액 {'money'}
+                상품 금액 <input type="text" name="foodmoney" value={{context.price}}><br>
+                할인 여부 <input type="text" name="discount" value={{context.sale}}><br>
+                결제 금액 <input type="text" name="finalmoney" value={{context.money}}><br>
                 <br><br>
                 <input type="submit" id="sub" value="결제하기">
               </form>            
@@ -187,10 +219,26 @@
     </p>
   </section>
   <!-- end footer section -->
+  
+  <script type="text/javascript">
+    var can = document.getElementsByName("arr")[0].value;
+
+    for(var i=1; i<=12; i++){
+      var str = 'time' + i;
+      var target = document.getElementsByName(str)[0];
+      if(can[i-1]=='0'){
+        target.disabled= true;
+      }
+      else if(can[i-1]=='1'){
+        target.disabled=false;
+      }
+    } 
+  </script>
 
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-
+  <!--<script type="text/javascript" src="{% static 'js/cantchoose.js' %}"></script>-->
+  <script type="text/javascript" src="{% static 'js/deliverytime.js' %}"></script>
 </body>
 
 </html>

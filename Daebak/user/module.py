@@ -1,28 +1,31 @@
 from .datacontrol import *
-from .models import User
+from .models import *
+from datetime import datetime
 
 class Login_main:
     def _user_login_init(self,phone,password):
         Order_list = []
         data = get_data(0,phone)
+        addrCardData = get_data(3, phone) ## datacontrol에 새로 만듦. addr, card 받음. 
         print(data)
         sale = 0
         if isinstance(data,int):
             return data
         if password==data[1]: ## 비밀번호 확인하고 맞으면 데이터 가져오기
             name = data[0]
-            data = get_data(1,phone)
-            for i in data:
-                Order_list.append(i)
-            if len(Order_list)>10:
-                sale = 1
-            print(Order_list)
-        else: ## 없으면 오류코드 -2 
-            return -2
-        return (name,phone,Order_list,sale)
+            address = addrCardData[0] # 수정
+            card = addrCardData[1] # 수정
+
+        return (name,phone,sale, address, card) # 수정
+    
     def _user_create_init(self,phone,password):
         pass
-    def _login_check(self,phone):
+    @staticmethod
+    def _login_check(phone):
+        try:
+            int(phone)
+        except:
+            return -3
         data = get_data(0,phone)
         print(data)
         if data==-1:
@@ -44,7 +47,8 @@ class Dinner_main:
     i = 0 # for iterration
     #dinnerData = 
     #sale = 
-    def cal_dinner_price(request, dinnerMain, dinnerList):
+    @staticmethod
+    def cal_dinner_price(dinnerMain, dinnerList):
         #[[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 13]] 21개. 
         #[[0, 0, 0, 1, 2, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 5, 0, 2, 3]]
         #[[0, 9, 0, 0 여기까지 디너, 2(스타일: 2), 3, 9, 0, 10, 0(여기까지 잡동사니), 29, 44, 0, 0, 0, 0, 50, 0, 9, 0, 0(음식)]]
@@ -58,15 +62,16 @@ class Dinner_main:
         elif dinnerList[4] == 2:    # deluxe dinner
             total_price += dinnerMain.style_list["deluxe"] * persons
         
+        #print("dinnerList is !!!", dinnerList) #문제점: 심플 디너일 때 디너리스트의 길이가 20이 됨. -> OUT OF RANGE
         for additional in dinnerMain.additional_list.keys(): #
             total_price += dinnerMain.additional_list[additional] * dinnerList[dinnerMain.i + 5]
             dinnerMain.i += 1
         else:
             dinnerMain.i = 0
-            #print("total price is ", total_price)
+            print(" ### cal_dinner_price ### total price is ", total_price)
         return total_price
-
-    def make_dinner_data(request, dinnerMain, dinnerLists):
+    @staticmethod
+    def make_dinner_data(dinnerMain, dinnerLists):
         #initialize for reuse#
         persons = 0
         selected_dinner = []
@@ -74,7 +79,14 @@ class Dinner_main:
         customizated_str = []
         money = 0
 
-        dinnerList = dinnerLists[0] # 추후 수정. 초기 구현은 디너 한 종류만 주문한 것으로 생각하자. 
+        # if str(type(dinnerLists[1])) == "<class 'int'>":
+        #     dinnerList = dinnerLists
+        # else:
+        #     dinnerList = dinnerLists[0]
+        if str(type(dinnerLists[0])) == "<class 'list'>": # 더블 리스트인 경우. list[[]]
+            dinnerList = dinnerLists[0] # 추후 수정. 초기 구현은 디너 한 종류만 주문한 것으로 생각하자. 
+        else:
+            dinnerList = dinnerLists
         persons = dinnerList[0] + dinnerList[1] + dinnerList[2] + dinnerList[3] # 사람 수 출력
         selected_dinner = ""
         selected_style = ""
@@ -107,7 +119,8 @@ class Dinner_main:
                 keys = list(dinnerMain.additional_list.keys())
                 temp = keys[idx] + " " + str(abs(count)) + "개 제외" # abs: customizated 값에서, 음식 수를 기존보다 적게 시키는 경우 음수가 됨.  
                 customizated_str.append(temp)
-            
+        if customizated_str == []: # 커스터마이징이 없다면 "수정 사항 없음 출력. "
+            customizated_str.append("추가 사항 없음")
         money = dinnerMain.cal_dinner_price(dinnerMain, dinnerList)
         #print("돈!!!!!!!!!!!!!", money) #for test 
         dinnerData = []
@@ -143,25 +156,25 @@ class Dinner_main:
                 _l[-1] += num//2 # 샴페인 한병
         return _l
 
-    @staticmethod
-    def dinner_reverse(ordernum):
-        menu_s = ordernum[:4]
-        for i,n in enumerate(menu_s):
-            if i == 0:
-                menu = "Valentine dinner"
-                break
-            if i == 1:
-                menu = "French dinner"
-                break
-            if i == 2:
-                menu = "English dinner"
-                break
-            if i == 3:
-                menu = "Champagne Feast dinner"
-                break
-        style = ordernum[4]
-        add = ordernum[5:]
-        return (menu,n[0],style,add)
+    # @staticmethod
+    # def dinner_reverse(ordernum):
+    #     menu_s = ordernum[:4]
+    #     for i,n in enumerate(menu_s):
+    #         if i == 0:
+    #             menu = "Valentine dinner"
+    #             break
+    #         if i == 1:
+    #             menu = "French dinner"
+    #             break
+    #         if i == 2:
+    #             menu = "English dinner"
+    #             break
+    #         if i == 3:
+    #             menu = "Champagne Feast dinner"
+    #             break
+    #     style = ordernum[4]
+    #     add = ordernum[5:]
+    #     return (menu,n[0],style,add)
 
     # def make_dinner_data(request, dinnerMain, dinnerList):
     #     persons = dinnerList[0] + dinnerList[1] + dinnerList[2] + dinnerList[3] # 사람 수 출력
@@ -203,26 +216,143 @@ class Order_main:
     order_data = None
 
 #출력 형식: [3, "valentine Dinner", "Deluxe Dinner", ["빵 +1", "스테이크 -3"], 72000]
-    #order 리턴값: [["name", "phnum", "addr"], "13:00", "additional", dinner Data]
+    #order 리턴값: [["name", "phnum"(주소 제거)], "13:00", "additional", dinner Data]
+    @staticmethod
     def makeOrder(user, dinnerData, time, additional):
-        orderData = [[user[0], user[1], user[3]], time, additional, dinnerData]
+        orderData = [[user[0], user[1]], time, additional, dinnerData]
+        print("orderData is ", orderData) #$#
         return orderData
 
     def updateOrderState():
         pass
-    def send_order_data():
-        pass
+    @staticmethod
+    def send_order_data(request):
+        if request.method == 'POST':
+            #print("for test, rq.session[user] = ", request.session["user"])
+            cOrder = CurruntOrder()
+            cOrder.name = request.POST['name']
+            try:
+                cOrder.phone = int(request.POST['phonenumber'])
+            except:
+                return -3
+            cOrder.address = request.POST['address']
+            #user.card = request.POST['card']  # 모델에 추가해야 함.
+            l = ["time1","time2","time3","time4","time5","time6","time7","time8","time9","time10","time11","time12"]
+            i=0
+            deliverytime = request.POST["dtime"]
+            try:
+                deliverytime = int(deliverytime[0:2]+deliverytime[3:])
+                request.session["time"] = deliverytime
+            except:
+                time = orderMain.get_currunt_time(request)
+                if "1" not in time:
+                    return -1
+                return -2
+            
+            cOrder.field_id = Order_main.Field_id_set(request) ## field_id 
+            cOrder.save()
+            cos = CurruntOrderState.objects.get(time=deliverytime)
+            if not cos.field_1:
+                temp=0
+            elif not cos.field_2:
+                temp=1
+            elif not cos.field_3:
+                temp=2
+            elif not cos.field_4:
+                temp=3
+            elif not cos.field_5:
+                temp=4
+            l = [cos.field_1,cos.field_2,cos.field_3,cos.field_4,cos.field_5]
+            # le = len(request.session["order"])
+            test_ = list()
+            order = OrderList()
+            order.field_id = cOrder.field_id
+            try:
+                order.user = request.session["user"][1]
+            except:
+                order.user = cOrder.name
+            for i in request.session["order"]:
+                order.ordernum = listToString(i)
+                order.price = 0 # price 넣기
+                order.info = request.POST['want']
+                order.state = 0
+                test_.append([order.ordernum,order.price,order.info,order.state,order.field_id])
+                order.save()
+                if temp==0:
+                    cos.field_1 = order.field_id
+                elif temp==1:
+                    cos.field_2 = order.field_id
+                elif temp==2:
+                    cos.field_3 = order.field_id
+                elif temp==3:
+                    cos.field_4 = order.field_id
+                elif temp==4:
+                    cos.field_5 = order.field_id
+                temp += 1
+                order.field_id += 1 
+            cos.save()
+            return 0
+            
+            
+            # temp = cos[0]
+            # for i in range(1,6):
+            #     a = globals()['temp.field_'+str(i)]
+            #     print(a)
+            ## currunt order state에 넣는거 구현
+            
+    @staticmethod
+    def Field_id_set(request):
+        _ = datetime.now()
+        year = str(_.year)[2:]
+        month = f"{_.month:02}"
+        day = f"{_.day:02}"
+        hour = f"{_.hour:02}"
+        m = f"{_.minute:02}"
+        sec = f"{_.second:02}"
+        if isinstance(request.session["user"],str): ## 마지막 자리수로 회원 비회원 구분 가능
+            type = "5"
+        else:
+            type = "0"
+        return int(year+month+day+hour+m+sec+type)
+    
+    @staticmethod
+    def get_currunt_time(request):
+        _ = datetime.now()
+        l = [1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130]
+        time = int(str(_.hour+1)+str(_.minute))
+        data_1 = [x>time for x in l]
+        data_2 = []
+        cos = CurruntOrderState.objects.all()
+        for i in cos:
+            if not i.field_1:
+                temp=5
+            elif not i.field_2:
+                temp=4
+            elif not i.field_3:
+                temp=3
+            elif not i.field_4:
+                temp=2
+            elif not i.field_5:
+                temp=1
+            if temp >= len(request.session["order"]):
+                data_2.append(1)
+            else:
+                data_2.append(0)
+        print(request.session["order"])
+        data = [x&y for x,y in zip(data_1,data_2)]
+        data = listToString(data)
+        return data # 되는 시간만 구현. 자리없는것도 구현해야됨.
 
 def listToString(listMenu):            #[1,2,3,4] -> 1234
     str_list = list(map(str, listMenu))#int list -> str list ["1", "2", "3", "4"]
     result = ""
     for s in str_list:
         result += s
-    
-    result = int(result)               #int형으로 반환
     return result
 
 def stringToList(intMenu):           #1234 -> [1,2,3,4]
     strMenu = str(intMenu)           #int -> str
     str_list = list(strMenu)         # ["1", "2", "3", "4"]
     return list(map(int, str_list))  # [1, 2, 3, 4]
+
+

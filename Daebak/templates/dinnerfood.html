@@ -72,6 +72,8 @@
     <div>
     <br><br><br>
     <h2>{{user_name}}님, 안녕하세요.</h2>
+    
+  
   </section>
 
   <!-- end progress section -->
@@ -102,12 +104,12 @@
               <br>
               스테이크<br><br>
               와인 1병<br><br>
-              * 스타일로는 사진 속 접시와 냅킨이 제공됩니다.<br><br>
+              * 디너 스타일로는 사진 속 접시와 냅킨이 제공됩니다.<br><br>
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
               <input type="hidden" name="name" value="valnum">
-              <input type="number" name="valnum" min="1" max="50" value="1">
+              <input type="number" name="valnum" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -131,7 +133,7 @@
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
               <input type="hidden" name="name" value="frenum">
-              <input type="number" name="frenum"min="1" max="50" value="1">
+              <input type="number" name="frenum"min="1" max="9" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -155,7 +157,7 @@
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
               <input type="hidden" name="name" value="engnum">
-              <input type="number" name="engnum" min="1" max="50" value="1">
+              <input type="number" name="engnum" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -181,13 +183,27 @@
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
               <input type="hidden" name="name" value="chanum">
-              <input type="number" name="chanum" min="2" max="50" step ="2" value="2">
+              <input type="number" name="chanum" min="2" max="8" step ="2" value="2">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
-        </div>
+        </div>     
       </div>
+      <div class="voiceai_box">
+        * '음성인식으로 주문하기' 버튼을 누르고 원하는 디너 종류를 말하세요.<br>
+        
+        <button class="voice" name="voice" type="button" onclick="voiceinput();">
+          음성인식으로 주문하기
+        </button>
+        <button class="voice" name="voice" type="button" onclick="voicestop();">
+          음성인식 멈추기
+        </button>
+      </div>
+      <div class="words">
+      </div>
+      <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
     </div>
+
   </section>
 
   <!-- end dinner section -->

@@ -37,17 +37,27 @@ body {
     z-index: 9;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    /*justify-content: space-between;*/
+    -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   }
   
   .brand_box .brand span {
     margin-left: 12px;
-    font-size: 70px;
+    font-size: 100px;
     font-weight: bold;
-    color: #ffffff;
-    display: inline-block;
+    display: inline-block;   
+    color: #2E2E2E;
+    text-shadow: 5px 5px #C3A8D2;
+    text-align: center;
+    /*
+    
     -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #A979EC;
+    */
   }
   
   .brand_box .brand p {
@@ -69,6 +79,49 @@ body {
   }
   
   /* end header section */
+
+  /* start slider */
+  .intro_section div#carouselExampleControls {
+    overflow: hidden;
+    width : 80%;
+    margin-top: 10px;
+    margin-bottom:20px;
+  }
+
+  .intro_section .carousel-control-prev,
+  .intro_section .carousel-control-next {
+    width: 90px;
+    height: 90px;
+    background-color: #252525;
+    opacity: 1;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    background-repeat: no-repeat;
+    background-size: 12px;
+  }
+
+  .intro_section .carousel-control-prev:hover,
+  .intro_section .carousel-control-next:hover {
+    opacity: 0.9;
+  }
+
+  .intro_section .carousel-control-prev {
+    
+    border-radius: 0 100% 100% 0;
+    background-image: url(../images/prev.png);
+    left: -50px;
+    background-position: 58px center;
+  }
+
+  .intro_section .carousel-control-next {
+    border-radius: 100% 0 0 100%;
+    background-image: url(../images/next.png);
+    right: -45px;
+    background-position: 20px center;
+  }
+
+  /* end slider */
   
   /* start bar section */
   .sub_page .bar_section {
@@ -115,8 +168,8 @@ body {
     text-align: center;
   }
   
-  .intro_section .box .text_box h3 {
-    color: #000000;
+  .intro_section .box .text_box {
+    margin-top: 20px;
   }
   
   .intro_section .box .img_box img {
@@ -147,14 +200,14 @@ body {
   .intro_section .signupbtn_box a {
     display: inline-block;
     padding: 8px 40px;
-    background-color: #949395;
-    border: 1px solid #949395;
-    color: #ffffff;
+    background-color: transparent;
+    border: 2px solid #000000;
+    color: #000000;
   }
   
   .intro_section .signupbtn_box a:hover {
-    background-color: transparent;
-    color: #949395;
+    background-color: #000000;
+    color: #ffffff;
   }
   
   /* end intro section */
@@ -348,7 +401,7 @@ body {
   }
   
   #dinnerform >#sub{
-    width: 70%;
+    width: 100%;
     height: 48px;
     padding: 8px 25px;
     background-color: #848484;
@@ -733,9 +786,53 @@ body {
     color: #ffffff;
   }
 
+  /*
   #userform >#dtime:focus {
     background-color: #BE81F7;
   }
+  */
+
+  .order_section .box .btn_box {
+    margin-top: 25px;
+    text-align: center;
+  }
+  
+  .order_section .box .btn_box a {
+    display: inline-block;
+    padding: 8px 40px;
+    background-color: #313131;
+    border: 1px solid #313131;
+    color: #ffffff;
+  }
+  
+  .order_section .box .btn_box a:hover {
+    background-color: transparent;
+    color: #313131;
+  }
+
+  .order_section .text_box {
+    margin-top: 30px;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  #orderfinishform {
+    text-align:center;
+  }
+
+  #orderfinishform > input{
+    width: 50%;
+    height: 42px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    margin-left: 15px;
+    background-color: #F8F8F8;
+  }
+  
+
+  
+
 
   /* end order section*/
   
@@ -859,6 +956,28 @@ body {
     color: #DF0101;
   }
 
+  /* start voiceai */
+  .dinner_section .voiceai_box {
+    text-align: right;
+  }
+  
+  .dinner_section .voiceai_box button {
+    display: inline-block;
+    padding: 8px 40px;
+    background-color: #725780;
+    border: 2px solid #725780;
+    color: #ffffff;
+  }
+  
+  .dinner_section .voiceai_box button:focus {
+    background-color: transparent;
+    color: #725780;
+  }
+
+
+  /* end voiceai */
+
+  /*
   @font-face{
     src: url("../fonts/RustyHooksRegular-nROER.ttf");
     font-family: "sample"; 
@@ -867,4 +986,6 @@ body {
    title {
     font-family: "sample";
    }
+   */
+
   /*# sourceMappingURL=style.css.map */

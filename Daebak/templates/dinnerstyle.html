@@ -73,6 +73,21 @@
     <div>
     <br><br><br>
     <h2>{{user_name}}님, 안녕하세요.</h2>
+    <div class="voiceai_box">
+      <a href="{% url 'dsp' %}">
+        새로고침
+      </a>
+      <button class="voice" name="voice" type="button" onclick="voiceinput();">
+        음성인식으로 주문하기
+      </button>
+      <button class="voice" name="voice" type="button" onclick="voicestop();">
+        음성인식 멈추기
+      </button>
+    </div>
+    <div class="words">
+      
+    </div>
+    <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
   </section>
   
   <!-- end progress section -->

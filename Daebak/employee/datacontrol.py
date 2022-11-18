@@ -20,27 +20,52 @@ def get_data(num,*args):
             connection.rollback()
             return -10 # 데이터 가져오기 실패 오류코드 
     if num == 1: ## currunt_order_list 가져오기
-        try:
-            cursor = connection.cursor()
-            print(str(args[0])+str(args[1]))
-            strSql = "SELECT * from currunt_order_state where TIME >"+str(args[0])+str(args[1])
-            cursor.execute(strSql)
-            result = cursor.fetchall()
-            data = list()
-            for i in range(len(result)):
-                data.append(list())
-                data[i].append(result[i][0])
-                for j in range(1,6):
-                    if result[i][j] == None:
-                        break
-                    strSql = "SELECT _id,ordernum,state from order_list where _id="+str(result[i][j])
-                    cursor.execute(strSql)
-                    result_ = cursor.fetchall()
-                    data[i].append(result_[0])
-            return data
-        except:
-            connection.rollback()
-            return -10
+        cursor = connection.cursor()
+        time = f"{args[0]:02d}{args[1]:02d}"
+        print(time)
+        strSql = "SELECT * from currunt_order_state where TIME > "+time
+        cursor.execute(strSql)
+        result = cursor.fetchall()
+        print(1)
+        data = list()
+        for i in range(len(result)):
+            data.append(list())
+            data[i].append(result[i][0])
+            print(result)
+            for j in range(1,6):
+                if result[i][j] == None:
+                    break
+                strSql = "SELECT _id,ordernum,state from order_list where _id="+str(result[i][j])
+                cursor.execute(strSql)
+                result_ = cursor.fetchall()
+                print(result_)
+                data[i].append(result_[0])
+        print(2)
+        return data
+        # try:
+        #     cursor = connection.cursor()
+        #     time = f"{args[0]:02d}{args[1]:02d}"
+        #     print(time)
+        #     strSql = "SELECT * from currunt_order_state where TIME > "+time
+        #     cursor.execute(strSql)
+        #     result = cursor.fetchall()
+        #     print(1)
+        #     data = list()
+        #     for i in range(len(result)):
+        #         data.append(list())
+        #         data[i].append(result[i][0])
+        #         for j in range(1,6):
+        #             if result[i][j] == None:
+        #                 break
+        #             strSql = "SELECT _id,ordernum,state from order_list where _id="+str(result[i][j])
+        #             cursor.execute(strSql)
+        #             result_ = cursor.fetchall()
+        #             data[i].append(result_[0])
+        #     print(2)
+        #     return data
+        # except:
+        #     connection.rollback()
+        #     return -10
     if num == 2:
         try:
             cursor = connection.cursor()

@@ -73,6 +73,18 @@
     <div>
     <br><br><br>
     <h2>{{user_name}}님, 안녕하세요.</h2>
+    <div class="voiceai_box">
+      <button class="voice" name="voice" type="button" onclick="voiceinput();">
+        음성인식으로 주문하기
+      </button>
+      <button class="voice" name="voice" type="button" onclick="voicestop();">
+        음성인식 멈추기
+      </button>
+    </div>
+    <div class="words">
+      
+    </div>
+    <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
   </section>
   
   <!-- end progress section -->
@@ -105,7 +117,7 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="box">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="boxadd" min="1" max="50" value="1">
+              <input type="number" name="boxadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
           </div>
@@ -123,25 +135,7 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="pot">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="potadd" min="1" max="50" value="1">
-              <input type="submit" id="sub" value = "추가">
-            </form>
-          </div>
-        </div>
-        <div class="box">
-          <img src="{% static 'images/valplate.jpg' %}" alt="">
-          <div class="link_box">
-            <h5>
-              발렌타인 접시
-            </h5>
-            <p>
-              3,000 won
-            </p>
-            <form action="{% url 'add' %}" method="POST" id="addform">
-              {% csrf_token %}
-              <input type="hidden" name="name" value="val">
-              <input type="hidden" name="mode" value="add">
-              <input type="number" name="valadd" min="1" max="50" value="1">
+              <input type="number" name="potadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
           </div>
@@ -159,7 +153,25 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="cup">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="plaadd" min="1" max="50" value="1">
+              <input type="number" name="cupadd" min="1" max="9" value="1">
+              <input type="submit" id="sub" value = "추가">
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <img src="{% static 'images/valplate.jpg' %}" alt="">
+          <div class="link_box">
+            <h5>
+              발렌타인 접시
+            </h5>
+            <p>
+              3,000 won
+            </p>
+            <form action="{% url 'add' %}" method="POST" id="addform">
+              {% csrf_token %}
+              <input type="hidden" name="name" value="val">
+              <input type="hidden" name="mode" value="add">
+              <input type="number" name="valadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
           </div>
@@ -177,7 +189,7 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="pla">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="cupadd" min="1" max="50" value="1">
+              <input type="number" name="plaadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
           </div>
@@ -201,14 +213,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="steak">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="steakadd" min="1" max="50" value="1">
+              <input type="number" name="steakadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="steak">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="steakdel" min="1" max="50" value="1">
+              <input type="number" name="steakdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -226,14 +238,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="salad">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="saladadd" min="1" max="50" value="1">
+              <input type="number" name="saladadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="salad">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="saladdel" min="1" max="50" value="1">
+              <input type="number" name="saladdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -251,14 +263,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="egg">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="eggadd" min="1" max="50" value="1">
+              <input type="number" name="eggadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="egg">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="eggdel" min="1" max="50" value="1">
+              <input type="number" name="eggdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -276,14 +288,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="bacon">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="baconadd" min="1" max="50" value="1">
+              <input type="number" name="baconadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="bacon">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="bacondel" min="1" max="50" value="1">
+              <input type="number" name="bacondel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -301,14 +313,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="bread">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="breadadd" min="1" max="50" value="1">
+              <input type="number" name="breadadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="bread">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="breaddel" min="1" max="50" value="1">
+              <input type="number" name="breaddel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -326,14 +338,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="bag">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="bagadd" min="1" max="50" value="1">
+              <input type="number" name="bagadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="bag">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="bagdel" min="1" max="50" value="1">
+              <input type="number" name="bagdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -351,14 +363,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="cof">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="cofadd" min="1" max="50" value="1">
+              <input type="number" name="cofadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="cof">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="cofdel" min="1" max="50" value="1">
+              <input type="number" name="cofdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -376,14 +388,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="cofp">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="cofpadd" min="1" max="50" value="1">
+              <input type="number" name="cofpadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="cofp">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="cofpdel" min="1" max="50" value="1">
+              <input type="number" name="cofpdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -401,14 +413,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="wine">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="wineadd" min="1" max="50" value="1">
+              <input type="number" name="wineadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="wine">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="winedel" min="1" max="50" value="1">
+              <input type="number" name="winedel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -426,14 +438,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="wineb">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="winebadd" min="1" max="50" value="1">
+              <input type="number" name="winebadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="wineb">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="winebdel" min="1" max="50" value="1">
+              <input type="number" name="winebdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>
@@ -451,14 +463,14 @@
               {% csrf_token %}
               <input type="hidden" name="name" value="champ">
               <input type="hidden" name="mode" value="add">
-              <input type="number" name="champadd" min="1" max="50" value="1">
+              <input type="number" name="champadd" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "추가">
             </form>
             <form action="{% url 'add' %}" method="POST" id="addform">
               {% csrf_token %}
               <input type="hidden" name="name" value="champ">
               <input type="hidden" name="mode" value="del">
-              <input type="number" name="champdel" min="1" max="50" value="1">
+              <input type="number" name="champdel" min="1" max="9" value="1">
               <input type="submit" id="sub" value = "삭제">
             </form>
           </div>

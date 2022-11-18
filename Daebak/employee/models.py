@@ -78,7 +78,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class CurruntOrder(models.Model):
-    field_id = models.IntegerField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
+    field_id = models.BigIntegerField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
     name = models.CharField(max_length=10)
     phone = models.IntegerField()
     address = models.CharField(max_length=20)
@@ -90,11 +90,11 @@ class CurruntOrder(models.Model):
 
 class CurruntOrderState(models.Model):
     time = models.IntegerField(db_column='TIME')  # Field name made lowercase.
-    field_1 = models.IntegerField(db_column='_1', blank=True, null=True)  # Field renamed because it started with '_'.
-    field_2 = models.IntegerField(db_column='_2', blank=True, null=True)  # Field renamed because it started with '_'.
-    field_3 = models.IntegerField(db_column='_3', blank=True, null=True)  # Field renamed because it started with '_'.
-    field_4 = models.IntegerField(db_column='_4', blank=True, null=True)  # Field renamed because it started with '_'.
-    field_5 = models.IntegerField(db_column='_5', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_1 = models.BigIntegerField(db_column='_1', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_2 = models.BigIntegerField(db_column='_2', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_3 = models.BigIntegerField(db_column='_3', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_4 = models.BigIntegerField(db_column='_4', blank=True, null=True)  # Field renamed because it started with '_'.
+    field_5 = models.BigIntegerField(db_column='_5', blank=True, null=True)  # Field renamed because it started with '_'.
 
     class Meta:
         managed = False
@@ -159,7 +159,7 @@ class Employee(models.Model):
 
 
 class OrderList(models.Model):
-    field_id = models.AutoField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
+    field_id = models.BigAutoField(db_column='_id', primary_key=True)  # Field renamed because it started with '_'.
     user = models.IntegerField()
     ordernum = models.CharField(max_length=21, blank=True, null=True)
     price = models.IntegerField()

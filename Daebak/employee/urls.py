@@ -19,7 +19,7 @@ urlpatterns = [
     path('emdeliverypage/', views.emdeliverypage, name='edep'),
     path('emdeliverypage/', views.emdeliverypage, name='edep'),
     path('emdeliverychangepage/', views.emdeliverychangepage, name='edecp'),
-
+    
     path('emlogin/', views.emlogin, name='emlogin'),
     path('emsignup/', views.emsignup, name='emsignup'),
     path('emstock/', views.emstock, name='emstock'),

@@ -21,7 +21,7 @@ def get_data(num,*args):
     if num == 1: ## order list 가져오기
         try:
             cursor = connection.cursor()
-            strSql = "SELECT ordernum from order_list where user="+str(args[0])
+            strSql = "SELECT ordernum,state from order_list where user="+str(args[0])
             cursor.execute(strSql)
             result = cursor.fetchall()
             connection.close()
@@ -44,6 +44,20 @@ def get_data(num,*args):
             connection.rollback()
             print("error")
             return -10
+    if num ==3: ## address, card 가져오기 ## by 성령
+        try:
+            cursor = connection.cursor()
+            strSql = "SELECT address, card from user where phone="+str(args[0])
+            cursor.execute(strSql)
+            result = cursor.fetchall()
+            connection.close()
+            if len(result)==0:
+                return -1
+            return result[0]
+        except:
+            connection.rollback()
+            return -10 # 데이터 가져오기 실패 오류코드             
+
 
 def Insert_data(request,num):
     pass

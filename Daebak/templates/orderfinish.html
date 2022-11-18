@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Mr.Daebak Dinner</title>
+ <!--<link rel="icon" href="{% static 'images/restaurant.png' %}">-->
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+  <!-- style -->
+  <link href="{% static 'css/style.css' %}?after" rel="stylesheet">
+</head>
+
+<body>
+  <!-- start header section  -->
+  <div class="main_area">  
+    <div class="brand_box">
+      <a class="brand" href="{% url 'cm' %} ">
+        <span>
+          Mr.Daebak DINNER
+        </span>
+      </a>
+    </div>
+    <div class="brand_img">
+      <img src="{% static 'images/fine-dining-gf22fda13e_1920.jpg' %}" alt="">
+    </div>   
+  </div>
+  <!-- end header section -->
+
+
+  <!-- start order section -->
+  
+
+  <section class="order_section layout_padding">
+    <div class="container">
+      <div class="text_box">
+        <hr>
+        <h1>
+          <B>주문이 완료되었습니다.</B>
+        </h1>
+        <hr>
+      </div>
+      
+      <div class="box"> 
+        <div class="orderbox">
+          <div class="orderInfo">
+            <form  method="POST" id="orderfinishform">
+              <div class="heading_container">
+                <hr>
+                <h2>
+                  &nbsp;주문 상품&nbsp;
+                </h2>
+                <hr>
+              </div>
+
+              <div class="heading_container">
+                <hr>
+                <h2>
+                  &nbsp;주문자 정보&nbsp;
+                </h2>
+                <hr>
+              </div>
+              이름 <input type="text" name="name"><br>
+              전화번호 <input type="text" name="phonenumber"><br>
+              주소 <input type="text" name="address"><br>
+              카드번호 <input type="text" name="card"><br>               
+              배달시간 <input type="text" name="dtime"><br>
+              배달 요청사항 <input type="text" name="want"><br>
+              <div class="heading_container">
+                <hr>
+                <h2>
+                  &nbsp;총 결제금액&nbsp;
+                </h2>
+                <hr>
+              </div>
+              상품 금액 <input type="text" name="foodmoney"><br>
+              할인 여부 <input type="text" name="discount"><br>
+              결제 금액 <input type="text" name="finalmoney"><br>
+              <br><br>
+            </form>            
+          </div>
+        </div>
+        <br>
+
+
+        
+        <div class="btn_box">
+          <a href="{% url 'cm' %} ">
+            메인화면으로 →
+          </a>
+          <br>          
+        </div>           
+      </div>
+    </div>
+  </section>
+  <!-- end order section -->
+  
+  <!-- start info section -->
+
+  <section class="info_section layout_padding">
+    <div class="container">
+      <div class="info_brand">
+        <h2>
+          Mr.Daebak DINNER
+        </h2>
+      </div>
+      <div class="info_box">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="">
+              <span>
+                이용약관
+              </span>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="">
+              <span>
+                개인정보취급방침
+              </span>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="">
+              <span>
+                공지사항
+              </span>
+            </a>
+          </div>
+          <p><br><br><br></p>
+          <p>
+            위치 | 서울특별시 강남구 강남대로102길 31<br>
+            대표번호 | 010-2747-1579
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end info section -->
+
+
+
+  
+  <!-- start footer section -->
+  <section class="container-fluid footer_section ">
+    <p>
+      COPYRIGHT © Mr.Daebak DINNER. ALL RIGHTS RESERVED.
+    </p>
+  </section>
+  <!-- end footer section -->
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+</html>
