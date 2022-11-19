@@ -73,21 +73,6 @@
     <div>
     <br><br><br>
     <h2>{{user_name}}님, 안녕하세요.</h2>
-    <div class="voiceai_box">
-      <a href="{% url 'dsp' %}">
-        새로고침
-      </a>
-      <button class="voice" name="voice" type="button" onclick="voiceinput();">
-        음성인식으로 주문하기
-      </button>
-      <button class="voice" name="voice" type="button" onclick="voicestop();">
-        음성인식 멈추기
-      </button>
-    </div>
-    <div class="words">
-      
-    </div>
-    <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
   </section>
   
   <!-- end progress section -->
@@ -123,8 +108,9 @@
               * 와인이 포함될 경우 플라스틱 잔이 제공됩니다.<br>
               * Champagne Feast Dinner 적용 불가<br><br>
             </p>
-            <form action="{% url 'simnum' %}" method="POST" id="dinnerform">
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
               {% csrf_token %}
+              <input type="hidden" id="name" value="sim">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -145,8 +131,9 @@
               컵<br>
               흰색 면 냅킨<br><br>
             </p>
-            <form action="{% url 'granum' %}" method="POST" id="dinnerform">
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
               {% csrf_token %}
+              <input type="hidden" id="name" value="gra">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
@@ -167,13 +154,37 @@
               도자기 접시<br>
               린넨 냅킨<br><br>
             </p>
-            <form action="{% url 'delnum' %}" method="POST" id="dinnerform">
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
               {% csrf_token %}
+              <input type="hidden" id="name" value="del">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
           </div>
         </div>
       </div>
+      <div class="voiceai_box">
+        * '음성인식으로 주문하기' 버튼을 누르고 원하는 디너 스타일을 말하세요.<br>
+        * 인식이 잘 되었다면 '음성인식 멈추기'를 누른 후 '다음으로 →'를 누르세요.<br>
+        * 인식이 잘 안 되었다면 '새로고침'을 누른 후 다시 시도하세요.<br>
+        <a href="{% url 'dsp' %} ">
+          새로고침
+        </a>
+        <button class="voice" name="voice" type="button" onclick="voiceinput();">
+          음성인식으로 주문하기
+        </button>
+        <button class="voice" name="voice" type="button" onclick="voicestop();">
+          음성인식 멈추기
+        </button>
+      </div>
+      <br>
+      <form action="{% url 'ds' %}" method="POST" id="voiceform" onclick="submitvoice();">
+        {% csrf_token %} 
+        <input type="hidden" id="voicesubmit" value ="">
+        <input type="submit" id="sub" value = "다음으로 →">
+      </form>
+      <div class="words">
+      </div>
+      <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
     </div>
   </section>
 

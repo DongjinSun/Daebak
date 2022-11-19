@@ -583,6 +583,10 @@ body {
     color: #ffffff;
   }
 
+  #orderform >#sub:hover {
+    background-color: transparent;
+    color: #380B61;
+  }
   /* end add section */
   
   /* start info section */
@@ -772,9 +776,14 @@ body {
   #userform >#sub{
     width: 20%;
     padding: 8px 40px;
-    background-color: #313131;
-    border: 1px solid #313131;
+    background-color: #380B61;
+    border: 1px solid #380B61;
     color: #ffffff;
+  }
+
+  #userform >#sub:hover {
+    background-color: transparent;
+    color: #380B61;
   }
 
   #userform >#dtime{
@@ -787,7 +796,7 @@ body {
   }
 
   /*
-  #userform >#dtime:focus {
+  #userform >#dtime:active {
     background-color: #BE81F7;
   }
   */
@@ -830,10 +839,6 @@ body {
     background-color: #F8F8F8;
   }
   
-
-  
-
-
   /* end order section*/
   
   /* start choose section */
@@ -899,6 +904,7 @@ body {
     margin: 50px;
     margin-top: 25px;
     text-align: right;
+    margin-right: 70px;
   }
   
   .inquire_section .btn_box a {
@@ -961,7 +967,7 @@ body {
     text-align: right;
   }
   
-  .dinner_section .voiceai_box button {
+  .dinner_section .voiceai_box a, button {
     display: inline-block;
     padding: 8px 40px;
     background-color: #725780;
@@ -969,11 +975,55 @@ body {
     color: #ffffff;
   }
   
+  .dinner_section .voiceai_box a:hover {
+    background-color: transparent;
+    color: #725780;
+  }
+
   .dinner_section .voiceai_box button:focus {
     background-color: transparent;
     color: #725780;
   }
 
+  .add_section .voiceai_box {
+    text-align: right;
+  }
+  
+  .add_section .voiceai_box a, button {
+    display: inline-block;
+    padding: 8px 40px;
+    background-color: #725780;
+    border: 2px solid #725780;
+    color: #ffffff;
+  }
+  
+  .add_section .voiceai_box a:hover {
+    background-color: transparent;
+    color: #725780;
+  }
+
+  .add_section .voiceai_box button:focus {
+    background-color: transparent;
+    color: #725780;
+  }
+
+  #voiceform {
+    text-align:center;
+  }
+
+  #voiceform >#sub{
+    width: 15%;
+    height: 48px;
+    padding: 8px 25px;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: #ffffff;
+  }
+
+  #voiceform >#sub:hover {
+    background-color: transparent;
+    color: #000000;
+  }
 
   /* end voiceai */
 

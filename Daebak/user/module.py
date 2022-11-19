@@ -59,9 +59,10 @@ class Dinner_main:
         # 스타일 가격 합산
         if dinnerList[4] == 1:      # grand dinner
             total_price += dinnerMain.style_list["grand"] * persons
-        elif dinnerList[4] == 2:    # deluxe dinner
+        if dinnerList[4] == 2:    # deluxe dinner
             total_price += dinnerMain.style_list["deluxe"] * persons
         
+        dinnerMain.i = 0 # for iteration 
         #print("dinnerList is !!!", dinnerList) #문제점: 심플 디너일 때 디너리스트의 길이가 20이 됨. -> OUT OF RANGE
         for additional in dinnerMain.additional_list.keys(): #
             total_price += dinnerMain.additional_list[additional] * dinnerList[dinnerMain.i + 5]
@@ -155,6 +156,17 @@ class Dinner_main:
                 _l[-2] += num//2 # 와인한병
                 _l[-1] += num//2 # 샴페인 한병
         return _l
+    
+    @staticmethod
+    def make_voice_dinner_data(data,type):
+        if type =="menu":
+            _l = ["발렌타인","프렌치","english","샴페인"]
+        elif type=="style":
+            _l = ["심플","그랜드","디럭스"]
+        return _l.index(data)
+            
+        
+    
 
     # @staticmethod
     # def dinner_reverse(ordernum):
@@ -244,7 +256,7 @@ class Order_main:
                 deliverytime = int(deliverytime[0:2]+deliverytime[3:])
                 request.session["time"] = deliverytime
             except:
-                time = orderMain.get_currunt_time(request)
+                time = Order_main.get_currunt_time(request)
                 if "1" not in time:
                     return -1
                 return -2

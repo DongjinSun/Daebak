@@ -100,16 +100,17 @@
                   </table>
 
 <!-- 수정 끝 -->
+                <br><br>
                 <div class="heading_container">
                   <hr>
                   <h2>
                     주문자 정보
                   </h2>
                 </div>
-                이름 <input type="text" name="name" value={{context.name}}><br>
-                전화번호 <input type="text" name="phonenumber" value = {{context.phonenumber}}><br>
-                주소 <input type="text" name="address" value = {{context.address}}><br>
-                카드번호 <input type="text" name="card" value = {{context.card}}><br>               
+                * 이름 <input type="text" id="name" name="name" value={{context.name}}><br>
+                * 전화번호 <input type="text" id="phonenumber" name="phonenumber" value = {{context.phonenumber}}><br>
+                * 주소 <input type="text" id="address" name="address" value = {{context.address}}><br>
+                * 카드번호 <input type="text" id="card" name="card" value = {{context.card}}><br>               
                 배달시간
                 <br>
                 <input type="hidden" name="arr" value="{{arr}}">
@@ -147,25 +148,32 @@
                 <br>
                 배달 요청사항<br>
                 <input type="text" name="want"><br>
+                <br><br>
                 <div class="heading_container">
                   <hr>
                   <h2>
                     &nbsp;총 결제금액&nbsp;
                   </h2>
-                  <hr>
                 </div>
                 상품 금액 <input type="text" name="foodmoney" value={{context.price}}><br>
                 할인 여부 <input type="text" name="discount" value={{context.sale}}><br>
                 결제 금액 <input type="text" name="finalmoney" value={{context.money}}><br>
                 <br><br>
-                <input type="submit" id="sub" value="결제하기">
+                <input type="submit" id="sub" value="결제하기" onclick="noinput();">
               </form>            
             </div>
         </div>      
       </div>
     </div>
     <br><br><br>
-      
+    <script>
+      function noinput(){
+        if(document.getElementById('name').value.length==0){alert("이름을 입력하세요.");}
+        if(document.getElementById('phonenumber').value.length==0){alert("전화번호를 입력하세요.");}
+        if(document.getElementById('address').value.length==0){alert("주소를 입력하세요.");}
+        if(document.getElementById('card').value.length==0){alert("카드번호를 입력하세요.");}
+      }
+    </script>
   </section>
   <!-- end order section -->
 

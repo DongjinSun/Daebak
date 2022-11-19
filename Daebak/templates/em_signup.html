@@ -63,9 +63,9 @@
           <br><br>
           <form action="{% url 'emsignup' %}" method="POST" id="signupform">
             {% csrf_token %}
-            &nbsp;&nbsp;&nbsp;<b>* 이름</b>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="name"><br>
-            <b>* 전화번호</b> <input type="text" name="phonenumber"><br>
-            <b>* 비밀번호</b> <input type="password" name="password"><br>
+            &nbsp;&nbsp;&nbsp;<b>* 이름</b>&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="name" name="name"><br>
+            <b>* 전화번호</b> <input type="text" id="phonenumber" name="phonenumber" placeholder="00000000000"><br>
+            <b>* 비밀번호</b> <input type="password" id="password" name="password"><br>
             <b>* 직무</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="radio" id="job" name="job" value="cook">조리
             <input type="radio" id="job" name="job" value="delivery">배달
@@ -75,12 +75,19 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <br><br>
-            <input type="submit" id="sub" value="등록하기">
+            <input type="submit" id="sub" value="등록하기" onclick="noinput();">
           </form> 
         </div>
         <br>
       </div>
     </div>
+    <script>
+      function noinput(){
+        if(document.getElementById('name').value.length==0){alert("이름을 입력하세요.");}
+        if(document.getElementById('phonenumber').value.length==0){alert("전화번호를 입력하세요.");}
+        if(document.getElementById('password').value.length==0){alert("비밀번호를 입력하세요.");}
+      }
+    </script>
   </section>
 
   <!-- end signup section -->

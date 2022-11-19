@@ -71,9 +71,7 @@
       </div>
     <div>
     <br><br><br>
-    <h2>{{user_name}}님, 안녕하세요.</h2>
-    
-  
+    <h2>{{user_name}}님, 안녕하세요.</h2> 
   </section>
 
   <!-- end progress section -->
@@ -191,7 +189,11 @@
       </div>
       <div class="voiceai_box">
         * '음성인식으로 주문하기' 버튼을 누르고 원하는 디너 종류를 말하세요.<br>
-        
+        * 인식이 잘 되었다면 '음성인식 멈추기'를 누른 후 '다음으로 →'를 누르세요.<br>
+        * 인식이 잘 안 되었다면 '새로고침'을 누른 후 다시 시도하세요.<br>
+        <a href="{% url 'dfp' %} ">
+          새로고침
+        </a>
         <button class="voice" name="voice" type="button" onclick="voiceinput();">
           음성인식으로 주문하기
         </button>
@@ -199,11 +201,16 @@
           음성인식 멈추기
         </button>
       </div>
+      <br>
+      <form action="{% url 'df' %}" method="POST" id="voiceform" onclick="submitvoice();">
+        {% csrf_token %} 
+        <input type="hidden" id="voicesubmit" value ="">
+        <input type="submit" id="sub" value = "다음으로 →">
+      </form>
       <div class="words">
       </div>
       <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
     </div>
-
   </section>
 
   <!-- end dinner section -->

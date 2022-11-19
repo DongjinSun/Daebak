@@ -122,6 +122,17 @@ def dfpage(request):
 def df(request):
     _l = ["valnum","frenum","engnum","chanum"]
     if request.method == 'POST':
+        voice = request.POST.get('voicesubmit',False)
+        print(voice)
+        if voice:
+            request.session["dinner_menu"]=[0,0,0,0]
+            i = make_voice_dinner_data(voice,"menu")
+            request.session["dinner_menu"][i] = 1
+            request.session["base"] = Dinner_main.dinner_convert(request.session["dinner_menu"])
+            if not i:
+                request.session["dinner_style"] = [3]
+                return redirect('ap')
+            return redirect('dsp')
         name = request.POST["name"]
         i = _l.index(name)
         request.session["dinner_menu"]=[0,0,0,0]
@@ -140,20 +151,28 @@ def dspage(request):
         name = "Anonymous User"
     return render(request, 'dinnerstyle.html', {'user_name': name})
 
-def simnum(request):
-    request.session["dinner_style"]=[0,0,0]
-    request.session["dinner_style"] = [0]
-    return redirect('ap')
-
-def granum(request):
-    request.session["dinner_style"]=[0,0,0]
-    request.session["dinner_style"] = [1]
-    return redirect('ap')
-
-def delnum(request):
-    request.session["dinner_style"]=[0,0,0]
-    request.session["dinner_style"] = [2]
-    return redirect('ap')
+def ds(request):
+    if request.method =="POST":
+        voice = request.POST.get('voicesubmit',False)
+        if voice:
+            i = make_voice_dinner_data(voice,"style")
+            if i==0:
+                request.session["dinner_style"] = [0]
+            elif i==1:
+                request.session["dinner_style"] = [1]
+            elif i==2:
+                request.session["dinner_style"] = [2]
+            return redirect('ap')
+        _l = ["sim","gra","del"]
+        name = request.POST["name"]
+        i = _1.index(name)
+        if i==0:
+            request.session["dinner_style"] = [0]
+        elif i==1:
+            request.session["dinner_style"] = [1]
+        elif i==2:
+            request.session["dinner_style"] = [2]
+        return redirect('ap')
 
 
 # 수정할 추가사항 고르기
@@ -232,7 +251,6 @@ def order(request):
     #dinner data: 고객 정보 + 배달 시간 + 배달요청사항 + 디너 정보
     #출력 형식: [3, "valentine Dinner", "Deluxe Dinner", ["빵 +1", "스테이크 -3"], 72000]
     #order 리턴값: [["name", "phnum", "addr"], "13:00", "additional", dinner Data]
-    ## 세부 구현은 나중에.. 
     err = orderMain.send_order_data(request)
     # print(test_)
     if err == -1:
@@ -257,6 +275,12 @@ def order(request):
         # #return render(request, 'customermain.html', {'user_name': name})
 
 def orderfinishpage(request):
+    del request.session["order"]
+    del request.session["time"]
+    del request.session["order"]
+    del request.session["addition"]
+    del request.session["dinner_menu"]
+    del request.session["dinner_style"]
     return render(request, 'orderfinish.html')
 
 

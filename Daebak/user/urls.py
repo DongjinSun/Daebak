@@ -22,10 +22,7 @@ urlpatterns = [
     ## 디너 종류
     path('df/', views.df, name='df'), 
     #디너 스타일
-    #path('ds/', views.ds, name='ds'),
-    path('simnum/', views.simnum, name='simnum'),
-    path('granum/', views.granum, name='granum'),
-    path('delnum/', views.delnum, name='delnum'),
+    path('ds/', views.ds, name='ds'),
     path('add/', views.add, name='add'),
     path('addorder/', views.addorder, name='addorder'),
     path('order/', views.order, name='order'),
