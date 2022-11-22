@@ -44,7 +44,8 @@
     <br><br>
     <div class="container">
       <div class="box">
-        <h1>주문 내역</h1>
+        <h2>주문 내역</h2>
+        <br>
           <table class="stable">
               <thead>
               <tr>
@@ -65,14 +66,9 @@
                 <td>{{u.add}}</td>
                 <td>{{u.state}}</td>
                 <td>
-                  <form action="{% url 'op' %}" method="POST">
+                  <form action="{% url 'ro' %}" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="food" value="{{u.food}}">
-                    <input type="hidden" name="num" value="{{u.num}}">
-                    <input type="hidden" name="style" value="{{u.style}}">
-                    <input type="hidden" name="add" value="{{u.add}}">
-                    <input type="hidden" name="state" value="{{u.state}}">
-                    <input type="radio" name="choose" value="choose">
+                    <input type="hidden" name="ordernum" value="{{u.ordernum}}">
                     <input type="submit" value = "선택 상품 재주문">
                   </form>
                 </td>
@@ -87,6 +83,7 @@
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           -->
+          <br>
           <a href="{% url 'dfp' %}">
             새 주문하러 가기
           </a>

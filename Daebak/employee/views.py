@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import User
+from .models import *
 from django.http import HttpResponse
 from .module import *
 from .datacontrol import *
@@ -17,6 +17,11 @@ def emmainpage(request):
 def emlogin(request):
     if request.method == 'POST':
         _login = Login_main()
+        try : 
+            phone = int(request.POST['phonenumber'])
+        except:
+            messages.warning(request,"휴대폰 번호를 입력해주세요")
+            return redirect('em')
         data=request.session["employee"]=_login._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
         if isinstance(request.session["employee"],int):
             if request.session["employee"] == -1:
@@ -40,28 +45,43 @@ def emsignup(request):
     _login= Login_main()
     if request.method == 'POST':
         user = Employee()
-        user.name = request.POST['name']
-        user.phone = request.POST['phonenumber']
+        user.name = request.POST.get('name',False)
+        if not user.name:
+            messages.warning(request,"이름을 입력하세요")
+            return redirect('esp')
+        user.phone = request.POST.get('phonenumber',False)
+        if not user.phone:
+            messages.warning(request,"휴대폰번호를 입력하세요")
+            return redirect('esp')
+        
         err=_login._login_check(user.phone)
         if err: 
             if err == -1:
                 messages.warning(request,"이미 있는 계정입니다.")
+            elif err == -3:
+                messages.warning(request,"휴대폰 번호를 올바르게 입력해주세요")
             elif err == -10:
                 messages.warning(request,"데이터를 가져오지 못했습니다. 다시 시도해주세요.")
             return redirect('esp')
-        user.password = request.POST['password']
-        job = request.POST['job'] #cook: 조리, delivery: 배달, manage: 관리
+        
+        user.password = request.POST.get('password',False)
+        if not user.password:
+            messages.warning(request,"비밀번호를 입력하세요")
+            return redirect('esp')
+        job = request.POST.get('job',False) #cook: 조리, delivery: 배달, manage: 관리
+        if not job:
+            messages.warning(request,"직원 타입을 선택하세요")
+            return redirect('esp')
+        
         if job =="manage":
             user.type = 0
         elif job =="cook":
             user.type = 1
         elif job =="delivery":
             user.type = 2
-        else:
-            print("Type Error")
-            return redirect('eep')
         user.save()
-    return redirect('eep')
+        messages.warning(request,"회원가입이 완료되었습니다.")
+    return redirect('em')
 
 
 
@@ -111,15 +131,17 @@ def emstockchangepage(request):
 def emcookpage(request):   
     data = get_currunt_order_list()
     users = list()
-    print(data)
+    d = Dinner_main()
     for i in data:
         for j in i[1:]:
             _ = OrderList()
             _.time = i[0]
-            _2 = dinner_reverse(j[1])
-            _.food = _2[0]
-            _.style = _2[1]
-            _.add = _2[2]
+            l = list(map(int,j[1]))
+            _2 = d.make_dinner_data(l)
+            _.person = _2[0]
+            _.dinner = _2[1]
+            _.style = _2[2]
+            _.add = _2[3]
             _.state = j[2]
             if _.state!=2 :
                 users.append(_)
@@ -145,14 +167,18 @@ def emcook(request):
 def emcookchangepage(request):  
     data = get_currunt_order_list()
     users = list()
+    
+    d = Dinner_main()
     for i in data:
         for j in i[1:]:
             _ = OrderList()
             _.time = i[0]
-            _2 = dinner_reverse(j[1])
-            _.food = _2[0]
-            _.style = _2[1]
-            _.add = _2[2]
+            l = list(map(int,j[1]))
+            _2 = d.make_dinner_data(l)
+            _.person = _2[0]
+            _.dinner = _2[1]
+            _.style = _2[2]
+            _.add = _2[3]
             _.state = j[2]
             _.field_id = j[0]
             if _.state!=2 :
@@ -193,10 +219,14 @@ def ememchangepage(request):
 def emdeliverypage(request):
     state_l = ["배달준비","배달중","배달완료"]
     order = OrderList.objects.filter(Q(state=2)|Q(state=3))
+    
     for i in order:
+        cos = CurruntOrder.objects.get(field_id = i.field_id)
         users = User.objects.filter(phone=i.user)
         for j in users:
             j.state=state_l[i.state-2]
+            j.phone="0"+str(j.phone)
+            j.address = cos.address
     try:
         context = {'users':users}
     except:
@@ -206,8 +236,8 @@ def emdeliverypage(request):
 def emdeliverychangepage(request):
     state_l = ["배달준비","배달중","배달완료"]
     order = OrderList.objects.filter(Q(state=2)|Q(state=3))
-    cos = CurruntOrder.objects.get(field_id = order.field_id)
     for i in order:
+        cos = CurruntOrder.objects.get(field_id = i.field_id)
         users = User.objects.filter(phone=i.user)
         for j in users:
             j.state=state_l[i.state-2]
@@ -226,6 +256,9 @@ def emdelivery(request):
         state = request.POST["state"]
         i = int(state_l.index(state))+2
         change_data(3,id,i)
+        id=int(id)
+        s = CurruntOrder.objects.get(field_id = id)
+        s.delete()
     return redirect('edecp')
     
 

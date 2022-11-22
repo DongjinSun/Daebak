@@ -54,7 +54,7 @@
       <div class="box"> 
         <div class="orderbox">
           <div class="orderInfo">
-            <form  method="POST" id="orderfinishform">
+            <form  method="POST" id="userform">
               <div class="heading_container">
                 <hr>
                 <h2>
@@ -63,6 +63,29 @@
                 <hr>
               </div>
 
+              <table class="otable">
+                <thead>
+                <tr>
+                    <td><B>디너 종류</B></td>
+                    <td><B>주문 수량</B></td>
+                    <td><B>디너 스타일</B></td>
+                    <td><B>변경 사항</B></td>
+                    <td><B></B></td>
+                </tr>
+                </thead>
+                <tbody>
+                  {% for c in context.dinData %}
+                <tr>               
+                  <td>{{c.1}}</td>
+                  <td>{{c.0}}</td>
+                  <td>{{c.2}}</td>
+                  <td>{{c.3}}</td>
+                </tr>
+                  {% endfor %}
+                <tbody>
+              </table>
+              <br><br><br>
+
               <div class="heading_container">
                 <hr>
                 <h2>
@@ -70,12 +93,13 @@
                 </h2>
                 <hr>
               </div>
-              이름 <input type="text" name="name"><br>
-              전화번호 <input type="text" name="phonenumber"><br>
-              주소 <input type="text" name="address"><br>
-              카드번호 <input type="text" name="card"><br>               
-              배달시간 <input type="text" name="dtime"><br>
-              배달 요청사항 <input type="text" name="want"><br>
+              이름 <input type="text" name="name" value='{{context.oname}}' readonly><br>
+              전화번호 <input type="text" name="phonenumber" value={{context.ophone}} readonly><br>
+              주소 <input type="text" name="address" value='{{context.oaddr}}' readonly><br>
+              카드번호 <input type="text" name="card" value={{context.ocard}} readonly><br>               
+              배달시간 <input type="text" name="dtime" value={{context.otime}} readonly><br>
+              배달 요청사항 <input type="text" name="want" value='{{context.owant}}' readonly><br>
+              <br><br>
               <div class="heading_container">
                 <hr>
                 <h2>
@@ -83,17 +107,14 @@
                 </h2>
                 <hr>
               </div>
-              상품 금액 <input type="text" name="foodmoney"><br>
-              할인 여부 <input type="text" name="discount"><br>
-              결제 금액 <input type="text" name="finalmoney"><br>
+              상품 금액 <input type="text" name="foodmoney" value={{context.ofoodmoney}} readonly><br>
+              할인 금액 <input type="text" name="discount" value={{context.odiscount}} readonly><br>
+              결제 금액 <input type="text" name="finalmoney" value={{context.ofinalmoney}} readonly><br>
               <br><br>
             </form>            
           </div>
         </div>
-        <br>
-
-
-        
+        <br>       
         <div class="btn_box">
           <a href="{% url 'cm' %} ">
             메인화면으로 →

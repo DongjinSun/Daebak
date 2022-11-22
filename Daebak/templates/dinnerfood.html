@@ -65,9 +65,9 @@
 
   <section class="progress_section layout_padding">    
     <div class="container">
-      <h3>진행상태</h3>
+      <h4>진행상태</h4>
       <div>
-        <progress id="progress" value="30" max="90"></progress>
+        <progress id="progress" value="25" max="100"></progress>
       </div>
     <div>
     <br><br><br>
@@ -93,7 +93,8 @@
           <img src="{% static 'images/valentine.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Valentine dinner
+              Valentine dinner<br>
+              (발렌타인 디너)
             </h3>
             <h5>
               78,000 won
@@ -116,7 +117,8 @@
           <img src="{% static 'images/french.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              French dinner
+              French dinner<br>
+              (프렌치 디너)
             </h3>
             <h5>
               62,000 won
@@ -140,7 +142,8 @@
           <img src="{% static 'images/english.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              English dinner
+              English dinner<br>
+              (잉글리쉬 디너)
             </h3>
             <h5>
               58,000 won
@@ -164,10 +167,11 @@
           <img src="{% static 'images/chamfeast.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Champagne Feast dinner
+              Champagne Feast dinner<br>
+              (샴페인 축제 디너)
             </h3>
             <h5>
-              170,000 won
+              208,000 won
             </h5>
             <p>
               <br>
@@ -176,7 +180,7 @@
               샴페인 1병<br>
               커피 1포트<br>
               와인 1병<br><br>
-              * 2인 세트로 제공됩니다.<br>
+              * 2인 단위로 제공됩니다.<br>
             </p>
             <form action="{% url 'df' %}" method="POST" id="dinnerform">
               {% csrf_token %}
@@ -188,7 +192,7 @@
         </div>     
       </div>
       <div class="voiceai_box">
-        * '음성인식으로 주문하기' 버튼을 누르고 원하는 디너 종류를 말하세요.<br>
+        * '음성인식으로 주문하기' 버튼을 누르고 원하는 디너 종류(1개)를 말하세요.<br>
         * 인식이 잘 되었다면 '음성인식 멈추기'를 누른 후 '다음으로 →'를 누르세요.<br>
         * 인식이 잘 안 되었다면 '새로고침'을 누른 후 다시 시도하세요.<br>
         <a href="{% url 'dfp' %} ">
@@ -201,10 +205,10 @@
           음성인식 멈추기
         </button>
       </div>
-      <br>
+      <br><br>
       <form action="{% url 'df' %}" method="POST" id="voiceform" onclick="submitvoice();">
         {% csrf_token %} 
-        <input type="hidden" id="voicesubmit" value ="">
+        <!--<input type="hidden" id="voicesubmit" name="voicesubmit" value ="">-->
         <input type="submit" id="sub" value = "다음으로 →">
       </form>
       <div class="words">

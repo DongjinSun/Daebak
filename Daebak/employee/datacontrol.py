@@ -22,25 +22,22 @@ def get_data(num,*args):
     if num == 1: ## currunt_order_list 가져오기
         cursor = connection.cursor()
         time = f"{args[0]:02d}{args[1]:02d}"
-        print(time)
+
         strSql = "SELECT * from currunt_order_state where TIME > "+time
         cursor.execute(strSql)
         result = cursor.fetchall()
-        print(1)
+
         data = list()
         for i in range(len(result)):
             data.append(list())
             data[i].append(result[i][0])
-            print(result)
             for j in range(1,6):
                 if result[i][j] == None:
                     break
                 strSql = "SELECT _id,ordernum,state from order_list where _id="+str(result[i][j])
                 cursor.execute(strSql)
                 result_ = cursor.fetchall()
-                print(result_)
                 data[i].append(result_[0])
-        print(2)
         return data
         # try:
         #     cursor = connection.cursor()
@@ -123,7 +120,7 @@ def change_data(num,*args):
             cursor = connection.cursor()
             strSql = "UPDATE employee set phone="+str(args[1])+" where name=\""+str(args[0])+"\""
             cursor.execute(strSql)
-            print(strSql)
+
             connection.commit()
             connection.close()
             return 0
@@ -137,7 +134,7 @@ def change_data(num,*args):
             i = _l.index(args[1])
             cursor = connection.cursor()
             strSql = "UPDATE employee set type="+str(i)+" where name=\""+str(args[0])+"\""
-            print(strSql)
+
             cursor.execute(strSql)
             connection.commit()
             connection.close()
@@ -150,7 +147,7 @@ def change_data(num,*args):
         try:
             cursor = connection.cursor()
             strSql = "UPDATE order_list set state="+str(args[1])+" where _id="+str(args[0])
-            print(strSql)
+
             cursor.execute(strSql)
             connection.commit()
             connection.close()

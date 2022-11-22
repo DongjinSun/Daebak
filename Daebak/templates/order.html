@@ -61,6 +61,19 @@
 
   end bar section -->
 
+  <!-- start progress section -->
+
+  <section class="progress_section layout_padding">    
+    <div class="container">
+      <h4>진행상태</h4>
+      <div>
+        <progress id="progress" value="100" max="100"></progress>
+      </div>
+    <div>
+  </section>
+  
+  <!-- end progress section -->
+
   <!-- start order section -->
   
   <section class="order_section layout_padding">
@@ -77,9 +90,8 @@
                   </h2>
 
                 </div>
-                
-<!-- 수정 -->
-                  <table class="stable">
+
+                  <table class="otable">
                     <thead>
                     <tr>
                         <td><B>디너 종류</B></td>
@@ -90,17 +102,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                      {% for c in context.dinData %}
                     <tr>               
-                      <td>{{context.dinner}}</td>
-                      <td>{{context.num}}</td>
-                      <td>{{context.style}}</td>
-                      <td>{{context.addition}}</td>
+                      <td>{{c.1}}</td>
+                      <td>{{c.0}}</td>
+                      <td>{{c.2}}</td>
+                      <td>{{c.3}}</td>
                     </tr>
+                      {% endfor %}
                     <tbody>
                   </table>
-
-<!-- 수정 끝 -->
-                <br><br>
+                <br><br><br>
                 <div class="heading_container">
                   <hr>
                   <h2>
@@ -109,11 +121,11 @@
                 </div>
                 * 이름 <input type="text" id="name" name="name" value={{context.name}}><br>
                 * 전화번호 <input type="text" id="phonenumber" name="phonenumber" value = {{context.phonenumber}}><br>
-                * 주소 <input type="text" id="address" name="address" value = {{context.address}}><br>
+                * 주소 <input type="text" id="address" name="address" value = '{{context.address}}'><br>
                 * 카드번호 <input type="text" id="card" name="card" value = {{context.card}}><br>               
-                배달시간
+                * 배달시간
                 <br>
-                <input type="hidden" name="arr" value="{{arr}}">
+                <input type="hidden" name="arr" value={{context.arr}}>
                 <input type="hidden" name="dtime" value="">
                 <input type="button" id="dtime" name="time1" value="16:00" onclick="deliverytime(this.name);">
                 <input type="button" id="dtime" name="time2" value="16:30" onclick="deliverytime(this.name);">
@@ -127,27 +139,9 @@
                 <input type="button" id="dtime" name="time10" value="20:30" onclick="deliverytime(this.name);">
                 <input type="button" id="dtime" name="time11" value="21:00" onclick="deliverytime(this.name);">
                 <input type="button" id="dtime" name="time12" value="21:30" onclick="deliverytime(this.name);">
-              
-                <!--
-                <select name = "deliverytime">
-                  <option selected>배달 시간 선택</option>
-                  <option value="1">16:00</option>
-                  <option value="2">16:30</option>
-                  <option value="3">17:00</option>
-                  <option value="4">17:30</option>
-                  <option value="5">18:00</option>
-                  <option value="6">18:30</option>
-                  <option value="7">19:00</option>
-                  <option value="8">19:30</option>
-                  <option value="9">20:00</option>
-                  <option value="10">20:30</option>
-                  <option value="11">21:00</option>
-                  <option value="12">21:30</option>
-                </select>
-                -->
                 <br>
                 배달 요청사항<br>
-                <input type="text" name="want"><br>
+                <input type="text" id="want" name="want" value='없음' ><br>
                 <br><br>
                 <div class="heading_container">
                   <hr>
@@ -155,9 +149,9 @@
                     &nbsp;총 결제금액&nbsp;
                   </h2>
                 </div>
-                상품 금액 <input type="text" name="foodmoney" value={{context.price}}><br>
-                할인 여부 <input type="text" name="discount" value={{context.sale}}><br>
-                결제 금액 <input type="text" name="finalmoney" value={{context.money}}><br>
+                상품 금액 <input type="text" name="foodmoney" value={{context.money}} readonly><br>
+                할인 금액 <input type="text" name="discount" value={{context.sale_money}} readonly><br>
+                결제 금액 <input type="text" name="finalmoney" value={{context.final_money}} readonly><br>
                 <br><br>
                 <input type="submit" id="sub" value="결제하기" onclick="noinput();">
               </form>            
@@ -172,6 +166,7 @@
         if(document.getElementById('phonenumber').value.length==0){alert("전화번호를 입력하세요.");}
         if(document.getElementById('address').value.length==0){alert("주소를 입력하세요.");}
         if(document.getElementById('card').value.length==0){alert("카드번호를 입력하세요.");}
+        if(clicked==0){alert("배달시간을 선택하세요.");}
       }
     </script>
   </section>
