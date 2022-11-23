@@ -739,6 +739,14 @@ body {
     background-color: transparent;
     color: #313131;
   }
+
+  .userorderlist_section h2 {
+    color: #380B61;
+  }
+
+  .userorderlist_section .container .box h2{
+    color: #000000;
+  }
   
   /* end userorderlist section*/
   
@@ -1054,7 +1062,7 @@ body {
   */
 
   #voiceform {
-    text-align:center;
+    text-align:right;
   }
 
   #voiceform >#sub{

@@ -94,8 +94,7 @@
           <img src="{% static 'images/simple.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Simple dinner<br>
-              (심플 디너)
+              심플 디너
             </h3>
             <h5>
               + 0 won
@@ -106,10 +105,11 @@
               상자 접시<br>
               냅킨<br><br>
               * 와인이 포함될 경우 플라스틱 잔이 제공됩니다.<br>
-              * Champagne Feast Dinner 적용 불가<br><br>
+              * 샴페인 축제 디너 적용 불가<br><br>
             </p>
-            <form action="{% url 'ds' %}" method="POST" id="dinnerform">
+            <form action="{% url 'ds' %}" method="POST" id="dinnerform" onclick="chamnofunc();">
               {% csrf_token %}
+              <input type="hidden" name="chamno" value={{chamno}}>
               <input type="hidden" name="name" value="sim">
               <input type="submit" id="sub" value = "장바구니에 담기">
             </form>
@@ -119,8 +119,7 @@
           <img src="{% static 'images/grand.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Grand dinner<br>
-              (그랜드 디너)
+              그랜드 디너
             </h3>
             <h5>
               + 5,000 won
@@ -143,8 +142,7 @@
           <img src="{% static 'images/deluxe.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Deluxe dinner<br>
-              (딜럭스 디너)
+              딜럭스 디너
             </h3>
             <h5>
               + 10,000 won
@@ -178,15 +176,23 @@
           음성인식 멈추기
         </button>
       </div>
-      <br><br>
-      <form action="{% url 'ds' %}" method="POST" id="voiceform" onclick="submitvoice();">
-        {% csrf_token %} 
-        <!--<input type="hidden" id="voicesubmit" name="voicesubmit" value ="">-->
-        <input type="submit" id="sub" value = "다음으로 →">
-      </form>
+      <br>
       <div class="words">
       </div>
+      <form action="{% url 'ds' %}" method="POST" id="voiceform" onclick="submitvoice();">
+        {% csrf_token %} 
+        <input type="submit" id="sub" value = "다음으로 →">
+      </form>     
       <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
+      <script type="text/javascript">
+        function chamnofunc(){
+          var chamno = document.getElementsByName("chamno")[0].value;
+
+          if(chamno!=0){
+            alert("샴페인 축제 디너에는 심플 디너 적용이 불가능합니다.");
+          }
+        }
+      </script>
     </div>
   </section>
 
@@ -228,7 +234,8 @@
           <p><br><br><br></p>
           <p>
             위치 | 서울특별시 강남구 강남대로102길 31<br>
-            대표번호 | 010-2747-1579
+            대표번호 | 010-2747-1579<br>
+            영업시간 | 15:30 ~ 22:00
           </p>
         </div>
       </div>

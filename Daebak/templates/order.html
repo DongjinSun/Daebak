@@ -88,30 +88,27 @@
                   <h2>
                     주문 상품
                   </h2>
-
                 </div>
-
-                  <table class="otable">
-                    <thead>
-                    <tr>
-                        <td><B>디너 종류</B></td>
-                        <td><B>주문 수량</B></td>
-                        <td><B>디너 스타일</B></td>
-                        <td><B>변경 사항</B></td>
-                        <td><B></B></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                      {% for c in context.dinData %}
-                    <tr>               
-                      <td>{{c.1}}</td>
-                      <td>{{c.0}}</td>
-                      <td>{{c.2}}</td>
-                      <td>{{c.3}}</td>
-                    </tr>
-                      {% endfor %}
-                    <tbody>
-                  </table>
+                <table class="otable">
+                  <thead>
+                  <tr>
+                    <td><B>디너 종류</B></td>
+                    <td><B>주문 수량</B></td>
+                    <td><B>디너 스타일</B></td>
+                    <td><B>변경 사항</B></td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    {% for c in context.dinData %}
+                  <tr>               
+                    <td>{{c.1}}</td>
+                    <td>{{c.0}}</td>
+                    <td>{{c.2}}</td>
+                    <td>{{c.3}}</td>
+                  </tr>
+                    {% endfor %}
+                  <tbody>
+                </table>
                 <br><br><br>
                 <div class="heading_container">
                   <hr>
@@ -141,7 +138,7 @@
                 <input type="button" id="dtime" name="time12" value="21:30" onclick="deliverytime(this.name);">
                 <br>
                 배달 요청사항<br>
-                <input type="text" id="want" name="want" value='없음' ><br>
+                <input type="text" id="want" name="want" value='없음'><br>
                 <br><br>
                 <div class="heading_container">
                   <hr>
@@ -150,7 +147,7 @@
                   </h2>
                 </div>
                 상품 금액 <input type="text" name="foodmoney" value={{context.money}} readonly><br>
-                할인 금액 <input type="text" name="discount" value={{context.sale_money}} readonly><br>
+                할인 금액 (* 10회 이상 주문 고객님께 20% 할인이 적용됩니다.) <input type="text" name="discount" value={{context.sale_money}} readonly><br>
                 결제 금액 <input type="text" name="finalmoney" value={{context.final_money}} readonly><br>
                 <br><br>
                 <input type="submit" id="sub" value="결제하기" onclick="noinput();">
@@ -207,7 +204,8 @@
           <p><br><br><br></p>
           <p>
             위치 | 서울특별시 강남구 강남대로102길 31<br>
-            대표번호 | 010-2747-1579
+            대표번호 | 010-2747-1579<br>
+            영업시간 | 15:30 ~ 22:00
           </p>
         </div>
       </div>

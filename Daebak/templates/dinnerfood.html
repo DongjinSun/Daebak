@@ -93,8 +93,7 @@
           <img src="{% static 'images/valentine.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Valentine dinner<br>
-              (발렌타인 디너)
+              발렌타인 디너
             </h3>
             <h5>
               78,000 won
@@ -117,8 +116,7 @@
           <img src="{% static 'images/french.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              French dinner<br>
-              (프렌치 디너)
+              프렌치 디너
             </h3>
             <h5>
               62,000 won
@@ -142,15 +140,14 @@
           <img src="{% static 'images/english.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              English dinner<br>
-              (잉글리쉬 디너)
+              잉글리쉬 디너
             </h3>
             <h5>
               58,000 won
             </h5>
             <p>
               <br>
-              에그 스크램블<br>
+              에그스크램블<br>
               베이컨<br>
               빵<br>
               스테이크<br><br>
@@ -167,8 +164,7 @@
           <img src="{% static 'images/chamfeast.jpg' %}" alt="">
           <div class="link_box">
             <h3>
-              Champagne Feast dinner<br>
-              (샴페인 축제 디너)
+              샴페인 축제 디너
             </h3>
             <h5>
               208,000 won
@@ -205,14 +201,13 @@
           음성인식 멈추기
         </button>
       </div>
-      <br><br>
-      <form action="{% url 'df' %}" method="POST" id="voiceform" onclick="submitvoice();">
-        {% csrf_token %} 
-        <!--<input type="hidden" id="voicesubmit" name="voicesubmit" value ="">-->
-        <input type="submit" id="sub" value = "다음으로 →">
-      </form>
+      <br>
       <div class="words">
       </div>
+      <form action="{% url 'df' %}" method="POST" id="voiceform" onclick="submitvoice();">
+        {% csrf_token %} 
+        <input type="submit" id="sub" value = "다음으로 →">
+      </form>    
       <script type="text/javascript" src="{% static 'js/voiceinput.js' %}"></script>
     </div>
   </section>
@@ -255,7 +250,8 @@
           <p><br><br><br></p>
           <p>
             위치 | 서울특별시 강남구 강남대로102길 31<br>
-            대표번호 | 010-2747-1579
+            대표번호 | 010-2747-1579<br>
+            영업시간 | 15:30 ~ 22:00
           </p>
         </div>
       </div>
