@@ -83,6 +83,7 @@
         <div class="orderbox">
             <div class="orderInfo">
               <form action="{% url 'order' %}" method="POST" id="userform">
+                {% csrf_token %} 
                 <div class="heading_container">
                   <hr>
                   <h2>

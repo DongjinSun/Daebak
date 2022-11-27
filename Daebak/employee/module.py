@@ -1,21 +1,19 @@
 # employee로 고쳐야함.
 
-from .datacontrol import *
-from .models import Employee
+from employee.datacontrol import *
+from employee.models import Employee
 from datetime import datetime
 
 class Dinner_main:
-    def __init__(self):
-        self.style_list = {"심플 디너": 0, "그랜드 디너" : 5000, "딜럭스 디너" : 10000}
-        # UML 상에서 food_list였지만, 그릇, 컵까지 합치면 변수 이름이 맞지 않다고 생각하여 additional_list로 수정
-        self.additional_list = {"box" : 0, "pot": 3000, "cup": 2000, "val": 3000, "pla": 1000, 
+    style_list = {"심플 디너": 0, "그랜드 디너" : 5000, "딜럭스 디너" : 10000}
+    additional_list = {"box" : 0, "pot": 3000, "cup": 2000, "val": 3000, "pla": 1000, 
                         "steak": 38000, "salad": 12000, "egg": 8000, "bacon": 8000, "bread": 4000,
                         "bag": 4000, "cof": 5000, "cofp": 18000, "wine": 7000, "wineb": 40000, "champ": 70000}
-        self.dinner_list = ["발렌타인 디너", "프렌치 디너", "잉글리쉬 디너", "샴페인 축제 디너"]
-        self.i = 0 # for iterration
-
-
-    def cal_dinner_price(self, dinnerLists):
+    dinner_list = ["발렌타인 디너", "프렌치 디너", "잉글리쉬 디너", "샴페인 축제 디너"]
+    add_l = ["box","pot","cup","val","pla","steak","salad","egg","bacon","bread","bag","cof","cofp","wine","wineb","champ"]
+    
+    @staticmethod
+    def cal_dinner_price(dinnerLists):
         if str(type(dinnerLists[0])) == "<class 'list'>": # 더블 리스트인 경우. list[[]]
             dinnerList = dinnerLists[0] # 추후 수정. 초기 구현은 디너 한 종류만 주문한 것으로 생각하자. 
         else:
@@ -26,19 +24,21 @@ class Dinner_main:
         persons = dinnerList[0] + dinnerList[1] + dinnerList[2] + dinnerList[3]
         # 스타일 가격 합산
         if dinnerList[4] == 1:      # 그랜드 디너 dinner
-            total_price += self.style_list["그랜드 디너"] * persons
+            total_price += Dinner_main.style_list["그랜드 디너"] * persons
         if dinnerList[4] == 2:    # 딜럭스 디너 dinner
-            total_price += self.style_list["딜럭스 디너"] * persons
+            total_price += Dinner_main.style_list["딜럭스 디너"] * persons
         
-        self.i = 0 # for iteration 
+        i = 0 # for iteration 
         #print("dinnerList is !!!", dinnerList) #문제점: 심플 디너일 때 디너리스트의 길이가 20이 됨. -> OUT OF RANGE
-        for additional in self.additional_list.keys(): #
-            total_price += self.additional_list[additional] * dinnerList[self.i + 5]
-            self.i += 1
+        for additional in Dinner_main.additional_list.keys(): #
+            total_price += Dinner_main.additional_list[additional] * dinnerList[i + 5]
+            i += 1
         else:
-            self.i = 0
+            i = 0
         return total_price
-    def make_dinner_data(self,dinnerLists):
+    
+    @staticmethod
+    def make_dinner_data(dinnerLists):
         #initialize for reuse#
         persons = 0
         selected_dinner = []
@@ -58,13 +58,13 @@ class Dinner_main:
         selected_dinner = ""
         selected_style = ""
         if dinnerList[0] != 0: # 디너 종류
-            selected_dinner = "발렌타인 디너"
+            selected_dinner = Dinner_main.dinner_list[0]
         elif dinnerList[1] != 0:
-            selected_dinner = "프렌치 디너"
+            selected_dinner = Dinner_main.dinner_list[1]
         elif dinnerList[2] != 0:
-            selected_dinner = "잉글리쉬 디너"
+            selected_dinner = Dinner_main.dinner_list[2]
         else:
-            selected_dinner = "champangeDinner"
+            selected_dinner = Dinner_main.dinner_list[3]
         
         if dinnerList[4] == 0: # 스타일 종류
             selected_style = "심플 디너"    
@@ -98,7 +98,9 @@ class Dinner_main:
                 customizated_str.append(temp)
         if customizated_str == []: # 커스터마이징이 없다면 "수정 사항 없음 출력. "
             customizated_str.append("추가 사항 없음")
-        money = self.cal_dinner_price(dinnerList)##
+            
+        customizated_str = listToString(customizated_str)
+        money = Dinner_main.cal_dinner_price(dinnerList)##
         #print("돈!!!!!!!!!!!!!", money) #for test 
         dinnerData = []
         dinnerData.append(persons)
@@ -134,17 +136,10 @@ class Dinner_main:
         return _l
         
 
-def get_currunt_order_list():
-    _ = datetime.now()
-    data = get_data(1,_.hour,_.minute)
-    data = get_data(1,0,0)
-    return data
 
 
-def get_state(n):
-    state = ["주문완료","조리중"]
-    i = state[n]
-    return i
+
+
 
 
 

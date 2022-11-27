@@ -55,6 +55,7 @@
       <table class="stable">
         <thead>
         <tr>
+            <td><B>시간</B></td>
             <td><B>이름</B></td>
             <td><B>전화번호</B></td>
             <td><B>주소</B></td>
@@ -64,6 +65,7 @@
         <tbody>
         {% for u in users %}
         <tr>
+            <td>{{u.time}}</td>
             <td>{{u.name}}</td>
             <td>{{u.phone}}</td>
             <td>{{u.address}}</td>

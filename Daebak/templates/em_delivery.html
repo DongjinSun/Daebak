@@ -55,18 +55,22 @@
       <table class="stable">
         <thead>
         <tr>
+            <td><B>시간</B></td>
             <td><B>이름</B></td>
             <td><B>전화번호</B></td>
             <td><B>주소</B></td>
+            <td><B>배달요청사항</B></td>
             <td><B>진행 상태</B></td>
         </tr>
         </thead>
         <tbody>
         {% for u in users %}
         <tr>
+            <td>{{u.time}}</td>
             <td>{{u.name}}</td>
             <td>{{u.phone}}</td>
             <td>{{u.address}}</td>
+            <td>{{u.info}}</td>
             <td>{{u.state}}</td>
         </tr>
         {% endfor %}

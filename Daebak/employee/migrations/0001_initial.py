@@ -186,7 +186,7 @@ class Migration(migrations.Migration):
                 ('user', models.IntegerField()),
                 ('ordernum', models.CharField(blank=True, max_length=21, null=True)),
                 ('price', models.IntegerField()),
-                ('time', models.DateTimeField(blank=True, db_column='TIME', null=True)),
+                ('time', models.IntegerField(db_column='TIME', blank=True, null=True)),
                 ('state', models.IntegerField(blank=True, null=True)),
                 ('info', models.CharField(blank=True, max_length=100, null=True)),
             ],

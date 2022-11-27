@@ -1,8 +1,3 @@
-from .datacontrol import *
-from .models import *
-from datetime import datetime
-import math
-
 def listToString(listMenu):            #[1,2,3,4] -> 1234
     str_list = list(map(str, listMenu))#int list -> str list ["1", "2", "3", "4"]
     result = ""

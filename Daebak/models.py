@@ -163,7 +163,7 @@ class OrderList(models.Model):
     user = models.IntegerField()
     ordernum = models.CharField(max_length=21, blank=True, null=True)
     price = models.IntegerField()
-    time = models.DateTimeField(db_column='TIME', blank=True, null=True)  # Field name made lowercase.
+    time = models.IntegerField(db_column='TIME', blank=True, null=True)  # Field name made lowercase.
     state = models.IntegerField(blank=True, null=True)
     info = models.CharField(max_length=100, blank=True, null=True)
 

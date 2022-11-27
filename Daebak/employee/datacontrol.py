@@ -1,7 +1,7 @@
 # employee로 고쳐야함.
 
 from rest_framework.serializers import ModelSerializer
-from .models import Stock, User, Employee, OrderList
+from employee.models import Stock, User, Employee, OrderList
 from django.db import connection
 
         

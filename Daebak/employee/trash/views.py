@@ -7,82 +7,64 @@ from django.db.models import Q
 from django.contrib import messages
 from django.views import View
 
-class Staff_Interface:
-    stock_list = ["상자 접시","도자기 접시","컵","발렌타인 접시","플라스틱 잔","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴페인"]
-    
+class Login_interface:
     @staticmethod
     def emmainpage(request):
         return render(request, 'employeemain.html')
-
+    
     @staticmethod
     def emsignuppage(request):
         return render(request, 'em_signup.html')
-
+    
     @staticmethod
     def emchoosepage(request):
         return render(request, 'em_choose.html')
 
-    @staticmethod
-    def emstockpage(request):
-        stock = Stock.objects.all()
-        for i in zip(stock,Staff_Interface.stock_list):
-            i[0].name = i[1]
-        context = {'users':stock}
-        return render(request, 'em_stock.html', context)
-
-    @staticmethod  
-    def emstockchangepage(request):
-        stock = Stock.objects.all()
-        for i in zip(stock,Staff_Interface.stock_list):
-            i[0].name = i[1]
-        context = {'users':stock}
-        return render(request, 'em_stockchange.html', context)
-
+class Cook_interface:
     @staticmethod
     def emcookpage(request):   
-        data = get_currunt_order_list()
+        data = Cook_main.get_currunt_order_list()
         users = list()
-        d = Dinner_main()
         for i in data:
             for j in i[1:]:
                 _ = OrderList()
                 _.time = i[0]
                 l = list(map(int,j[1]))
-                _2 = d.make_dinner_data(l)
+                _2 = Dinner_main.make_dinner_data(l)
                 _.person = _2[0]
                 _.dinner = _2[1]
                 _.style = _2[2]
                 l = listToString(_2[3])
                 _.add = l
-                if j[2]!=2 :
-                    _.state = get_state(j[2])
+                if j[2]<2 :
+                    _.state = Cook_main.get_state(j[2])
                     users.append(_)
         context = {'users':users}
         return render(request, 'em_cook.html', context)
 
     @staticmethod
     def emcookchangepage(request):  
-        data = get_currunt_order_list()
+        data = Cook_main.get_currunt_order_list()
         users = list()
-        d = Dinner_main()
         for i in data:
             for j in i[1:]:
                 _ = OrderList()
                 _.time = i[0]
                 l = list(map(int,j[1]))
-                _2 = d.make_dinner_data(l)
+                _2 = Dinner_main.make_dinner_data(l)
                 _.person = _2[0]
                 _.dinner = _2[1]
                 _.style = _2[2]
                 l = listToString(_2[3])
                 _.add = l
-                _.state = j[2]
                 _.field_id = j[0]
-                if _.state!=2 :
+                if j[2]<2 :
+                    _.state = Cook_main.get_state(j[2])
                     users.append(_)
         context = {'users':users} 
         return render(request, 'em_cookchange.html', context)
 
+class Manage_interface:
     @staticmethod
     def emempage(request):
         users = Employee.objects.all()
@@ -96,8 +78,6 @@ class Staff_Interface:
             i.phone = "0"+str(i.phone)
         context = {'users':users[1:]}
         return render(request, 'em_employee.html', context)
-
-
 
     @staticmethod
     def ememchangepage(request):
@@ -113,7 +93,26 @@ class Staff_Interface:
         context = {'users':users[1:]}
         return render(request, 'em_employeechange.html', context)
 
-class Login_Staff:
+class Stock_interface:
+    stock_list = ["상자 접시","도자기 접시","컵","발렌타인 접시","플라스틱 잔","스테이크","샐러드","계란","베이컨","빵","바게트빵","커피","와인","샴페인"]
+    
+    @staticmethod
+    def emstockpage(request):
+        stock = Stock.objects.all()
+        for i in zip(stock,Stock_interface.stock_list):
+            i[0].name = i[1]
+        context = {'users':stock}
+        return render(request, 'em_stock.html', context)
+
+    @staticmethod  
+    def emstockchangepage(request):
+        stock = Stock.objects.all()
+        for i in zip(stock,Stock_interface.stock_list):
+            i[0].name = i[1]
+        context = {'users':stock}
+        return render(request, 'em_stockchange.html', context)
+
+class Login_main:
     @staticmethod
     def emlogin(request):
         if request.method == 'POST':
@@ -122,7 +121,7 @@ class Login_Staff:
             except:
                 messages.warning(request,"휴대폰 번호를 입력해주세요")
                 return redirect('em')
-            data=request.session["employee"]=Login_Staff._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
+            data=request.session["employee"]=Login_main._user_login_init(int(request.POST['phonenumber']),request.POST['password']) # session에 로그인 정보 저장
             if isinstance(request.session["employee"],int):
                 if request.session["employee"] == -1:
                     messages.warning(request,"없는 계정입니다.")
@@ -150,7 +149,7 @@ class Login_Staff:
                 messages.warning(request,"휴대폰번호를 입력하세요")
                 return redirect('esp')
             
-            err=Login_Staff._login_check(user.phone)
+            err=Login_main._account_check(user.phone)
             if err: 
                 if err == -1:
                     messages.warning(request,"이미 있는 계정입니다.")
@@ -201,7 +200,7 @@ class Login_Staff:
         return (employee.name,employee.phone,employee.type)
 
     @staticmethod
-    def _login_check(self,phone):
+    def _account_check(phone):
         try:
             int(phone)
         except:
@@ -240,13 +239,25 @@ class Cook_main:
                 pass
         return redirect('ecocp')
 
-class Staff_main:
+    @staticmethod
+    def get_currunt_order_list():
+        _ = datetime.now()
+        data = get_data(1,_.hour,_.minute)
+        # data = get_data(1,0,0)
+        return data
+    
+    @staticmethod
+    def get_state(n):
+        state = ["주문완료","조리중"]
+        i = state[n]
+        return i
+    
+class Manage_main:
     @staticmethod
     def emphone(request):
         if request.method =="POST":
             name = request.POST["name"]
             phone = request.POST["newphone"]
-            print(name,phone)
             err = change_data(1,name,phone)
             if err:
                 pass
@@ -264,41 +275,53 @@ class Staff_main:
 
 class Delivery_interface:
     state_l = ["배달준비","배달중","배달완료"]
-    
+    time_l = [1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,2100,2130]
     @staticmethod
     def emdeliverypage(request):
-        
-        order = OrderList.objects.filter(Q(state=2)|Q(state=3))
-        
-        for i in order:
+        users = []
+        for i in Delivery_interface.time_l:
+            order = OrderList.objects.filter(Q(state=2)|Q(state=3)) & OrderList.objects.filter(Q(time=i))
+            for i in order:
+                try:
+                    cos = CurruntOrder.objects.get(field_id = i.field_id)
+                except:
+                    continue
+                try:
+                    user = User.objects.get(phone=i.user)
+                except:
+                    user = User()
+                user.name=cos.name
+                user.state=Delivery_interface.state_l[i.state-2]
+                user.phone="0"+str(cos.phone)
+                user.address = cos.address
+                user.time = i.time
+                users.append(user)
             try:
-                cos = CurruntOrder.objects.get(field_id = i.field_id)
+                context = {'users':users}
             except:
-                break
-            users = User.objects.filter(phone=i.user)
-            for j in users:
-                j.state=Delivery_interface.state_l[i.state-2]
-                j.phone="0"+str(j.phone)
-                j.address = cos.address
-        try:
-            context = {'users':users}
-        except:
-            context = {'users':None}
+                context = {'users':None}
         return render(request, 'em_delivery.html', context)
 
     @staticmethod
     def emdeliverychangepage(request):
-        order = OrderList.objects.filter(Q(state=2)|Q(state=3))
-        for i in order:
-            try:
-                cos = CurruntOrder.objects.get(field_id = i.field_id)
-            except:
-                break
-            users = User.objects.filter(phone=i.user)
-            for j in users:
-                j.state=Delivery_interface.state_l[i.state-2]
-                j.field_id=i.field_id
-                j.address = cos.address
+        users = []
+        for i in Delivery_interface.time_l:
+            order = OrderList.objects.filter(Q(state=2)|Q(state=3)) & OrderList.objects.filter(Q(time=i))
+            for i in order:
+                try:
+                    cos = CurruntOrder.objects.get(field_id = i.field_id)
+                except:
+                    continue
+                try:
+                    user = User.objects.get(phone=i.user)
+                except:
+                    user = User()
+                user.name=cos.name
+                user.phone="0"+str(cos.phone)
+                user.address = cos.address
+                user.time = i.time
+                user.field_id=i.field_id
+                users.append(user)
         try:
             context = {'users':users}
         except:
@@ -317,7 +340,8 @@ class Delivery_main:
             change_data(3,id,i)
             id=int(id)
             s = CurruntOrder.objects.get(field_id = id)
-            s.delete()
+            if i==4:
+                s.delete()
         return redirect('edecp')
     
 
